@@ -1,91 +1,138 @@
 @if (s(); as s) {
-  <header class="page-head">
-    <div class="container">
-      <app-breadcrumbs [items]="[{ label: 'Soluciones', path: '/soluciones' }, { label: s.name }]" />
-      <div class="title-row">
-        <span class="ico"><app-icon [name]="s.icon" [size]="26" /></span>
+  <header class="page-head head">
+    <div class="container head-grid">
+      <div class="head-copy">
+        <app-breadcrumbs [items]="[{ label: 'Soluciones', path: '/soluciones' }, { label: s.name }]" />
+        <a class="back" routerLink="/soluciones" [queryParams]="catalog.params()">
+          <app-icon name="arrow-left" [size]="16" /> {{ catalog.active() ? 'Volver a los resultados' : 'Volver al catálogo' }}
+        </a>
+        <span class="eyebrow">{{ family() }} · {{ category() }}</span>
         <h1>{{ s.name }}</h1>
+        <p class="lead">{{ s.summary }}</p>
+        <app-impl-badges [solution]="s" />
+        <div class="head-ctas">
+          <a routerLink="/contacto" [queryParams]="quoteParams()" class="btn btn-primary btn-lg">Solicitar cotización para esta solución <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+          @if (demo(); as d) {
+            <a [routerLink]="['/demo', d.id]" class="btn btn-secondary btn-lg"><app-icon name="play" [size]="16" /> Ver demo</a>
+          }
+        </div>
       </div>
-      <p class="lead">{{ s.summary }}</p>
-      <div class="tags">
-        <span class="tag">{{ category() }}</span>
-        <span class="tag">Complejidad: {{ s.complexity }}</span>
-        <span class="tag" [attr.data-tone]="s.backend === 'no' ? 'ok' : s.backend === 'si' ? 'warn' : 'cyan'">{{ backend() }}</span>
+      <div class="head-visual card">
+        <app-solution-preview [slug]="s.slug" />
       </div>
     </div>
   </header>
 
   <div class="container body">
     <div class="main">
-      <div class="notice">
-        <app-icon name="info" />
-        <p><strong>Tipo de desarrollo a medida, no un producto empaquetado.</strong> El alcance, los módulos y el precio se definen según los requisitos de cada cliente.</p>
-      </div>
-
-      <section aria-labelledby="problem-t">
-        <h2 id="problem-t">El problema que resuelve</h2>
-        <p class="text">{{ s.problem }}</p>
-      </section>
-
-      <section aria-labelledby="who-t">
-        <h2 id="who-t">Para quién es</h2>
-        <ul class="check-list">
-          @for (w of s.forWhom; track w) {
-            <li><app-icon name="check" [size]="16" /> {{ w }}</li>
-          }
-        </ul>
+      <section class="intro" aria-labelledby="ov-t">
+        <h2 id="ov-t">En qué consiste</h2>
+        <p class="overview">{{ s.overview }}</p>
+        <div class="pair">
+          <div class="card mini">
+            <h3><app-icon name="alert" [size]="18" /> El problema que resuelve</h3>
+            <p>{{ s.problem }}</p>
+          </div>
+          <div class="card mini">
+            <h3><app-icon name="users" [size]="18" /> Perfil recomendado</h3>
+            <ul class="check-list">
+              @for (w of s.forWhom; track w) {
+                <li><app-icon name="check" [size]="16" /> {{ w }}</li>
+              }
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="mod-t">
-        <h2 id="mod-t">Módulos posibles</h2>
-        <div class="modules">
+        <h2 id="mod-t">Funcionalidades y módulos posibles</h2>
+        <ul class="caps">
+          @for (c of s.capabilities; track c) {
+            <li><app-icon name="check" [size]="16" /> {{ c }}</li>
+          }
+        </ul>
+        <div class="modules" [class.even]="s.modules.length % 2 === 0">
           @for (m of s.modules; track m.name; let i = $index) {
             <div class="module">
-              <span class="n">{{ i + 1 }}</span>
-              <h3>{{ m.name }}</h3>
-              <p>{{ m.desc }}</p>
+              <span class="n">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+              <div>
+                <h3>{{ m.name }}</h3>
+                <p>{{ m.desc }}</p>
+              </div>
             </div>
           }
         </div>
       </section>
 
-      <section class="split" aria-label="Alcance">
-        <div>
-          <h2>Suele incluir</h2>
-          <ul class="check-list">
-            @for (x of s.includes; track x) {
-              <li><app-icon name="check" [size]="16" /> {{ x }}</li>
-            }
-          </ul>
-        </div>
-        <div>
-          <h2>Opcional</h2>
-          <ul class="check-list optional">
-            @for (x of s.optional; track x) {
-              <li><app-icon name="plus" [size]="16" /> {{ x }}</li>
-            }
-          </ul>
+      <section aria-labelledby="int-t">
+        <h2 id="int-t">Integraciones posibles</h2>
+        <p class="sub">Se evalúan una por una según las APIs y condiciones de cada servicio.</p>
+        <ul class="integrations">
+          @for (x of s.integrations; track x) {
+            <li><app-icon name="plug" [size]="15" /> {{ x }}</li>
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="tech-t">
+        <h2 id="tech-t">Requisitos técnicos</h2>
+        <p class="sub">{{ s.backendNote }}</p>
+        <div class="tech">
+          @for (col of techCols(); track col.title) {
+            <div class="tech-col">
+              <h3><app-icon [name]="col.icon" [size]="16" /> {{ col.title }}</h3>
+              @if (col.items.length) {
+                <ul>
+                  @for (it of col.items; track it) {
+                    <li>{{ it }}</li>
+                  }
+                </ul>
+              } @else {
+                <p class="none">{{ col.empty }}</p>
+              }
+            </div>
+          }
         </div>
       </section>
 
-      <div class="notice" [attr.data-tone]="s.backend === 'no' ? 'ok' : 'warn'">
-        <app-icon [name]="s.backend === 'no' ? 'check' : 'shield'" />
-        <p><strong>{{ backend() }}.</strong> {{ s.backendNote }}</p>
-      </div>
+      <section class="scope" aria-labelledby="scope-t">
+        <h2 id="scope-t">Alcance configurable</h2>
+        <div class="split">
+          <div>
+            <h3>Suele incluir</h3>
+            <ul class="check-list">
+              @for (x of s.includes; track x) {
+                <li><app-icon name="check" [size]="16" /> {{ x }}</li>
+              }
+            </ul>
+          </div>
+          <div>
+            <h3>Opcional, se cotiza aparte</h3>
+            <ul class="check-list optional">
+              @for (x of s.optional; track x) {
+                <li><app-icon name="plus" [size]="16" /> {{ x }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+        <p class="note"><app-icon name="info" [size]="16" /> Es un tipo de desarrollo a medida, no un producto empaquetado: los módulos, el alcance y el precio se definen con cada cliente.</p>
+      </section>
     </div>
 
     <aside class="side">
       <div class="card box">
-        <h2>¿Te interesa?</h2>
+        <h2>Cotiza esta solución</h2>
         <dl>
           <div><dt>Plan de referencia</dt><dd><a routerLink="/planes" class="link">{{ plan()?.name }}</a></dd></div>
+          <div><dt>Complejidad</dt><dd>{{ s.complexity }}</dd></div>
           <div><dt>Precio</dt><dd>Según alcance, tras una cotización</dd></div>
         </dl>
-        <a routerLink="/contacto" [queryParams]="{ solucion: s.slug, tipo: s.projectType, plan: s.plan }" class="btn btn-primary">Solicitar cotización <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        <a routerLink="/contacto" [queryParams]="quoteParams()" class="btn btn-primary">Solicitar cotización <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        <p class="small">El formulario se abrirá con <strong>{{ s.name }}</strong> ya seleccionada.</p>
         @if (demo(); as d) {
-          <a [routerLink]="['/demo', d.id]" class="btn btn-secondary"><app-icon name="play" [size]="16" /> Ver demo: {{ d.label }}</a>
+          <a [routerLink]="['/demo', d.id]" class="btn btn-secondary"><app-icon name="play" [size]="16" /> {{ d.label }}</a>
         }
-        <a routerLink="/que-necesito" class="link small">¿No estás seguro? Usa el asistente</a>
+        <a routerLink="/que-necesito" fragment="asistente" class="link small-link">¿No estás seguro? Usa el asistente</a>
       </div>
     </aside>
   </div>
@@ -93,7 +140,10 @@
   @if (related().length) {
     <section class="section-tight section-alt" aria-labelledby="rel-t">
       <div class="container">
-        <h2 id="rel-t" class="rel-title">Soluciones relacionadas</h2>
+        <div class="rel-head">
+          <h2 id="rel-t">Soluciones relacionadas</h2>
+          <a routerLink="/soluciones" [queryParams]="catalog.params()" class="link">Ver el catálogo <app-icon name="arrow-right" [size]="16" /></a>
+        </div>
         <div class="rel">
           @for (r of related(); track r.slug) {
             <app-solution-card [solution]="r" />

@@ -1,0 +1,120 @@
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Catálogo de soluciones</span>
+    <h1>Explora el tipo de software que podemos construir</h1>
+    <p class="lead">Desde una landing page hasta un ERP. Cada ficha explica qué resuelve, qué puede incluir y qué necesita para funcionar. Todo se desarrolla a medida: no son productos empaquetados.</p>
+  </div>
+</header>
+
+<section class="container catalog" aria-labelledby="cat-results">
+  <div class="filters" role="search">
+    <div class="search">
+      <label class="sr-only" for="sol-search">Buscar soluciones</label>
+      <app-icon name="search" [size]="18" />
+      <input
+        #searchBox
+        id="sol-search"
+        class="input"
+        type="search"
+        autocomplete="off"
+        placeholder="Buscar por nombre, función o integración: inventario, pagos, reportes…"
+        [value]="query()"
+        (input)="onSearch(searchBox.value)"
+        (keydown.escape)="clearSearch(searchBox)"
+        aria-describedby="cat-results"
+      />
+      @if (query()) {
+        <button type="button" class="clear" (click)="clearSearch(searchBox)" aria-label="Borrar búsqueda"><app-icon name="x" [size]="16" /></button>
+      }
+    </div>
+
+    <div class="cats-wrap">
+      <div class="cats" role="group" aria-label="Filtrar por categoría">
+        <button type="button" class="chip" [attr.aria-pressed]="category() === null" (click)="setCategory(null)">
+          Todas <span class="count">{{ searchMatches().length }}</span>
+        </button>
+        @for (c of categories; track c.id) {
+          <button type="button" class="chip" [attr.aria-pressed]="category() === c.id" [class.zero]="countFor(c.id) === 0" (click)="setCategory(c.id)">
+            {{ c.label }} <span class="count">{{ countFor(c.id) }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="status">
+    <p id="cat-results" aria-live="polite">
+      @if (state.active()) {
+        <strong>{{ results().length }}</strong> de {{ total }} soluciones
+        @if (category()) { en <strong>{{ categoryName() }}</strong> }
+        @if (query().trim()) { para «<strong>{{ query().trim() }}</strong>» }
+      } @else {
+        {{ total }} soluciones en 3 familias
+      }
+    </p>
+    @if (state.active()) {
+      <button type="button" class="btn btn-ghost btn-sm" (click)="clearAll()"><app-icon name="x" [size]="16" /> Limpiar filtros</button>
+    }
+  </div>
+
+  @for (g of groups(); track g.id) {
+    <section class="family" [attr.aria-labelledby]="'fam-' + g.id">
+      <div class="fam-head">
+        <h2 [id]="'fam-' + g.id">{{ g.label }} <span class="fam-count">{{ g.items.length }}</span></h2>
+        <p>{{ g.desc }}</p>
+      </div>
+      <div class="grid" [attr.data-family]="g.id" [class.with-featured]="showFeatured() && g.id === 'empresa'">
+        @for (s of g.items; track s.slug) {
+          <app-solution-card [solution]="s" [featured]="showFeatured() && s.slug === featured" />
+        }
+      </div>
+    </section>
+  } @empty {
+    <div class="empty">
+      <app-icon name="search" [size]="28" />
+      <strong>No hay soluciones que coincidan</strong>
+      <p>
+        @if (category() && query().trim()) {
+          Ninguna solución de {{ categoryName() }} menciona «{{ query().trim() }}».
+        } @else {
+          Ninguna solución menciona «{{ query().trim() }}». Prueba con otra palabra, como «ventas», «reportes» o «catálogo».
+        }
+      </p>
+      <div class="empty-actions">
+        @if (category() && searchMatches().length) {
+          <button type="button" class="btn btn-primary btn-sm" (click)="searchEverywhere()">Buscar en todas las categorías ({{ searchMatches().length }})</button>
+        }
+        <button type="button" class="btn btn-secondary btn-sm" (click)="clearAll()">Ver todo el catálogo</button>
+      </div>
+    </div>
+  }
+</section>
+
+<section class="section-tight section-alt" aria-labelledby="not-found-t">
+  <div class="container">
+    <div class="paths-head">
+      <h2 id="not-found-t">¿No encuentras exactamente lo que necesitas?</h2>
+      <p class="lead">Muchos proyectos combinan varias de estas soluciones o no encajan en ninguna. Elige cómo seguir.</p>
+    </div>
+    <div class="paths">
+      <a class="card path" routerLink="/que-necesito" fragment="asistente">
+        <span class="ico"><app-icon name="compass" [size]="22" /></span>
+        <h3>Usa el asistente</h3>
+        <p>Siete preguntas para recibir una recomendación orientativa según tu caso.</p>
+        <span class="go">Empezar <app-icon name="arrow-right" [size]="16" /></span>
+      </a>
+      <a class="card path primary" routerLink="/contacto" [queryParams]="{ tipo: 'a-medida' }">
+        <span class="ico"><app-icon name="code" [size]="22" /></span>
+        <h3>Cuéntanos tu proyecto</h3>
+        <p>Describe lo que necesitas y te ayudamos a definir el alcance de una propuesta a medida.</p>
+        <span class="go">Solicitar cotización <app-icon name="arrow-right" [size]="16" /></span>
+      </a>
+      <a class="card path" routerLink="/demo">
+        <span class="ico"><app-icon name="play" [size]="22" /></span>
+        <h3>Prueba la demo</h3>
+        <p>Un panel administrativo con datos ficticios: dashboard, CRM, inventario, analítica y proyectos.</p>
+        <span class="go">Abrir la demo <app-icon name="arrow-right" [size]="16" /></span>
+      </a>
+    </div>
+  </div>
+</section>

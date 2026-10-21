@@ -1,0 +1,177 @@
+@switch (family()) {
+  @case ('web') {
+    <div class="browser">
+      <div class="chrome"><i></i><i></i><i></i><span class="url"></span></div>
+      <div class="page">
+        @switch (slug()) {
+          @case ('landing-page') {
+            <div class="landing">
+              <div class="copy">
+                <span class="k"></span>
+                <span class="h"></span>
+                <span class="h short"></span>
+                <span class="t"></span>
+                <span class="t short"></span>
+                <span class="cta">Contactar</span>
+              </div>
+              <div class="art"><span class="orb"></span></div>
+            </div>
+            <div class="feats">
+              <span><b></b><i></i></span><span><b></b><i></i></span><span><b></b><i></i></span>
+            </div>
+          }
+          @case ('sitio-corporativo') {
+            <div class="nav"><b class="logo"></b><i></i><i></i><i></i><i class="on"></i></div>
+            <div class="band"><span class="h"></span><span class="t"></span></div>
+            <div class="cols">
+              <span><b></b><i></i><i class="short"></i></span>
+              <span><b></b><i></i><i class="short"></i></span>
+              <span><b></b><i></i><i class="short"></i></span>
+            </div>
+          }
+          @case ('catalogo-digital') {
+            <div class="search"><app-icon name="search" [size]="10" /><i></i></div>
+            <div class="chips"><b class="on"></b><b></b><b></b></div>
+            <div class="products">
+              @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+                <span class="prod"><b [attr.data-t]="n % 3"></b><i></i><em>Consultar</em></span>
+              }
+            </div>
+          }
+          @default {
+            <div class="nav"><b class="logo"></b><i></i><i></i><span class="cart"><app-icon name="store" [size]="11" /><sup>2</sup></span></div>
+            <div class="pdp">
+              <div class="gallery"><span class="main"></span><span class="thumbs"><i></i><i class="on"></i><i></i></span></div>
+              <div class="info">
+                <span class="h"></span>
+                <span class="t short"></span>
+                <span class="sizes"><i></i><i class="on"></i><i></i></span>
+                <span class="buy">Agregar</span>
+                <span class="pay"><app-icon name="shield" [size]="9" /> Pago con pasarela</span>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  }
+
+  @case ('empresa') {
+    <div class="app">
+      <aside>
+        <b class="logo"></b>
+        <i class="on"></i><i></i><i></i><i></i><i></i>
+      </aside>
+      <div class="main">
+        @switch (slug()) {
+          @case ('sistema-de-inventario') {
+            <div class="top"><span class="title"></span><span class="btn">+ Producto</span></div>
+            <div class="table">
+              @for (r of stock; track $index) {
+                <div class="row">
+                  <i class="name"></i>
+                  <span class="meter"><b [style.width.%]="r.pct" [attr.data-s]="r.s"></b></span>
+                  <em [attr.data-s]="r.s"></em>
+                </div>
+              }
+            </div>
+          }
+          @case ('gestion-de-proyectos') {
+            <div class="board">
+              @for (c of board; track $index; let ci = $index) {
+                <div class="col">
+                  <span class="col-h" [attr.data-c]="ci"></span>
+                  @for (ti of c; track ti) {
+                    <span class="task"><i></i><i class="short"></i><b [attr.data-c]="(ci + ti) % 3"></b></span>
+                  }
+                </div>
+              }
+            </div>
+          }
+          @case ('erp-modular') {
+            <div class="kpis erp-kpis"><span><i></i><b></b></span><span><i></i><b></b></span><span><i></i><b class="down"></b></span></div>
+            <div class="erp">
+              <span class="mod m1"><app-icon name="box" [size]="11" />Inventario</span>
+              <span class="mod m2"><app-icon name="store" [size]="11" />Compras</span>
+              <span class="hub">ERP</span>
+              <span class="mod m3"><app-icon name="chart" [size]="11" />Ventas</span>
+              <span class="mod m4"><app-icon name="layers" [size]="11" />Finanzas</span>
+              <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M26 25 L50 50 M74 25 L50 50 M26 75 L50 50 M74 75 L50 50" />
+              </svg>
+            </div>
+          }
+          @case ('crm-comercial') {
+            <div class="crm">
+              <div class="funnel">
+                @for (f of funnel; track f.label) {
+                  <span class="stage" [style.width.%]="f.pct"><em>{{ f.label }}</em></span>
+                }
+              </div>
+              <div class="deals">
+                <span class="deal"><b></b><i></i></span>
+                <span class="deal"><b></b><i></i></span>
+                <span class="deal"><b></b><i></i></span>
+              </div>
+            </div>
+          }
+          @default {
+            <div class="kpis"><span><i></i><b></b></span><span><i></i><b></b></span><span><i></i><b class="down"></b></span></div>
+            <div class="charts">
+              <svg class="line" viewBox="0 0 100 40" preserveAspectRatio="none">
+                <path class="area" d="M0 32 L14 26 L28 29 L42 18 L56 21 L70 12 L84 15 L100 6 L100 40 L0 40 Z" />
+                <path class="stroke" d="M0 32 L14 26 L28 29 L42 18 L56 21 L70 12 L84 15 L100 6" />
+              </svg>
+              <span class="donut"></span>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  }
+
+  @default {
+    <div class="canvas">
+      @switch (slug()) {
+        @case ('automatizacion-de-procesos') {
+          <div class="flow">
+            <span class="node trigger"><app-icon name="clock" [size]="12" /><em>Cada lunes</em></span>
+            <span class="edge"></span>
+            <span class="node"><app-icon name="file" [size]="12" /><em>Generar reporte</em></span>
+            <span class="edge"></span>
+            <span class="node"><app-icon name="mail" [size]="12" /><em>Enviar correo</em></span>
+          </div>
+          <div class="log"><b></b><i></i><b></b><i></i><b></b><i class="short"></i></div>
+        }
+        @case ('integracion-de-sistemas') {
+          <div class="mesh">
+            <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M20 22 L50 50 M80 22 L50 50 M20 78 L50 50 M80 78 L50 50" />
+            </svg>
+            <span class="sys s1">Ventas</span>
+            <span class="sys s2">Facturación</span>
+            <span class="api">API</span>
+            <span class="sys s3">Inventario</span>
+            <span class="sys s4">Sitio web</span>
+          </div>
+        }
+        @default {
+          <div class="custom">
+            <div class="code">
+              <span><b>&#123;</b></span>
+              <span class="ind"><i></i><i class="c"></i></span>
+              <span class="ind"><i class="short"></i><i class="a"></i></span>
+              <span class="ind"><i></i></span>
+              <span><b>&#125;</b></span>
+            </div>
+            <div class="stack">
+              <span><app-icon name="users" [size]="11" />Usuarios</span>
+              <span><app-icon name="workflow" [size]="11" />Reglas</span>
+              <span><app-icon name="chart" [size]="11" />Reportes</span>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  }
+}
