@@ -1,0 +1,114 @@
+@if (s(); as s) {
+  <header class="page-head">
+    <div class="container">
+      <app-breadcrumbs [items]="[{ label: 'Soluciones', path: '/soluciones' }, { label: s.name }]" />
+      <div class="title-row">
+        <span class="ico"><app-icon [name]="s.icon" [size]="26" /></span>
+        <h1>{{ s.name }}</h1>
+      </div>
+      <p class="lead">{{ s.summary }}</p>
+      <div class="tags">
+        <span class="tag">{{ category() }}</span>
+        <span class="tag">Complejidad: {{ s.complexity }}</span>
+        <span class="tag" [attr.data-tone]="s.backend === 'no' ? 'ok' : s.backend === 'si' ? 'warn' : 'cyan'">{{ backend() }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container body">
+    <div class="main">
+      <div class="notice">
+        <app-icon name="info" />
+        <p><strong>Tipo de desarrollo a medida, no un producto empaquetado.</strong> El alcance, los módulos y el precio se definen según los requisitos de cada cliente.</p>
+      </div>
+
+      <section aria-labelledby="problem-t">
+        <h2 id="problem-t">El problema que resuelve</h2>
+        <p class="text">{{ s.problem }}</p>
+      </section>
+
+      <section aria-labelledby="who-t">
+        <h2 id="who-t">Para quién es</h2>
+        <ul class="check-list">
+          @for (w of s.forWhom; track w) {
+            <li><app-icon name="check" [size]="16" /> {{ w }}</li>
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="mod-t">
+        <h2 id="mod-t">Módulos posibles</h2>
+        <div class="modules">
+          @for (m of s.modules; track m.name; let i = $index) {
+            <div class="module">
+              <span class="n">{{ i + 1 }}</span>
+              <h3>{{ m.name }}</h3>
+              <p>{{ m.desc }}</p>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="split" aria-label="Alcance">
+        <div>
+          <h2>Suele incluir</h2>
+          <ul class="check-list">
+            @for (x of s.includes; track x) {
+              <li><app-icon name="check" [size]="16" /> {{ x }}</li>
+            }
+          </ul>
+        </div>
+        <div>
+          <h2>Opcional</h2>
+          <ul class="check-list optional">
+            @for (x of s.optional; track x) {
+              <li><app-icon name="plus" [size]="16" /> {{ x }}</li>
+            }
+          </ul>
+        </div>
+      </section>
+
+      <div class="notice" [attr.data-tone]="s.backend === 'no' ? 'ok' : 'warn'">
+        <app-icon [name]="s.backend === 'no' ? 'check' : 'shield'" />
+        <p><strong>{{ backend() }}.</strong> {{ s.backendNote }}</p>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="card box">
+        <h2>¿Te interesa?</h2>
+        <dl>
+          <div><dt>Plan de referencia</dt><dd><a routerLink="/planes" class="link">{{ plan()?.name }}</a></dd></div>
+          <div><dt>Precio</dt><dd>Según alcance, tras una cotización</dd></div>
+        </dl>
+        <a routerLink="/contacto" [queryParams]="{ solucion: s.slug, tipo: s.projectType, plan: s.plan }" class="btn btn-primary">Solicitar cotización <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        @if (demo(); as d) {
+          <a [routerLink]="['/demo', d.id]" class="btn btn-secondary"><app-icon name="play" [size]="16" /> Ver demo: {{ d.label }}</a>
+        }
+        <a routerLink="/que-necesito" class="link small">¿No estás seguro? Usa el asistente</a>
+      </div>
+    </aside>
+  </div>
+
+  @if (related().length) {
+    <section class="section-tight section-alt" aria-labelledby="rel-t">
+      <div class="container">
+        <h2 id="rel-t" class="rel-title">Soluciones relacionadas</h2>
+        <div class="rel">
+          @for (r of related(); track r.slug) {
+            <app-solution-card [solution]="r" />
+          }
+        </div>
+      </div>
+    </section>
+  }
+} @else {
+  <section class="page-head">
+    <div class="container">
+      <app-breadcrumbs [items]="[{ label: 'Soluciones', path: '/soluciones' }, { label: 'No encontrada' }]" />
+      <h1>No encontramos esa solución</h1>
+      <p class="lead">Puede que el enlace esté mal escrito o que la ficha ya no exista.</p>
+      <a routerLink="/soluciones" class="btn btn-primary">Ver el catálogo</a>
+    </div>
+  </section>
+}

@@ -1,0 +1,45 @@
+<header class="header" [class.scrolled]="scrolled() || open()" (keydown)="trapFocus($event)">
+  <div class="container bar">
+    <a routerLink="/" class="brand" aria-label="SoftSpark, ir al inicio">
+      <img src="brand/softspark-mark-192.webp" alt="" width="36" height="36" />
+      <span class="word">Soft<span>Spark</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        @for (l of links; track l.path) {
+          <li><a [routerLink]="l.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ l.label }}</a></li>
+        }
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <app-theme-toggle />
+      <a routerLink="/contacto" class="btn btn-primary btn-sm cta">Solicitar cotización</a>
+      <button
+        #toggleBtn
+        type="button"
+        class="menu-btn"
+        aria-controls="menu-movil"
+        [attr.aria-expanded]="open()"
+        [attr.aria-label]="open() ? 'Cerrar menú' : 'Abrir menú'"
+        (click)="toggle()"
+      >
+        <app-icon [name]="open() ? 'x' : 'menu'" [size]="22" />
+      </button>
+    </div>
+  </div>
+
+  <div #panel id="menu-movil" class="panel" [class.open]="open()" [attr.inert]="open() ? null : ''">
+    <nav class="container" aria-label="Menú móvil">
+      <ul>
+        @for (l of links; track l.path) {
+          <li><a [routerLink]="l.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ l.label }} <app-icon name="chevron-right" [size]="18" /></a></li>
+        }
+        <li><a routerLink="/que-necesito" routerLinkActive="active">¿Qué necesito? <app-icon name="chevron-right" [size]="18" /></a></li>
+        <li><a routerLink="/contacto" routerLinkActive="active">Contacto <app-icon name="chevron-right" [size]="18" /></a></li>
+      </ul>
+      <a routerLink="/contacto" class="btn btn-primary btn-lg">Solicitar cotización</a>
+    </nav>
+  </div>
+</header>

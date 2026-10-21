@@ -1,0 +1,261 @@
+.wizard {
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) clamp(16px, 4vw, 32px);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.count {
+  font: 500 0.8rem var(--font-mono);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.bar {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  overflow: hidden;
+
+  span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--brand-gradient);
+    transition: width var(--t-base) var(--ease);
+  }
+}
+
+.body {
+  display: grid;
+  gap: var(--s-5);
+  padding: clamp(20px, 4vw, 36px);
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  display: grid;
+  gap: var(--s-3);
+}
+
+legend {
+  padding: 0;
+  width: 100%;
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  outline: none;
+}
+
+.help {
+  color: var(--text-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.options {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-2);
+}
+
+.option {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition:
+    border-color var(--t-fast),
+    background-color var(--t-fast);
+
+  &:hover {
+    border-color: var(--text-3);
+  }
+
+  &.selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  color: transparent;
+  transition: all var(--t-fast);
+
+  .multi & {
+    border-radius: 6px;
+  }
+
+  .selected & {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+.text {
+  display: grid;
+  gap: 2px;
+}
+
+.opt-label {
+  font-weight: 500;
+}
+
+.opt-hint {
+  font-size: 0.875rem;
+  color: var(--text-3);
+}
+
+.err {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--danger);
+  font-size: 0.92rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+
+  .right {
+    display: flex;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+}
+
+.rec {
+  display: grid;
+  gap: var(--s-2);
+
+  h3 {
+    font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    justify-self: start;
+  }
+
+  .sub {
+    color: var(--text-2);
+    font-size: 1.05rem;
+  }
+}
+
+.cols {
+  display: grid;
+  gap: var(--s-6);
+
+  h4 {
+    font: 500 0.8rem var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-3);
+    margin: 0 0 var(--s-3);
+  }
+
+  .check-list + h4 {
+    margin-top: var(--s-5);
+  }
+}
+
+.plain {
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+  color: var(--text-2);
+}
+
+.summary {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+
+  > div {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  dt {
+    font-size: 0.82rem;
+    color: var(--text-3);
+  }
+
+  dd {
+    margin: 2px 0 0;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    align-items: baseline;
+  }
+}
+
+.edit {
+  flex: none;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (min-width: 720px) {
+  .options:not(.multi) {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .cols {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}

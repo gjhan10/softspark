@@ -1,0 +1,109 @@
+<div class="wizard card">
+  <div class="top">
+    <span class="count">
+      @if (done()) { Resultado } @else { Paso {{ index() + 1 }} de {{ steps.length }} }
+    </span>
+    <div class="bar" role="progressbar" aria-label="Progreso del asistente" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="progress()">
+      <span [style.width.%]="progress()"></span>
+    </div>
+  </div>
+
+  @if (step(); as s) {
+    <form class="body" (submit)="$event.preventDefault(); next()" novalidate>
+      <fieldset [attr.aria-describedby]="'help-' + s.key + (error() ? ' err-' + s.key : '')">
+        <legend>
+          <h3 #heading tabindex="-1">{{ s.title }}</h3>
+        </legend>
+        <p class="help" [id]="'help-' + s.key">
+          {{ s.help }}
+          @if (s.optional) { <span class="tag">Opcional</span> }
+        </p>
+        <div class="options" [class.multi]="s.multiple">
+          @for (o of s.options; track o.value) {
+            <label class="option" [class.selected]="isChecked(s, o.value)">
+              @if (s.multiple) {
+                <input type="checkbox" [name]="s.key" [value]="o.value" [checked]="isChecked(s, o.value)" (change)="select(s, o.value, $any($event.target).checked)" />
+              } @else {
+                <input type="radio" [name]="s.key" [value]="o.value" [checked]="isChecked(s, o.value)" (change)="select(s, o.value)" />
+              }
+              <span class="mark" aria-hidden="true"><app-icon name="check" [size]="14" /></span>
+              <span class="text">
+                <span class="opt-label">{{ o.label }}</span>
+                @if (o.hint) { <span class="opt-hint">{{ o.hint }}</span> }
+              </span>
+            </label>
+          }
+        </div>
+        @if (error()) {
+          <p class="err" [id]="'err-' + s.key" role="alert"><app-icon name="alert" [size]="16" /> {{ error() }}</p>
+        }
+      </fieldset>
+
+      <div class="nav">
+        <button type="button" class="btn btn-ghost" (click)="back()" [disabled]="index() === 0"><app-icon name="arrow-left" [size]="18" /> Atrás</button>
+        <div class="right">
+          @if (s.optional) {
+            <button type="button" class="btn btn-ghost" (click)="skip()">Omitir</button>
+          }
+          <button type="submit" class="btn btn-primary">
+            {{ index() === steps.length - 1 ? 'Ver recomendación' : 'Siguiente' }} <app-icon name="arrow-right" [size]="18" class="icon-shift" />
+          </button>
+        </div>
+      </div>
+    </form>
+  } @else if (result(); as r) {
+    <div class="body result">
+      <div class="rec">
+        <span class="eyebrow">Recomendación orientativa</span>
+        <h3 #heading tabindex="-1">{{ r.title }}</h3>
+        <p class="sub">{{ r.subtitle }}</p>
+      </div>
+
+      <div class="cols">
+        <div>
+          <h4>Por qué</h4>
+          <ul class="check-list">
+            @for (reason of r.reasons; track reason) {
+              <li><app-icon name="check" [size]="16" /> {{ reason }}</li>
+            }
+          </ul>
+          @if (r.considerations.length) {
+            <h4>A tener en cuenta</h4>
+            <ul class="plain">
+              @for (c of r.considerations; track c) {
+                <li>{{ c }}</li>
+              }
+            </ul>
+          }
+        </div>
+        <div>
+          <h4>Tus respuestas</h4>
+          <dl class="summary">
+            @for (s of steps; track s.key; let i = $index) {
+              <div>
+                <dt>{{ s.title }}</dt>
+                <dd>
+                  <span>{{ label(s, answers()) }}</span>
+                  <button type="button" class="edit" (click)="edit(i)" [attr.aria-label]="'Editar: ' + s.title">Editar</button>
+                </dd>
+              </div>
+            }
+          </dl>
+        </div>
+      </div>
+
+      <div class="notice">
+        <app-icon name="info" />
+        <p>Esta recomendación es orientativa y <strong>no es una cotización</strong>. Tus respuestas no se envían a ningún sitio: se quedan en este navegador.</p>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn btn-ghost" (click)="restart()"><app-icon name="refresh" [size]="18" /> Reiniciar</button>
+        <div class="right">
+          <a class="btn btn-secondary" [routerLink]="r.explore.path">{{ r.explore.label }}</a>
+          <a class="btn btn-primary" routerLink="/contacto" [queryParams]="contactParams()">Solicitar cotización <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        </div>
+      </div>
+    </div>
+  }
+</div>

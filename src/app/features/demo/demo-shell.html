@@ -1,0 +1,50 @@
+<div class="demo-page">
+  <div class="container">
+    <div class="intro">
+      <div>
+        <span class="eyebrow">Demo interactiva</span>
+        <h1>Panel administrativo de ejemplo</h1>
+      </div>
+      <div class="banner" role="note">
+        <app-icon name="info" [size]="18" />
+        <p><strong>Demostración con datos ficticios.</strong> Los cambios se guardan solo en memoria y se pierden al recargar. No hay conexión con ningún sistema real.</p>
+        <button type="button" class="btn btn-ghost btn-sm" (click)="reset()" [disabled]="store.changes() === 0"><app-icon name="refresh" [size]="16" /> Restablecer</button>
+      </div>
+    </div>
+
+    <div class="app">
+      <nav class="side" aria-label="Módulos de la demo">
+        <span class="side-title">Módulos</span>
+        <ul>
+          @for (m of modules; track m.id) {
+            <li>
+              <a [routerLink]="['/demo', m.id]" routerLinkActive="on" ariaCurrentWhenActive="page">
+                <app-icon [name]="m.icon" [size]="18" /> <span>{{ m.label }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <section class="content" [attr.aria-label]="current()?.label ?? 'Módulo no encontrado'">
+        @switch (current()?.id) {
+          @case ('panel') { <app-demo-panel /> }
+          @case ('crm') { <app-demo-crm /> }
+          @case ('inventario') { <app-demo-inventory /> }
+          @case ('analitica') { <app-demo-analytics /> }
+          @case ('proyectos') { <app-demo-projects /> }
+          @default {
+            <div class="empty">
+              <app-icon name="search" [size]="28" />
+              <strong>Este módulo no existe</strong>
+              <p>Elige uno de los módulos del menú.</p>
+              <a routerLink="/demo/panel" class="btn btn-secondary btn-sm">Ir al dashboard</a>
+            </div>
+          }
+        }
+      </section>
+    </div>
+
+    <p class="foot">¿Te interesa algo así para tu negocio? <a routerLink="/contacto" [queryParams]="{ tipo: 'dashboard', plan: 'enterprise' }" class="link">Solicitar cotización <app-icon name="arrow-right" [size]="16" /></a></p>
+  </div>
+</div>

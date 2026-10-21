@@ -1,0 +1,270 @@
+figure {
+  margin: 0;
+  position: relative;
+  display: grid;
+  gap: var(--s-4);
+}
+
+.window {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--line-strong);
+  }
+
+  span {
+    margin-left: 10px;
+    font: 500 11px var(--font-mono);
+    color: var(--text-3);
+  }
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  min-height: 300px;
+}
+
+aside {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  padding: 12px 8px;
+  border-right: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  color: var(--text-3);
+
+  b {
+    font-weight: 500;
+  }
+
+  &.on {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+}
+
+.main {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  align-content: start;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.kpi {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  small {
+    color: var(--text-3);
+  }
+
+  strong {
+    font: 600 18px/1.2 var(--font-display);
+  }
+
+  em {
+    font-style: normal;
+    font: 500 11px var(--font-mono);
+    color: var(--ok);
+
+    &.down {
+      color: var(--cyan);
+    }
+  }
+}
+
+.chart {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-3);
+}
+
+.pill {
+  font: 500 10px var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+}
+
+.bars {
+  height: 92px;
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+
+  span {
+    flex: 1;
+    border-radius: 4px 4px 2px 2px;
+    background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
+    transform-origin: bottom;
+    animation: grow 700ms var(--ease) both;
+
+    &:last-child {
+      background: var(--brand-gradient);
+    }
+  }
+}
+
+.rows {
+  display: grid;
+  gap: 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+
+  b {
+    font-weight: 500;
+  }
+
+  small {
+    color: var(--text-3);
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+
+  &[data-s='b'] {
+    background: var(--warn);
+  }
+
+  &[data-s='c'] {
+    background: var(--ok);
+  }
+}
+
+.modules {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 50%;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--line-strong) 0 6px, transparent 6px 12px);
+  }
+}
+
+.node {
+  position: relative;
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 99px;
+  background: var(--bg);
+  font: 500 12px var(--font-mono);
+  color: var(--text-2);
+}
+
+.pulse {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: 24px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  animation: travel 4s var(--ease) infinite;
+}
+
+figcaption {
+  font: 500 0.75rem var(--font-mono);
+  color: var(--text-3);
+  text-align: right;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0.1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes travel {
+  0% {
+    left: 24px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 30px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .kpi strong {
+    font-size: 15px;
+  }
+}

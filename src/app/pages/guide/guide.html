@@ -1,0 +1,81 @@
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">¿Qué necesito?</span>
+    <h1>Encuentra el tipo de software adecuado para tu caso</h1>
+    <p class="lead">No necesitas conocer los términos técnicos. Revisa las diferencias con ejemplos o responde el asistente para obtener una recomendación orientativa.</p>
+    <a href="que-necesito#asistente" (click)="toWizard($event)" class="btn btn-primary btn-lg"><app-icon name="compass" [size]="18" /> Ir al asistente</a>
+  </div>
+</header>
+
+<section class="section" aria-labelledby="types-t">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Tipos de software</span>
+      <h2 id="types-t">Seis tipos, de lo más simple a lo más completo</h2>
+    </div>
+    <div class="types">
+      @for (t of types; track t.id) {
+        <article class="card type">
+          <div class="type-top">
+            <span class="ico"><app-icon [name]="t.icon" [size]="22" /></span>
+            <span class="scale" [attr.aria-label]="'Complejidad ' + t.scale + ' de 4'">
+              @for (n of [1, 2, 3, 4]; track n) {
+                <i [class.on]="n <= t.scale"></i>
+              }
+            </span>
+          </div>
+          <h3>{{ t.name }}</h3>
+          <p>{{ t.what }}</p>
+          <p class="ex"><strong>Ejemplo:</strong> {{ t.example }}</p>
+          <dl>
+            <div><dt>Usuarios con cuenta</dt><dd>{{ t.users }}</dd></div>
+            <div><dt>Backend y base de datos</dt><dd>{{ t.backend }}</dd></div>
+          </dl>
+        </article>
+      }
+    </div>
+
+    <div class="erp-crm">
+      <div class="col">
+        <span class="tag" data-tone="accent">ERP</span>
+        <h3>Gestiona la operación</h3>
+        <p>Procesos y recursos de la empresa: inventario, compras, ventas, finanzas, producción. Su objetivo es que todas las áreas trabajen con los mismos datos.</p>
+      </div>
+      <div class="vs" aria-hidden="true">vs.</div>
+      <div class="col">
+        <span class="tag" data-tone="cyan">CRM</span>
+        <h3>Gestiona la relación con clientes</h3>
+        <p>Clientes, oportunidades y seguimiento comercial. Su objetivo es que el equipo de ventas sepa en qué etapa está cada cliente y qué hacer después.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="sc-t">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Ejemplos prácticos</span>
+      <h2 id="sc-t">¿Te identificas con alguno de estos casos?</h2>
+    </div>
+    <ol class="scenarios">
+      @for (s of scenarios; track s.who) {
+        <li class="card">
+          <p class="who">{{ s.who }} <span>{{ s.need }}</span></p>
+          <p class="ans"><app-icon name="arrow-right" [size]="16" /> {{ s.answer }}</p>
+          <span class="tag">{{ typeName(s.typeId) }}</span>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="asistente" aria-labelledby="wz-t">
+  <div class="container wz">
+    <div class="section-head">
+      <span class="eyebrow">Asistente</span>
+      <h2 id="wz-t">Encuentra la solución adecuada</h2>
+      <p>Siete preguntas rápidas. Funciona en tu navegador y no envía tus respuestas a ningún sitio.</p>
+    </div>
+    <app-wizard />
+  </div>
+</section>

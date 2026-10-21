@@ -1,0 +1,133 @@
+.demo-page {
+  padding-top: calc(var(--header-h) + 32px);
+  padding-bottom: var(--s-8);
+}
+
+.intro {
+  display: grid;
+  gap: var(--s-4);
+  margin-bottom: var(--s-5);
+
+  h1 {
+    font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+    margin-top: var(--s-2);
+  }
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent);
+  border-radius: var(--r-md);
+  background: var(--warn-soft);
+  font-size: 0.92rem;
+  color: var(--text-2);
+
+  > app-icon {
+    color: var(--warn);
+  }
+
+  p {
+    flex: 1 1 260px;
+  }
+
+  strong {
+    color: var(--text);
+  }
+}
+
+.app {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+}
+
+.side {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: 10px;
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: var(--r-sm);
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.92rem;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    &.on {
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 500;
+    }
+  }
+}
+
+.side-title {
+  display: none;
+  padding: 6px 12px 10px;
+  font: 500 0.72rem var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.content {
+  min-width: 0;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.foot {
+  margin-top: var(--s-5);
+  color: var(--text-2);
+}
+
+@media (min-width: 960px) {
+  .intro {
+    grid-template-columns: auto 1fr;
+    align-items: end;
+  }
+
+  .app {
+    grid-template-columns: 236px minmax(0, 1fr);
+    min-height: 640px;
+  }
+
+  .side {
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+    padding: 16px 10px;
+
+    ul {
+      flex-direction: column;
+      overflow: visible;
+    }
+  }
+
+  .side-title {
+    display: block;
+  }
+}

@@ -1,0 +1,140 @@
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Planes</span>
+    <h1>Elige un punto de partida para tu proyecto</h1>
+    <p class="lead">Cuatro niveles de servicio como propuestas comerciales iniciales. Selecciona uno para ver lo que incluye y solicitar una cotización con ese plan.</p>
+  </div>
+</header>
+
+<section class="container section-tight">
+  <div class="toolbar">
+    <div class="chips" role="group" aria-label="Filtrar planes por tipo de proyecto">
+      <button type="button" class="chip" [attr.aria-pressed]="scope() === 'todos'" (click)="setScope('todos')">Todos</button>
+      <button type="button" class="chip" [attr.aria-pressed]="scope() === 'web'" (click)="setScope('web')">Presencia web</button>
+      <button type="button" class="chip" [attr.aria-pressed]="scope() === 'sistemas'" (click)="setScope('sistemas')">Sistemas y aplicaciones</button>
+    </div>
+  </div>
+
+  <div class="cards" role="radiogroup" aria-label="Plan seleccionado">
+    @for (p of visiblePlans(); track p.id; let i = $index) {
+      <div
+        #radio
+        class="plan card"
+        role="radio"
+        [attr.aria-checked]="selected() === p.id"
+        [attr.tabindex]="selected() === p.id ? 0 : -1"
+        [attr.aria-labelledby]="'plan-' + p.id"
+        [attr.aria-describedby]="'plan-d-' + p.id"
+        [class.on]="selected() === p.id"
+        (click)="select(p.id)"
+        (keydown)="onKey($event, i)"
+        (keydown.space)="$event.preventDefault(); select(p.id)"
+      >
+        <div class="plan-top">
+          <h2 [id]="'plan-' + p.id">{{ p.name }}</h2>
+          <span class="radio" aria-hidden="true"><app-icon name="check" [size]="14" /></span>
+        </div>
+        <p class="aud" [id]="'plan-d-' + p.id">{{ p.audience }}</p>
+        <p class="sum">{{ p.summary }}</p>
+        <p class="price">{{ price(p) }}</p>
+        <ul class="check-list">
+          @for (h of p.highlights; track h) {
+            <li><app-icon name="check" [size]="16" /> {{ h }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+  <div class="selected-bar" aria-live="polite">
+    <p>Plan seleccionado: <strong>{{ selectedPlan().name }}</strong> · {{ price(selectedPlan()) }}</p>
+    <a routerLink="/contacto" [queryParams]="{ plan: selected() }" class="btn btn-primary btn-lg">{{ selectedPlan().cta }} <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+  </div>
+</section>
+
+<section class="section-tight section-alt" aria-labelledby="cmp-title">
+  <div class="container">
+    <div class="cmp-head">
+      <div>
+        <h2 id="cmp-title">Comparación de características</h2>
+        <p class="lead">En pantallas pequeñas se muestra el plan seleccionado. Cambia de plan con el selector.</p>
+      </div>
+      <ul class="legend" aria-label="Leyenda">
+        @for (s of stateOrder; track s) {
+          <li><span class="st" [attr.data-s]="s"><app-icon [name]="icon(s)" [size]="14" /></span> {{ states[s].label }}</li>
+        }
+      </ul>
+    </div>
+
+    <div class="chips groups" role="group" aria-label="Mostrar grupo de características">
+      <button type="button" class="chip" [attr.aria-pressed]="group() === 'todos'" (click)="group.set('todos')">Todas</button>
+      @for (g of groups; track g.id) {
+        <button type="button" class="chip" [attr.aria-pressed]="group() === g.id" (click)="group.set(g.id)">{{ g.title }}</button>
+      }
+    </div>
+
+    <div class="mobile-picker">
+      <label for="plan-picker">Ver plan</label>
+      <select id="plan-picker" class="input" [value]="selected()" (change)="select($any($event.target).value)">
+        @for (p of plans; track p.id) {
+          <option [value]="p.id">{{ p.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only">Características incluidas, opcionales o sujetas a evaluación en cada plan</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="feat-col">Característica</th>
+            @for (p of plans; track p.id) {
+              <th scope="col" [class.sel]="selected() === p.id" [class.hide-m]="selected() !== p.id">{{ p.name }}</th>
+            }
+          </tr>
+        </thead>
+        @for (g of visibleGroups(); track g.id) {
+          <tbody>
+            <tr class="group-row"><th scope="colgroup" [attr.colspan]="plans.length + 1">{{ g.title }}</th></tr>
+            @for (row of g.rows; track row.label) {
+              <tr>
+                <th scope="row" class="feat-col">
+                  {{ row.label }}
+                  @if (row.note) { <span class="note">{{ row.note }}</span> }
+                </th>
+                @for (p of plans; track p.id) {
+                  <td [class.sel]="selected() === p.id" [class.hide-m]="selected() !== p.id">
+                    <span class="st" [attr.data-s]="row.values[p.id]"><app-icon [name]="icon(row.values[p.id])" [size]="14" /></span>
+                    <span class="st-label">{{ states[row.values[p.id]].short }}</span>
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        }
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" aria-labelledby="cond-title">
+  <div class="container cond">
+    <div>
+      <h2 id="cond-title">Condiciones importantes</h2>
+      <ul class="cond-list">
+        @for (c of conditions; track c) {
+          <li><app-icon name="info" [size]="18" /> {{ c }}</li>
+        }
+      </ul>
+    </div>
+    <div>
+      <h2>Preguntas sobre planes</h2>
+      @for (f of faqs; track f.q) {
+        <details class="faq-item">
+          <summary>{{ f.q }} <app-icon name="plus" [size]="20" /></summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,259 @@
+:host {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.mod-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-3);
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  p {
+    color: var(--text-2);
+    font-size: 0.92rem;
+    margin-top: 4px;
+  }
+}
+
+.kpis {
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+}
+
+.kpi {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+
+  small {
+    color: var(--text-3);
+    font-size: 0.82rem;
+  }
+
+  strong {
+    font: 600 1.45rem/1.15 var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  em {
+    font: 500 0.75rem var(--font-mono);
+    font-style: normal;
+    color: var(--text-3);
+  }
+}
+
+.panel {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  min-width: 0;
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: var(--s-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-2);
+  }
+}
+
+.cols {
+  display: grid;
+  gap: var(--s-4);
+}
+
+@media (min-width: 1100px) {
+  .cols {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  align-items: center;
+
+  .search {
+    position: relative;
+    flex: 1 1 220px;
+
+    app-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-3);
+      pointer-events: none;
+    }
+
+    .input {
+      padding-left: 38px;
+    }
+  }
+
+  select.input {
+    width: auto;
+    flex: 0 1 200px;
+  }
+
+  .input {
+    min-height: 42px;
+  }
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+
+  th,
+  td {
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  th {
+    font: 500 0.75rem var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-3);
+    background: var(--bg-2);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  tbody tr:hover {
+    background: var(--surface-2);
+  }
+
+  .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .muted {
+    color: var(--text-3);
+  }
+}
+
+@media (max-width: 720px) {
+  table.responsive {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    td {
+      display: grid;
+      gap: 2px;
+      padding: 0;
+      border: 0;
+      white-space: normal;
+      text-align: left;
+
+      &::before {
+        content: attr(data-label);
+        font: 500 0.7rem var(--font-mono);
+        text-transform: uppercase;
+        color: var(--text-3);
+      }
+
+      &.wide {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .num {
+      text-align: left;
+    }
+  }
+}
+
+.row-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 720px) {
+  .row-actions {
+    flex-wrap: wrap;
+  }
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.add-form {
+  display: grid;
+  gap: var(--s-3);
+  padding: 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+
+  .fields {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  }
+
+  .btns {
+    display: flex;
+    gap: var(--s-2);
+    justify-content: flex-end;
+  }
+}
+
+.result-count {
+  font-size: 0.85rem;
+  color: var(--text-3);
+}

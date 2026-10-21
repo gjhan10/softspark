@@ -1,0 +1,217 @@
+@switch (stage()) {
+  @case ('form') {
+    <form #formEl class="quote card" [formGroup]="form" (ngSubmit)="review()" novalidate>
+      <div class="head">
+        <h2 #stageHeading tabindex="-1">Solicitud de cotización</h2>
+        <p>Los campos marcados con <span aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+        @if (origin()) {
+          <span class="tag" data-tone="cyan"><app-icon name="compass" [size]="14" /> {{ origin() }}</span>
+        }
+      </div>
+
+      @if (attempted() && form.invalid) {
+        <div class="error-summary notice" data-tone="danger" tabindex="-1" role="alert">
+          <app-icon name="alert" />
+          <div>
+            <strong>Revisa {{ errorList().length === 1 ? 'el siguiente campo' : 'los siguientes ' + errorList().length + ' campos' }}:</strong>
+            <ul>
+              @for (e of errorList(); track e.id) {
+                <li><a [href]="'#' + e.id" (click)="$event.preventDefault(); $any(formEl).querySelector('#' + e.id)?.focus()">{{ e.label }}</a>: {{ e.msg }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+
+      <div class="grid">
+        <div class="field">
+          <label for="q-name">Nombre <span aria-hidden="true">*</span></label>
+          <input id="q-name" class="input" formControlName="name" autocomplete="name" [attr.aria-invalid]="invalid('name')" [attr.aria-describedby]="invalid('name') ? 'q-name-err' : null" />
+          @if (invalid('name')) { <span class="error" id="q-name-err"><app-icon name="alert" [size]="14" /> {{ errorFor('name') }}</span> }
+        </div>
+
+        <div class="field">
+          <label for="q-email">Correo electrónico <span aria-hidden="true">*</span></label>
+          <input id="q-email" class="input" type="email" formControlName="email" autocomplete="email" inputmode="email" [attr.aria-invalid]="invalid('email')" [attr.aria-describedby]="invalid('email') ? 'q-email-err' : null" />
+          @if (invalid('email')) { <span class="error" id="q-email-err"><app-icon name="alert" [size]="14" /> {{ errorFor('email') }}</span> }
+        </div>
+
+        <div class="field">
+          <label for="q-company">Empresa <span class="optional">(opcional)</span></label>
+          <input id="q-company" class="input" formControlName="company" autocomplete="organization" [attr.aria-invalid]="invalid('company')" />
+          @if (invalid('company')) { <span class="error"><app-icon name="alert" [size]="14" /> {{ errorFor('company') }}</span> }
+        </div>
+
+        <div class="field">
+          <label for="q-projectType">Tipo de proyecto <span aria-hidden="true">*</span></label>
+          <select id="q-projectType" class="input" formControlName="projectType" [attr.aria-invalid]="invalid('projectType')" [attr.aria-describedby]="invalid('projectType') ? 'q-type-err' : null">
+            <option value="" disabled>Selecciona una opción</option>
+            @for (t of types; track t.id) {
+              <option [value]="t.id">{{ t.label }}</option>
+            }
+          </select>
+          @if (invalid('projectType')) { <span class="error" id="q-type-err"><app-icon name="alert" [size]="14" /> {{ errorFor('projectType') }}</span> }
+        </div>
+
+        <div class="field">
+          <label for="q-plan">Plan</label>
+          <select id="q-plan" class="input" formControlName="plan" aria-describedby="q-plan-hint">
+            <option value="sin-definir">Aún no lo sé</option>
+            @for (p of plans; track p.id) {
+              <option [value]="p.id">{{ p.name }}</option>
+            }
+          </select>
+          <span class="hint" id="q-plan-hint"><a routerLink="/planes">Comparar planes</a></span>
+        </div>
+
+        <div class="field">
+          <label for="q-timeline">Plazo estimado <span aria-hidden="true">*</span></label>
+          <select id="q-timeline" class="input" formControlName="timeline" [attr.aria-invalid]="invalid('timeline')" [attr.aria-describedby]="invalid('timeline') ? 'q-time-err' : null">
+            <option value="" disabled>Selecciona una opción</option>
+            @for (t of timelines; track t.id) {
+              <option [value]="t.id">{{ t.label }}</option>
+            }
+          </select>
+          @if (invalid('timeline')) { <span class="error" id="q-time-err"><app-icon name="alert" [size]="14" /> {{ errorFor('timeline') }}</span> }
+        </div>
+
+        <div class="field full">
+          <label for="q-description">Describe tu necesidad <span aria-hidden="true">*</span></label>
+          <textarea id="q-description" class="input" formControlName="description" rows="6" aria-describedby="q-desc-hint q-desc-err" [attr.aria-invalid]="invalid('description')" placeholder="Qué quieres lograr, quiénes lo usarán y qué tienes hoy (sitio, sistema, hojas de cálculo…)."></textarea>
+          <span class="hint" id="q-desc-hint">{{ form.controls.description.value.length }} / 2000 caracteres · mínimo 20</span>
+          @if (invalid('description')) { <span class="error" id="q-desc-err"><app-icon name="alert" [size]="14" /> {{ errorFor('description') }}</span> }
+        </div>
+
+        <div class="field full">
+          <label for="q-budget">Presupuesto aproximado <span class="optional">(opcional)</span></label>
+          <input id="q-budget" class="input" formControlName="budget" aria-describedby="q-budget-hint" [attr.aria-invalid]="invalid('budget')" />
+          <span class="hint" id="q-budget-hint">Un rango o una referencia ayuda a proponer el alcance adecuado.</span>
+          @if (invalid('budget')) { <span class="error"><app-icon name="alert" [size]="14" /> {{ errorFor('budget') }}</span> }
+        </div>
+
+        <div class="field full">
+          <label class="checkbox" for="q-privacy">
+            <input id="q-privacy" type="checkbox" formControlName="privacy" [attr.aria-invalid]="invalid('privacy')" [attr.aria-describedby]="invalid('privacy') ? 'q-priv-err' : null" />
+            <span>He leído el <a routerLink="/privacidad" target="_blank">aviso de privacidad</a> y acepto que usen mis datos para responder a esta solicitud. <span aria-hidden="true">*</span></span>
+          </label>
+          @if (invalid('privacy')) { <span class="error" id="q-priv-err"><app-icon name="alert" [size]="14" /> {{ errorFor('privacy') }}</span> }
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary btn-lg">Revisar solicitud <app-icon name="arrow-right" [size]="18" class="icon-shift" /></button>
+      </div>
+    </form>
+  }
+
+  @case ('review') {
+    <section class="quote card" aria-labelledby="rev-title">
+      <div class="head">
+        <h2 #stageHeading id="rev-title" tabindex="-1">Revisa tu solicitud</h2>
+        <p>Comprueba que los datos son correctos antes de continuar.</p>
+      </div>
+      <dl class="summary">
+        @for (r of rows(); track r.label) {
+          <div [class.full]="r.label === 'Necesidad'">
+            <dt>{{ r.label }}</dt>
+            <dd>{{ r.value }}</dd>
+          </div>
+        }
+      </dl>
+      @if (mode === 'local') {
+        <div class="notice">
+          <app-icon name="info" />
+          <p>Este sitio todavía no tiene un receptor de formularios. En el siguiente paso prepararemos el mensaje para que <strong>lo envíes tú desde tu correo</strong>.</p>
+        </div>
+      }
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" (click)="edit()"><app-icon name="arrow-left" [size]="18" /> Editar datos</button>
+        <button type="button" class="btn btn-primary btn-lg" (click)="confirm()">
+          {{ mode === 'local' ? 'Preparar mensaje' : 'Enviar solicitud' }} <app-icon name="arrow-right" [size]="18" class="icon-shift" />
+        </button>
+      </div>
+    </section>
+  }
+
+  @case ('sending') {
+    <section class="quote card" aria-busy="true">
+      <div class="head">
+        <h2 tabindex="-1">Enviando solicitud…</h2>
+        <p role="status">No cierres esta página.</p>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary btn-lg" disabled aria-busy="true"><span class="spinner" aria-hidden="true"></span> Enviando…</button>
+      </div>
+    </section>
+  }
+
+  @case ('sent') {
+    <section class="quote card" aria-labelledby="sent-title">
+      <div class="notice" data-tone="ok" role="status">
+        <app-icon name="check" />
+        <div>
+          <h2 #stageHeading id="sent-title" tabindex="-1" class="small">Solicitud recibida</h2>
+          <p>SoftSpark recibió tu solicitud. Te responderemos al correo {{ snapshot()?.email }}.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" (click)="restart()">Enviar otra solicitud</button>
+      </div>
+    </section>
+  }
+
+  @case ('failed') {
+    <section class="quote card" aria-labelledby="fail-title">
+      <div class="notice" data-tone="danger" role="alert">
+        <app-icon name="alert" />
+        <div>
+          <h2 #stageHeading id="fail-title" tabindex="-1" class="small">No se pudo enviar la solicitud</h2>
+          <p>{{ failure() }} Tu solicitud <strong>no</strong> fue recibida. Puedes reintentar o enviarla desde tu correo.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" (click)="edit()">Editar datos</button>
+        @if (mailto()) {
+          <a class="btn btn-secondary" [href]="mailto()">Enviar desde mi correo</a>
+        }
+        <button type="button" class="btn btn-primary" (click)="confirm()">Reintentar</button>
+      </div>
+    </section>
+  }
+
+  @case ('prepared') {
+    <section class="quote card" aria-labelledby="prep-title">
+      <div class="notice" data-tone="warn" role="status">
+        <app-icon name="alert" />
+        <div>
+          <h2 #stageHeading id="prep-title" tabindex="-1" class="small">Mensaje preparado: todavía no se ha enviado</h2>
+          <p>SoftSpark <strong>aún no ha recibido</strong> tu solicitud. Para enviarla, ábrela en tu aplicación de correo y pulsa «Enviar»{{ site.email ? ', o copia el mensaje y mándalo a ' + site.email : '' }}.</p>
+        </div>
+      </div>
+
+      <div class="field full">
+        <label for="q-message">Mensaje preparado</label>
+        <textarea #msg id="q-message" class="input message" readonly [value]="subject() + '\n\n' + message()" rows="12"></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" (click)="edit()"><app-icon name="arrow-left" [size]="18" /> Editar datos</button>
+        <div class="right">
+          <button type="button" class="btn btn-secondary" (click)="copy(msg)">
+            <app-icon [name]="copied() ? 'check' : 'copy'" [size]="18" /> {{ copied() ? 'Mensaje copiado' : 'Copiar mensaje' }}
+          </button>
+          @if (mailto()) {
+            <a class="btn btn-primary" [href]="mailto()"><app-icon name="mail" [size]="18" /> Abrir en mi correo</a>
+          }
+        </div>
+      </div>
+      <p class="sr-only" aria-live="polite">{{ copied() ? 'Mensaje copiado al portapapeles' : '' }}</p>
+      @if (!site.email) {
+        <div class="notice">
+          <app-icon name="info" />
+          <p>El correo comercial de SoftSpark todavía no está configurado en este sitio.</p>
+        </div>
+      }
+    </section>
+  }
+}

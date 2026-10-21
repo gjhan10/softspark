@@ -1,0 +1,181 @@
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Webs · Aplicaciones · Sistemas · Automatización</span>
+      <h1>Software que impulsa tu <span class="gradient-text">próxima etapa.</span></h1>
+      <p class="lead">Desde páginas web que convierten hasta plataformas empresariales diseñadas para simplificar tus operaciones. Construimos soluciones digitales adaptadas a tus objetivos.</p>
+      <div class="hero-ctas">
+        <a routerLink="/soluciones" class="btn btn-primary btn-lg">Explorar soluciones <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        <a routerLink="/contacto" class="btn btn-secondary btn-lg">Solicitar cotización</a>
+      </div>
+      <a routerLink="/que-necesito" class="link guide-link"><app-icon name="compass" [size]="18" /> ¿No sabes qué necesitas? Encuentra la solución adecuada</a>
+    </div>
+    <app-hero-visual class="hero-visual" />
+  </div>
+</section>
+
+<section class="strip" aria-label="Categorías de soluciones">
+  <div class="container strip-in">
+    <span class="strip-label">Construimos</span>
+    <ul>
+      @for (c of categories; track c.id) {
+        <li><a routerLink="/soluciones" [queryParams]="{ categoria: c.id }">{{ c.label }}</a></li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="capacidades" aria-labelledby="cap-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Capacidades</span>
+      <h2 id="cap-title">Del primer sitio web al sistema que ordena tu operación</h2>
+      <p>Seis líneas de trabajo para negocios en distintas etapas. Cada una explica qué resuelve, para quién es y qué puede incluir.</p>
+    </div>
+    <div class="cap-grid">
+      @for (s of services; track s.id; let i = $index) {
+        <article class="card cap">
+          <div class="cap-top">
+            <span class="ico"><app-icon [name]="s.icon" [size]="22" /></span>
+            <span class="num">0{{ i + 1 }}</span>
+          </div>
+          <h3>{{ s.name }}</h3>
+          <p class="tagline">{{ s.tagline }}</p>
+          <p class="for"><strong>Para:</strong> {{ s.forWhom }}</p>
+          <ul class="check-list">
+            @for (f of s.features.slice(0, 3); track f) {
+              <li><app-icon name="check" [size]="16" /> {{ f }}</li>
+            }
+          </ul>
+          <div class="cap-links">
+            <a routerLink="/servicios" [fragment]="s.id" class="link">Ver detalle <app-icon name="arrow-right" [size]="16" /></a>
+            <a routerLink="/contacto" [queryParams]="{ tipo: s.projectType, plan: s.plan }" class="link muted">Pedir información</a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="guide-title">
+  <div class="container guide">
+    <div class="guide-copy">
+      <span class="eyebrow">¿Qué necesito?</span>
+      <h2 id="guide-title">No hace falta conocer los términos técnicos</h2>
+      <p class="lead">Página estática, web corporativa, aplicación, CRM o ERP. Te explicamos las diferencias con ejemplos y un asistente de siete preguntas te da una recomendación orientativa.</p>
+      <a routerLink="/que-necesito" class="btn btn-primary btn-lg">Encontrar la solución adecuada <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+    </div>
+    <ul class="scenarios">
+      @for (sc of scenarios; track sc.who) {
+        <li>
+          <p class="who">{{ sc.who }} <span>{{ sc.need }}</span></p>
+          <p class="ans"><app-icon name="arrow-right" [size]="16" /> {{ sc.answer }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="sol-title">
+  <div class="container">
+    <div class="section-head split">
+      <div>
+        <span class="eyebrow">Catálogo de soluciones</span>
+        <h2 id="sol-title">Tipos de software que desarrollamos</h2>
+      </div>
+      <a routerLink="/soluciones" class="btn btn-secondary">Ver las {{ total }} soluciones <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+    </div>
+    <div class="sol-grid">
+      @for (s of featured; track s.slug) {
+        <app-solution-card [solution]="s" />
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="plans-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Planes</span>
+      <h2 id="plans-title">Cuatro niveles para empezar a conversar</h2>
+      <p>Son propuestas comerciales iniciales. El alcance y el precio final se definen en una cotización según tu proyecto.</p>
+    </div>
+    <div class="plans">
+      @for (p of plans; track p.id) {
+        <article class="card plan" [class.enterprise]="p.id === 'enterprise'">
+          <h3>{{ p.name }}</h3>
+          <p class="aud">{{ p.audience }}</p>
+          <p class="price">{{ price(p) }}</p>
+          <ul class="check-list">
+            @for (h of p.highlights.slice(0, 4); track h) {
+              <li><app-icon name="check" [size]="16" /> {{ h }}</li>
+            }
+          </ul>
+          <a routerLink="/contacto" [queryParams]="{ plan: p.id }" class="btn btn-secondary btn-sm">{{ p.cta }}</a>
+        </article>
+      }
+    </div>
+    <p class="plans-more"><a routerLink="/planes" class="link">Comparar todas las características <app-icon name="arrow-right" [size]="16" /></a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="demo-title">
+  <div class="container demo">
+    <div class="demo-copy">
+      <span class="eyebrow">Demo interactiva</span>
+      <h2 id="demo-title">Prueba el tipo de interfaces que construimos</h2>
+      <p class="lead">Un panel administrativo navegable con cinco módulos. Funciona en tu navegador con datos ficticios: puedes buscar, filtrar y modificar registros sin afectar a ningún sistema real.</p>
+      <a routerLink="/demo" class="btn btn-primary btn-lg"><app-icon name="play" [size]="18" /> Abrir la demo</a>
+    </div>
+    <ul class="demo-list">
+      @for (d of demos; track d.id) {
+        <li>
+          <a [routerLink]="['/demo', d.id]">
+            <span class="ico"><app-icon [name]="d.icon" [size]="20" /></span>
+            <span><strong>{{ d.label }}</strong><small>{{ d.desc }}</small></span>
+            <app-icon name="chevron-right" [size]="18" />
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="proc-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Proceso de trabajo</span>
+      <h2 id="proc-title">Un proceso claro, de la idea a la entrega</h2>
+    </div>
+    <ol class="process">
+      @for (st of process; track st.title; let i = $index) {
+        <li>
+          <span class="step">{{ i + 1 }}</span>
+          <h3>{{ st.title }}</h3>
+          <p>{{ st.desc }}</p>
+        </li>
+      }
+    </ol>
+    <p class="plans-more"><a routerLink="/proceso" class="link">Ver el proceso completo <app-icon name="arrow-right" [size]="16" /></a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="faq-title">
+  <div class="container faq">
+    <div class="section-head">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 id="faq-title">Lo que suelen preguntar antes de empezar</h2>
+      <a routerLink="/preguntas-frecuentes" class="link">Ver todas las preguntas <app-icon name="arrow-right" [size]="16" /></a>
+    </div>
+    <div>
+      @for (f of faqs; track f.q) {
+        <details class="faq-item">
+          <summary>{{ f.q }} <app-icon name="plus" [size]="20" /></summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-band />
