@@ -198,8 +198,8 @@ aside {
     left: 24px;
     right: 24px;
     top: 50%;
-    height: 1px;
-    background: repeating-linear-gradient(90deg, var(--line-strong) 0 6px, transparent 6px 12px);
+    height: 0;
+    border-top: 1px dashed var(--line-strong);
   }
 }
 

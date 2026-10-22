@@ -30,7 +30,7 @@
   }
 
   h2 {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-lg);
   }
 
   .aud {
@@ -60,7 +60,13 @@
 .plan-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: var(--s-3);
+
+  .radio {
+    flex: none;
+    margin-top: 2px;
+  }
 }
 
 .radio {

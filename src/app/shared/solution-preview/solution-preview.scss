@@ -45,9 +45,7 @@
 
 :host([data-family='flujo']) {
   padding: 14px;
-  background:
-    radial-gradient(circle, var(--pv-bar) 1px, transparent 1.2px) 0 0 / 14px 14px,
-    var(--surface-2);
+  background: var(--surface-2);
 }
 
 i,

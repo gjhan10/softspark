@@ -7,7 +7,7 @@ export type Theme = 'dark' | 'light';
 export class ThemeService {
   private readonly doc = inject(DOCUMENT);
   private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
-  readonly theme = signal<Theme>('dark');
+  readonly theme = signal<Theme>('light');
 
   sync(): void {
     if (this.browser) this.theme.set(this.initial());
@@ -23,7 +23,7 @@ export class ThemeService {
   }
 
   private initial(): Theme {
-    if (!this.browser) return 'dark';
-    return this.doc.documentElement.dataset['theme'] === 'light' ? 'light' : 'dark';
+    if (!this.browser) return 'light';
+    return this.doc.documentElement.dataset['theme'] === 'dark' ? 'dark' : 'light';
   }
 }
