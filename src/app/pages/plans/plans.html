@@ -127,14 +127,6 @@
         }
       </ul>
     </div>
-    <div>
-      <h2>Preguntas sobre planes</h2>
-      @for (f of faqs; track f.q) {
-        <details class="faq-item">
-          <summary>{{ f.q }} <app-icon name="plus" [size]="20" /></summary>
-          <p>{{ f.a }}</p>
-        </details>
-      }
-    </div>
+    <p class="faq-link"><a routerLink="/preguntas-frecuentes" fragment="planes" class="link">Preguntas frecuentes sobre planes y costes <app-icon name="arrow-right" [size]="16" /></a></p>
   </div>
 </section>

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, signal, viewChildren } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Seo } from '../../core/seo.service';
-import { FAQS } from '../../data/faq.data';
 import { FEATURE_GROUPS, FEATURE_STATES, FeatureState, PlanId, PLAN_CONDITIONS, PLANS, planPrice } from '../../data/plans.data';
 import { Icon } from '../../shared/icon/icon';
 
@@ -19,7 +18,6 @@ export class Plans {
   protected readonly stateOrder: FeatureState[] = ['incluido', 'opcional', 'evaluacion', 'no'];
   protected readonly conditions = PLAN_CONDITIONS;
   protected readonly price = planPrice;
-  protected readonly faqs = FAQS.filter((f) => f.topic === 'planes');
   protected readonly selected = signal<PlanId>('pro');
   protected readonly scope = signal<'todos' | 'web' | 'sistemas'>('todos');
   protected readonly group = signal<string>('todos');
