@@ -45,7 +45,6 @@ import { Icon, IconName } from '../../shared/icon/icon';
         @for (n of nodes; track n) {
           <span class="node">{{ n }}</span>
         }
-        <span class="pulse"></span>
       </div>
       <figcaption>Composición ilustrativa con datos ficticios</figcaption>
     </figure>

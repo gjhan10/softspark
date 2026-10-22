@@ -8,15 +8,15 @@
   display: grid;
   gap: var(--s-3);
   grid-template-rows: auto auto auto 1fr auto;
-  padding: 24px;
+  padding: var(--s-5);
 
   p {
     color: var(--text-2);
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
   }
 
   .ex {
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
 
     strong {
       color: var(--text);
@@ -34,13 +34,13 @@
   }
 
   dt {
-    font-size: 0.78rem;
+    font-size: var(--fs-2xs);
     color: var(--text-3);
   }
 
   dd {
     margin: 2px 0 0;
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 }
 
@@ -55,23 +55,23 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   background: var(--accent-soft);
   color: var(--accent);
 }
 
 .scale {
   display: inline-flex;
-  gap: 4px;
+  gap: var(--s-1);
 
   i {
     width: 18px;
     height: 6px;
-    border-radius: 99px;
+    border-radius: var(--r-pill);
     background: var(--surface-3);
 
     &.on {
-      background: var(--brand-gradient);
+      background: var(--accent);
     }
   }
 }
@@ -97,7 +97,7 @@
 }
 
 .vs {
-  font: 600 1rem var(--font-mono);
+  font: 600 var(--fs-base) var(--font-mono);
   color: var(--text-3);
   align-self: center;
   justify-self: center;
@@ -111,8 +111,8 @@
 
   li {
     display: grid;
-    gap: 10px;
-    padding: 20px;
+    gap: var(--s-3);
+    padding: var(--s-5);
     justify-items: start;
   }
 
@@ -127,11 +127,11 @@
 
   .ans {
     display: flex;
-    gap: 8px;
+    gap: var(--s-2);
     color: var(--cyan);
 
     app-icon {
-      margin-top: 4px;
+      margin-top: var(--s-1);
     }
   }
 }

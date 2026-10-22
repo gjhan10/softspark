@@ -61,15 +61,16 @@ type Range = 7 | 30 | 90;
   `,
   styles: `
     .segmented { display: inline-flex; padding: 3px; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--bg-2); }
-    .segmented button { min-height: 36px; padding: 6px 14px; border: 0; border-radius: 7px; background: none; color: var(--text-2); cursor: pointer; font-size: 0.88rem; }
+    .segmented button { min-height: 36px; padding: var(--s-2) var(--s-4); border: 0; border-radius: var(--r-sm); background: none; color: var(--text-2); cursor: pointer; font-size: var(--fs-sm); }
+    @media (pointer: coarse) { .segmented button { min-height: var(--tap); } .raw summary { min-height: var(--tap); display: flex; align-items: center; } }
     .segmented button[aria-checked='true'] { background: var(--surface-3); color: var(--text); font-weight: 500; }
-    .raw { margin-top: 16px; }
-    .raw summary { cursor: pointer; color: var(--accent); font-size: 0.9rem; margin-bottom: 10px; }
+    .raw { margin-top: var(--s-4); }
+    .raw summary { cursor: pointer; color: var(--accent); font-size: var(--fs-sm); margin-bottom: var(--s-3); }
     .raw .table-wrap { max-height: 260px; overflow: auto; }
-    .channels { list-style: none; display: grid; gap: 16px; }
-    .ch-top { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 6px; }
-    .v { font: 500 0.82rem var(--font-mono); color: var(--text-2); }
-    .track { height: 8px; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+    .channels { list-style: none; display: grid; gap: var(--s-4); }
+    .ch-top { display: flex; justify-content: space-between; font-size: var(--fs-sm); margin-bottom: var(--s-2); }
+    .v { font: 500 var(--fs-xs) var(--font-mono); color: var(--text-2); }
+    .track { height: 8px; border-radius: var(--r-pill); background: var(--surface-3); overflow: hidden; }
     .track span { display: block; height: 100%; border-radius: inherit; background: var(--brand-gradient); transition: width var(--t-base) var(--ease); }
   `,
 })

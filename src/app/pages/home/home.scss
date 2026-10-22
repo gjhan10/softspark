@@ -1,19 +1,40 @@
 .hero {
   position: relative;
+  isolation: isolate;
   min-height: calc(100svh - 120px);
   display: flex;
   align-items: center;
   padding-top: calc(var(--header-h) + clamp(40px, 7vw, 96px));
   padding-bottom: clamp(48px, 7vw, 96px);
   overflow: hidden;
-  background-image:
-    radial-gradient(60% 50% at 85% 20%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size:
-    auto,
-    48px 48px,
-    48px 48px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+    mask-image: radial-gradient(60% 70% at 72% 45%, #000, transparent 78%);
+  }
+}
+
+h1 {
+  font-size: var(--fs-display);
+  max-width: 13ch;
+
+  .soft {
+    color: var(--text-2);
+  }
+}
+
+@media (max-width: 639px) {
+  .hero::before {
+    display: none;
+  }
 }
 
 .hero-grid {
@@ -27,9 +48,6 @@
   gap: var(--s-5);
   justify-items: start;
 
-  h1 {
-    max-width: 13ch;
-  }
 }
 
 .hero-ctas {
@@ -39,7 +57,7 @@
 }
 
 .guide-link {
-  font-size: 0.95rem;
+  font-size: var(--fs-sm);
 }
 
 .hero-visual {

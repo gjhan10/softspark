@@ -76,7 +76,7 @@ import { DemoStore } from '../demo-store';
       </div>
     }
   `,
-  styles: `.muted { color: var(--text-3); font-size: 0.85rem; }`,
+  styles: `.muted { color: var(--text-3); font-size: var(--fs-xs); }`,
 })
 export class DemoCrm {
   protected readonly store = inject(DemoStore);

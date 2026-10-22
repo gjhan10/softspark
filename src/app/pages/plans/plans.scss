@@ -12,7 +12,7 @@
   display: grid;
   gap: var(--s-3);
   grid-template-rows: auto auto auto auto 1fr;
-  padding: 24px;
+  padding: var(--s-5);
   cursor: pointer;
   transition:
     border-color var(--t-fast),
@@ -26,33 +26,33 @@
   &.on {
     border-color: var(--accent);
     box-shadow: 0 0 0 1px var(--accent);
-    background: linear-gradient(180deg, var(--accent-soft), transparent 60%), var(--surface);
+    background: var(--surface);
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size: var(--fs-xl);
   }
 
   .aud {
     color: var(--text);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
   }
 
   .sum {
     color: var(--text-2);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 
   .price {
-    font: 500 0.85rem var(--font-mono);
+    font: 500 var(--fs-xs) var(--font-mono);
     color: var(--cyan);
-    padding-block: 10px;
+    padding-block: var(--s-3);
     border-block: 1px solid var(--line);
   }
 
   .check-list {
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
     align-content: start;
   }
 }
@@ -87,7 +87,7 @@
   align-items: center;
   gap: var(--s-4);
   margin-top: var(--s-5);
-  padding: 18px 22px;
+  padding: var(--s-4) var(--s-5);
   border: 1px solid var(--line-strong);
   border-radius: var(--r-lg);
   background: var(--surface);
@@ -111,7 +111,7 @@
   }
 
   .lead {
-    font-size: 0.98rem;
+    font-size: var(--fs-base);
   }
 }
 
@@ -119,13 +119,13 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  font-size: 0.88rem;
+  gap: var(--s-2) var(--s-4);
+  font-size: var(--fs-sm);
   color: var(--text-2);
 
   li {
     display: inline-flex;
-    gap: 8px;
+    gap: var(--s-2);
     align-items: center;
   }
 }
@@ -136,13 +136,13 @@
 
 .mobile-picker {
   display: grid;
-  gap: 6px;
+  gap: var(--s-2);
   margin-bottom: var(--s-4);
   max-width: 320px;
 
   label {
     font-weight: 500;
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 }
 
@@ -156,19 +156,19 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 th,
 td {
-  padding: 13px 16px;
+  padding: var(--s-3) var(--s-4);
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
 }
 
 thead th {
-  font: 600 0.95rem var(--font-display);
+  font: 600 var(--fs-sm) var(--font-display);
   background: var(--surface-2);
   position: sticky;
   top: var(--header-h);
@@ -182,13 +182,13 @@ thead th {
 
 .note {
   display: block;
-  margin-top: 4px;
-  font-size: 0.8rem;
+  margin-top: var(--s-1);
+  font-size: var(--fs-xs);
   color: var(--text-3);
 }
 
 .group-row th {
-  font: 500 0.75rem var(--font-mono);
+  font: 500 var(--fs-2xs) var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--cyan);
@@ -238,20 +238,23 @@ td {
 }
 
 .st-label {
-  margin-left: 8px;
+  margin-left: var(--s-2);
   color: var(--text-2);
-  font-size: 0.85rem;
+  font-size: var(--fs-xs);
 }
 
 .cond {
   display: grid;
   gap: var(--s-5);
-  max-width: 820px;
 
   h2 {
-    font-size: 1.4rem;
+    font-size: var(--fs-xl);
     margin-bottom: var(--s-4);
   }
+}
+
+.cond > .on-main {
+  max-width: 820px;
 }
 
 .cond-list {
@@ -262,7 +265,7 @@ td {
   li {
     display: grid;
     grid-template-columns: 22px 1fr;
-    gap: 10px;
+    gap: var(--s-3);
     color: var(--text-2);
   }
 

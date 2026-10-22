@@ -34,8 +34,8 @@
   }
 
   .input {
-    padding-left: 42px;
-    padding-right: 44px;
+    padding-left: var(--s-7);
+    padding-right: var(--s-7);
   }
 
   input::-webkit-search-cancel-button {
@@ -101,7 +101,7 @@
 
   p {
     color: var(--text-2);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 
   strong {
@@ -116,7 +116,7 @@
 
 .fam-head {
   display: grid;
-  gap: 6px;
+  gap: var(--s-2);
   margin-bottom: var(--s-4);
   padding-bottom: var(--s-3);
   border-bottom: 1px solid var(--line);
@@ -124,19 +124,19 @@
   h2 {
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    gap: var(--s-3);
     font-size: clamp(1.3rem, 2.2vw, 1.6rem);
   }
 
   p {
     color: var(--text-2);
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
     max-width: 70ch;
   }
 }
 
 .fam-count {
-  font: 500 0.85rem var(--font-mono);
+  font: 500 var(--fs-xs) var(--font-mono);
   color: var(--text-3);
 }
 
@@ -169,7 +169,7 @@
   display: grid;
   gap: var(--s-3);
   align-content: start;
-  padding: 24px;
+  padding: var(--s-5);
   text-decoration: none;
   transition:
     border-color var(--t-fast),
@@ -181,12 +181,12 @@
 
   p {
     color: var(--text-2);
-    font-size: 0.93rem;
+    font-size: var(--fs-sm);
   }
 
   &.primary {
     border-color: color-mix(in srgb, var(--accent) 45%, transparent);
-    background: linear-gradient(180deg, var(--accent-soft), transparent 70%), var(--surface);
+    background: var(--surface);
   }
 }
 
@@ -195,7 +195,7 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -203,11 +203,11 @@
 .go {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--s-2);
   margin-top: var(--s-2);
   color: var(--accent);
   font-weight: 500;
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 .empty {
@@ -273,5 +273,13 @@
 @media (min-width: 1180px) {
   .grid[data-family='web'] {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (pointer: coarse) {
+  .clear {
+    width: var(--tap);
+    height: var(--tap);
+    right: 2px;
   }
 }

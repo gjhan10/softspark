@@ -13,7 +13,7 @@
 }
 
 .count {
-  font: 500 0.8rem var(--font-mono);
+  font: 500 var(--fs-xs) var(--font-mono);
   color: var(--text-2);
   white-space: nowrap;
 }
@@ -29,7 +29,7 @@
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: var(--brand-gradient);
+    background: var(--accent);
     transition: width var(--t-base) var(--ease);
   }
 }
@@ -63,7 +63,7 @@ h3 {
   color: var(--text-2);
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--s-2);
   align-items: center;
 }
 
@@ -77,9 +77,9 @@ h3 {
   position: relative;
   display: grid;
   grid-template-columns: 22px 1fr;
-  gap: 14px;
+  gap: var(--s-4);
   align-items: start;
-  padding: 14px 16px;
+  padding: var(--s-4) var(--s-4);
   border: 1px solid var(--line-strong);
   border-radius: var(--r-md);
   cursor: pointer;
@@ -120,7 +120,7 @@ h3 {
   transition: all var(--t-fast);
 
   .multi & {
-    border-radius: 6px;
+    border-radius: var(--r-sm);
   }
 
   .selected & {
@@ -140,16 +140,16 @@ h3 {
 }
 
 .opt-hint {
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   color: var(--text-3);
 }
 
 .err {
   display: flex;
-  gap: 8px;
+  gap: var(--s-2);
   align-items: center;
   color: var(--danger);
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 .nav {
@@ -174,16 +174,13 @@ h3 {
 
   h3 {
     font-size: clamp(1.8rem, 3.6vw, 2.5rem);
-    background: var(--brand-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--text);
     justify-self: start;
   }
 
   .sub {
     color: var(--text-2);
-    font-size: 1.05rem;
+    font-size: var(--fs-md);
   }
 }
 
@@ -192,7 +189,7 @@ h3 {
   gap: var(--s-6);
 
   h4 {
-    font: 500 0.8rem var(--font-mono);
+    font: 500 var(--fs-xs) var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--text-3);
@@ -206,8 +203,8 @@ h3 {
 
 .plain {
   display: grid;
-  gap: 8px;
-  padding-left: 18px;
+  gap: var(--s-2);
+  padding-left: var(--s-4);
   color: var(--text-2);
 }
 
@@ -217,12 +214,12 @@ h3 {
   gap: 2px;
 
   > div {
-    padding: 10px 0;
+    padding: var(--s-3) 0;
     border-bottom: 1px solid var(--line);
   }
 
   dt {
-    font-size: 0.82rem;
+    font-size: var(--fs-xs);
     color: var(--text-3);
   }
 
@@ -240,10 +237,10 @@ h3 {
   border: 0;
   background: none;
   color: var(--accent);
-  font-size: 0.85rem;
+  font-size: var(--fs-xs);
   cursor: pointer;
-  padding: 4px 6px;
-  border-radius: 4px;
+  padding: var(--s-1) var(--s-2);
+  border-radius: var(--r-xs);
 
   &:hover {
     text-decoration: underline;
@@ -257,5 +254,12 @@ h3 {
 
   .cols {
     grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+@media (pointer: coarse) {
+  .edit {
+    min-height: var(--tap);
+    min-width: var(--tap);
   }
 }

@@ -23,7 +23,7 @@ import { Icon } from '../../shared/icon/icon';
   `,
   styles: `
     .nf { min-height: 70vh; border-bottom: 0; }
-    .code { font: 700 clamp(4rem, 12vw, 7rem)/1 var(--font-display); background: var(--brand-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .code { font: 700 clamp(4rem, 12vw, 7rem)/1 var(--font-display); color: var(--accent); }
     .btns { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-3); }
   `,
 })

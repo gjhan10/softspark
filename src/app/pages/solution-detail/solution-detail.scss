@@ -19,9 +19,9 @@
 .back {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--s-2);
   color: var(--text-2);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   text-decoration: none;
 
   &:hover {
@@ -61,20 +61,20 @@
   min-width: 0;
 
   h2 {
-    font-size: 1.4rem;
+    font-size: var(--fs-xl);
     margin-bottom: var(--s-4);
   }
 
   .sub {
     margin: calc(-1 * var(--s-2)) 0 var(--s-4);
     color: var(--text-2);
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
   }
 }
 
 .overview {
   color: var(--text);
-  font-size: 1.08rem;
+  font-size: var(--fs-md);
   line-height: 1.65;
   max-width: 68ch;
 }
@@ -89,13 +89,13 @@
   display: grid;
   gap: var(--s-3);
   align-content: start;
-  padding: 20px;
+  padding: var(--s-5);
 
   h3 {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 1rem;
+    gap: var(--s-2);
+    font-size: var(--fs-base);
 
     app-icon {
       color: var(--accent);
@@ -117,12 +117,12 @@
   li {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
+    gap: var(--s-2);
+    padding: var(--s-2) var(--s-4);
     border-radius: var(--r-pill);
     background: var(--cyan-soft);
     color: var(--text);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 
   app-icon {
@@ -139,24 +139,24 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--s-3);
-  padding: 16px 18px;
+  padding: var(--s-4) var(--s-4);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   background: var(--surface);
 
   .n {
-    font: 500 0.8rem/1.6 var(--font-mono);
+    font: 500 var(--fs-xs)/1.6 var(--font-mono);
     color: var(--cyan);
   }
 
   h3 {
-    font-size: 1rem;
+    font-size: var(--fs-base);
   }
 
   p {
     margin-top: 2px;
     color: var(--text-2);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 }
 
@@ -169,11 +169,11 @@
   li {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
+    gap: var(--s-2);
+    padding: var(--s-2) var(--s-4);
     border: 1px solid var(--line-strong);
     border-radius: var(--r-md);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 
   app-icon {
@@ -187,7 +187,7 @@
 }
 
 .tech-col {
-  padding: 18px;
+  padding: var(--s-4);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   background: var(--surface);
@@ -195,8 +195,8 @@
   h3 {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font: 600 0.95rem/1.3 var(--font-body);
+    gap: var(--s-2);
+    font: 600 var(--fs-sm)/1.3 var(--font-body);
     margin-bottom: var(--s-3);
 
     app-icon {
@@ -206,15 +206,15 @@
 
   ul {
     display: grid;
-    gap: 6px;
-    padding-left: 18px;
+    gap: var(--s-2);
+    padding-left: var(--s-4);
     color: var(--text-2);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 
   .none {
     color: var(--text-3);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 }
 
@@ -223,7 +223,7 @@
   gap: var(--s-6);
 
   h3 {
-    font-size: 1rem;
+    font-size: var(--fs-base);
     margin-bottom: var(--s-3);
   }
 }
@@ -234,11 +234,11 @@
 
 .note {
   display: flex;
-  gap: 8px;
+  gap: var(--s-2);
   align-items: flex-start;
   margin-top: var(--s-5);
   color: var(--text-3);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
 
   app-icon {
     margin-top: 3px;
@@ -248,10 +248,10 @@
 .box {
   display: grid;
   gap: var(--s-4);
-  padding: 24px;
+  padding: var(--s-5);
 
   h2 {
-    font-size: 1.2rem;
+    font-size: var(--fs-lg);
   }
 
   dl {
@@ -261,7 +261,7 @@
   }
 
   dt {
-    font-size: 0.82rem;
+    font-size: var(--fs-xs);
     color: var(--text-3);
   }
 
@@ -272,11 +272,11 @@
   .small {
     margin-top: calc(-1 * var(--s-2));
     color: var(--text-3);
-    font-size: 0.85rem;
+    font-size: var(--fs-xs);
   }
 
   .small-link {
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
     justify-self: center;
   }
 }
@@ -290,7 +290,7 @@
   margin-bottom: var(--s-5);
 
   h2 {
-    font-size: 1.4rem;
+    font-size: var(--fs-xl);
   }
 }
 
@@ -332,5 +332,11 @@
 @media (min-width: 720px) and (max-width: 999px) {
   .head-visual {
     max-width: 560px;
+  }
+}
+
+@media (pointer: coarse) {
+  .back {
+    min-height: var(--tap);
   }
 }

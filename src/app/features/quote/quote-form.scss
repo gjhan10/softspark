@@ -22,13 +22,13 @@
 
   p {
     color: var(--text-3);
-    font-size: 0.92rem;
+    font-size: var(--fs-sm);
   }
 }
 
 h2.small {
-  font-size: 1.15rem;
-  margin-bottom: 4px;
+  font-size: var(--fs-lg);
+  margin-bottom: var(--s-1);
   outline: none;
 }
 
@@ -41,10 +41,10 @@ h2.small {
   outline: none;
 
   ul {
-    margin-top: 6px;
-    padding-left: 18px;
+    margin-top: var(--s-2);
+    padding-left: var(--s-4);
     display: grid;
-    gap: 4px;
+    gap: var(--s-1);
   }
 
   a {
@@ -88,13 +88,13 @@ h2.small {
   gap: 0 var(--s-5);
 
   > div {
-    padding: 12px 0;
+    padding: var(--s-3) 0;
     border-bottom: 1px solid var(--line);
     min-width: 0;
   }
 
   dt {
-    font-size: 0.82rem;
+    font-size: var(--fs-xs);
     color: var(--text-3);
   }
 
@@ -106,7 +106,7 @@ h2.small {
 }
 
 .message {
-  font: 400 0.9rem/1.55 var(--font-mono);
+  font: 400 var(--fs-sm)/1.55 var(--font-mono);
   min-height: 260px;
 }
 

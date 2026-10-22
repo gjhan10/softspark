@@ -11,13 +11,13 @@
   gap: var(--s-3);
 
   h2 {
-    font-size: 1.45rem;
+    font-size: var(--fs-xl);
   }
 
   p {
     color: var(--text-2);
-    font-size: 0.92rem;
-    margin-top: 4px;
+    font-size: var(--fs-sm);
+    margin-top: var(--s-1);
   }
 }
 
@@ -29,37 +29,37 @@
 
 .kpi {
   display: grid;
-  gap: 4px;
-  padding: 16px;
+  gap: var(--s-1);
+  padding: var(--s-4);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   background: var(--bg-2);
 
   small {
     color: var(--text-3);
-    font-size: 0.82rem;
+    font-size: var(--fs-xs);
   }
 
   strong {
-    font: 600 1.45rem/1.15 var(--font-display);
+    font: 600 var(--fs-xl)/1.15 var(--font-display);
     letter-spacing: -0.01em;
   }
 
   em {
-    font: 500 0.75rem var(--font-mono);
+    font: 500 var(--fs-2xs) var(--font-mono);
     font-style: normal;
     color: var(--text-3);
   }
 }
 
 .panel {
-  padding: 18px;
+  padding: var(--s-4);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   min-width: 0;
 
   h3 {
-    font-size: 1rem;
+    font-size: var(--fs-base);
     margin-bottom: var(--s-4);
     display: flex;
     justify-content: space-between;
@@ -99,7 +99,7 @@
     }
 
     .input {
-      padding-left: 38px;
+      padding-left: var(--s-6);
     }
   }
 
@@ -122,18 +122,18 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
 
   th,
   td {
-    padding: 11px 14px;
+    padding: var(--s-3) var(--s-4);
     text-align: left;
     border-bottom: 1px solid var(--line);
     white-space: nowrap;
   }
 
   th {
-    font: 500 0.75rem var(--font-mono);
+    font: 500 var(--fs-2xs) var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-3);
@@ -167,8 +167,8 @@ table {
     tr {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px 12px;
-      padding: 14px;
+      gap: var(--s-2) var(--s-3);
+      padding: var(--s-4);
       border-bottom: 1px solid var(--line);
     }
 
@@ -182,7 +182,7 @@ table {
 
       &::before {
         content: attr(data-label);
-        font: 500 0.7rem var(--font-mono);
+        font: 500 var(--fs-2xs) var(--font-mono);
         text-transform: uppercase;
         color: var(--text-3);
       }
@@ -200,7 +200,7 @@ table {
 
 .row-actions {
   display: flex;
-  gap: 6px;
+  gap: var(--s-2);
   flex-wrap: nowrap;
 }
 
@@ -235,7 +235,7 @@ table {
 .add-form {
   display: grid;
   gap: var(--s-3);
-  padding: 18px;
+  padding: var(--s-4);
   border: 1px dashed var(--line-strong);
   border-radius: var(--r-md);
   background: var(--bg-2);
@@ -254,6 +254,13 @@ table {
 }
 
 .result-count {
-  font-size: 0.85rem;
+  font-size: var(--fs-xs);
   color: var(--text-3);
+}
+
+@media (pointer: coarse) {
+  .icon-btn {
+    width: var(--tap);
+    height: var(--tap);
+  }
 }

@@ -213,17 +213,6 @@ aside {
   color: var(--text-2);
 }
 
-.pulse {
-  position: absolute;
-  top: calc(50% - 3px);
-  left: 24px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan);
-  animation: travel 4s var(--ease) infinite;
-}
 
 figcaption {
   font: 500 0.75rem var(--font-mono);
@@ -238,22 +227,6 @@ figcaption {
   }
 }
 
-@keyframes travel {
-  0% {
-    left: 24px;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: calc(100% - 30px);
-    opacity: 0;
-  }
-}
 
 @media (max-width: 520px) {
   .app {

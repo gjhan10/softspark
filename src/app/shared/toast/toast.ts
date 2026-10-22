@@ -39,16 +39,17 @@ export class ToastService {
     </div>
   `,
   styles: `
-    .stack { position: fixed; right: 16px; bottom: 16px; z-index: 1800; display: grid; gap: 8px; width: min(380px, calc(100vw - 32px)); }
+    .stack { position: fixed; right: 16px; bottom: 16px; z-index: 1800; display: grid; gap: var(--s-2); width: min(380px, calc(100vw - 32px)); }
     .toast {
-      display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 12px 12px 12px 14px;
+      display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center; padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
       background: var(--surface-3); border: 1px solid var(--line-strong); border-radius: var(--r-md); box-shadow: var(--shadow-2);
-      font-size: 0.92rem; animation: in var(--t-base) var(--ease);
+      font-size: var(--fs-sm); animation: in var(--t-base) var(--ease);
     }
     .toast[data-tone='ok'] app-icon:first-child { color: var(--ok); }
     .toast[data-tone='info'] app-icon:first-child { color: var(--accent); }
     button { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: var(--r-sm); background: none; color: var(--text-3); cursor: pointer; }
     button:hover { background: var(--surface-2); color: var(--text); }
+    @media (pointer: coarse) { button { width: var(--tap); height: var(--tap); } }
     @keyframes in { from { opacity: 0; transform: translateY(8px); } }
   `,
 })

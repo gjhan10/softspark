@@ -21,7 +21,7 @@ import { ToastOutlet } from './shared/toast/toast';
     :host { display: flex; flex-direction: column; min-height: 100dvh; }
     main { flex: 1; outline: none; }
     .skip {
-      position: fixed; left: 16px; top: -60px; z-index: 2000; padding: 10px 16px; border-radius: var(--r-md);
+      position: fixed; left: 16px; top: -60px; z-index: 2000; padding: var(--s-3) var(--s-4); border-radius: var(--r-md);
       background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; transition: top var(--t-fast);
     }
     .skip:focus { top: 12px; }

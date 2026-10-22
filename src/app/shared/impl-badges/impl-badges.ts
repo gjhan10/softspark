@@ -23,10 +23,10 @@ const BACKEND_META: Record<Solution['backend'], { icon: IconName; tone: string; 
     }
   `,
   styles: `
-    :host { display: flex; flex-wrap: wrap; gap: 6px; }
+    :host { display: flex; flex-wrap: wrap; gap: var(--s-2); }
     .badge {
-      display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px 3px 7px; border-radius: var(--r-pill);
-      font: 500 0.75rem/1.4 var(--font-body); white-space: nowrap; border: 1px solid transparent;
+      display: inline-flex; align-items: center; gap: var(--s-1); padding: 3px var(--s-2) 3px var(--s-2); border-radius: var(--r-pill);
+      font: 500 var(--fs-2xs)/1.4 var(--font-body); white-space: nowrap; border: 1px solid transparent;
     }
     [data-tone='ok'] { background: var(--ok-soft); color: var(--ok); }
     [data-tone='cyan'] { background: var(--cyan-soft); color: var(--cyan); }

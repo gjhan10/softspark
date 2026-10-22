@@ -18,7 +18,7 @@ import { Icon } from '../../shared/icon/icon';
     </header>
 
     <section class="container section">
-      <ol class="timeline">
+      <ol class="timeline on-main">
         @for (s of steps; track s.title; let i = $index) {
           <li>
             <span class="n">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
@@ -60,13 +60,13 @@ import { Icon } from '../../shared/icon/icon';
   styles: `
     .timeline { list-style: none; display: grid; gap: 0; max-width: 820px; }
     .timeline li { display: grid; grid-template-columns: 56px 1fr; gap: var(--s-4); position: relative; padding-bottom: var(--s-6); }
-    .timeline li:not(:last-child)::before { content: ''; position: absolute; left: 27px; top: 52px; bottom: 4px; width: 1px; background: linear-gradient(var(--line-strong), var(--line)); }
-    .n { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--line-strong); background: var(--surface); font: 600 1rem var(--font-mono); color: var(--cyan); }
-    .body { display: grid; gap: 8px; padding-top: 6px; }
-    h2 { font-size: 1.35rem; }
+    .timeline li:not(:last-child)::before { content: ''; position: absolute; left: 27px; top: 52px; bottom: 4px; width: 1px; background: var(--line-strong); }
+    .n { display: grid; place-items: center; width: 56px; height: 56px; border-radius: var(--r-lg); border: 1px solid var(--line-strong); background: var(--surface); font: 600 var(--fs-base) var(--font-mono); color: var(--cyan); }
+    .body { display: grid; gap: var(--s-2); padding-top: var(--s-2); }
+    h2 { font-size: var(--fs-xl); }
     .body p { color: var(--text-2); }
-    .body .out { display: flex; gap: 8px; align-items: flex-start; color: var(--text); font-size: 0.95rem; }
-    .out app-icon { color: var(--ok); margin-top: 4px; }
+    .body .out { display: flex; gap: var(--s-2); align-items: flex-start; color: var(--text); font-size: var(--fs-sm); }
+    .out app-icon { color: var(--ok); margin-top: var(--s-1); }
     .two { display: grid; gap: var(--s-6); }
     .two h2 { margin-bottom: var(--s-4); }
     .two .check-list app-icon { color: var(--accent); }

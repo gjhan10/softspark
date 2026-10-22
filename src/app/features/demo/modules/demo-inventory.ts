@@ -107,11 +107,11 @@ import { DemoStore } from '../demo-store';
     }
   `,
   styles: `
-    .muted { color: var(--text-3); font-size: 0.82rem; }
-    .stock { display: inline-flex; align-items: center; gap: 8px; }
+    .muted { color: var(--text-3); font-size: var(--fs-xs); }
+    .stock { display: inline-flex; align-items: center; gap: var(--s-2); }
     .qty { min-width: 2.5ch; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
     td.num small { display: block; }
-    .low { font-size: 0.9rem; align-items: center; }
+    .low { font-size: var(--fs-sm); align-items: center; }
   `,
 })
 export class DemoInventory {

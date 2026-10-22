@@ -69,10 +69,10 @@ import { DemoStore } from '../demo-store';
     </div>
   `,
   styles: `
-    .alerts { list-style: none; display: grid; gap: 8px; margin-bottom: 14px; }
-    .alerts li { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+    .alerts { list-style: none; display: grid; gap: var(--s-2); margin-bottom: var(--s-4); }
+    .alerts li { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center; padding: var(--s-2) 0; border-bottom: 1px solid var(--line); font-size: var(--fs-sm); }
     .alerts .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .muted { color: var(--text-3); font-size: 0.82rem; }
+    .muted { color: var(--text-3); font-size: var(--fs-xs); }
   `,
 })
 export class DemoPanel {

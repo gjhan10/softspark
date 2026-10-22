@@ -119,7 +119,7 @@
 
 <section class="section-tight" aria-labelledby="cond-title">
   <div class="container cond">
-    <div>
+    <div class="on-main">
       <h2 id="cond-title">Condiciones importantes</h2>
       <ul class="cond-list">
         @for (c of conditions; track c) {
@@ -127,6 +127,6 @@
         }
       </ul>
     </div>
-    <p class="faq-link"><a routerLink="/preguntas-frecuentes" fragment="planes" class="link">Preguntas frecuentes sobre planes y costes <app-icon name="arrow-right" [size]="16" /></a></p>
+    <p class="faq-link on-main"><a routerLink="/preguntas-frecuentes" fragment="planes" class="link">Preguntas frecuentes sobre planes y costes <app-icon name="arrow-right" [size]="16" /></a></p>
   </div>
 </section>

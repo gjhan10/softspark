@@ -52,9 +52,9 @@ import { Icon } from '../../shared/icon/icon';
   `,
   styles: `
     .prose { max-width: 780px; padding-block: var(--s-7) var(--s-9); display: grid; gap: var(--s-4); }
-    .prose h2 { font-size: 1.3rem; margin-top: var(--s-4); }
+    .prose h2 { font-size: var(--fs-lg); margin-top: var(--s-4); }
     .prose p, .prose li { color: var(--text-2); }
-    .prose ul { padding-left: 20px; display: grid; gap: 8px; }
+    .prose ul { padding-left: var(--s-5); display: grid; gap: var(--s-2); }
     .prose a { color: var(--accent); }
     .back { margin-top: var(--s-4); }
   `,
