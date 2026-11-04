@@ -116,6 +116,120 @@ export function seedOrders(): Order[] {
   ];
 }
 
+export type PoStatus = 'borrador' | 'aprobada' | 'recibida';
+
+export interface PurchaseOrder {
+  code: string;
+  supplier: string;
+  item: string;
+  total: number;
+  status: PoStatus;
+  updated: string;
+}
+
+export type InvoiceStatus = 'pendiente' | 'pagada' | 'vencida';
+
+export interface Invoice {
+  code: string;
+  customer: string;
+  total: number;
+  due: string;
+  status: InvoiceStatus;
+}
+
+export const PO_STATUSES: { id: PoStatus; label: string }[] = [
+  { id: 'borrador', label: 'Borrador' },
+  { id: 'aprobada', label: 'Aprobada' },
+  { id: 'recibida', label: 'Recibida' },
+];
+
+export const INVOICE_STATUSES: { id: InvoiceStatus; label: string }[] = [
+  { id: 'pendiente', label: 'Pendiente' },
+  { id: 'vencida', label: 'Vencida' },
+  { id: 'pagada', label: 'Pagada' },
+];
+
+export function seedPurchaseOrders(): PurchaseOrder[] {
+  const rows: [string, string, string, number, PoStatus, string][] = [
+    ['OC-1048', 'Proveedora Andina', 'Monitores 24 pulgadas (10 u.)', 6490, 'borrador', 'hoy'],
+    ['OC-1047', 'TecnoImport', 'Laptops 14 pulgadas (4 u.)', 13196, 'aprobada', 'ayer'],
+    ['OC-1046', 'Insumos del Sur', 'Cables HDMI (200 u.)', 3800, 'recibida', 'hace 3 días'],
+    ['OC-1045', 'Papelería Central', 'Material de oficina', 920, 'borrador', 'hace 3 días'],
+    ['OC-1044', 'Logística Norte', 'Transporte mensual', 2400, 'aprobada', 'hace 5 días'],
+    ['OC-1043', 'Proveedora Andina', 'Hubs USB-C (40 u.)', 4120, 'recibida', 'hace 1 semana'],
+    ['OC-1042', 'TecnoImport', 'Mini PC (6 u.)', 9870, 'aprobada', 'hace 1 semana'],
+    ['OC-1041', 'Insumos del Sur', 'Mouse inalámbrico (60 u.)', 2760, 'recibida', 'hace 2 semanas'],
+  ];
+  return rows.map(([code, supplier, item, total, status, updated]) => ({ code, supplier, item, total, status, updated }));
+}
+
+export function seedInvoices(): Invoice[] {
+  const rows: [string, string, number, string, InvoiceStatus][] = [
+    ['F001-000231', 'Gamma Salud', 4820, 'vence en 12 días', 'pendiente'],
+    ['F001-000230', 'Delta Retail', 1290, 'vence en 8 días', 'pendiente'],
+    ['F001-000229', 'Lambda Agro', 7640, 'venció hace 3 días', 'vencida'],
+    ['F001-000228', 'Alfa Distribuciones', 2315, 'pagada hace 2 días', 'pagada'],
+    ['F001-000227', 'Iota Textiles', 980, 'venció hace 10 días', 'vencida'],
+    ['F001-000226', 'Beta Logística', 6150, 'vence en 4 días', 'pendiente'],
+    ['F001-000225', 'Zeta Consultores', 3400, 'pagada hace 5 días', 'pagada'],
+    ['F001-000224', 'Mu Farmacias', 2870, 'venció hace 1 día', 'vencida'],
+    ['F001-000223', 'Kappa Seguros', 5200, 'pagada hace 1 semana', 'pagada'],
+    ['F001-000222', 'Theta Construcciones', 11800, 'vence en 20 días', 'pendiente'],
+  ];
+  return rows.map(([code, customer, total, due, status]) => ({ code, customer, total, due, status }));
+}
+
+export interface Workflow {
+  id: number;
+  name: string;
+  trigger: string;
+  steps: string[];
+  active: boolean;
+  /** Minutos de trabajo manual que se estima ahorrar por ejecución (cifra ficticia). */
+  minutesSaved: number;
+  /** Si se define, una de cada `failEvery` ejecuciones falla en el paso `failStep` (índice). */
+  failEvery?: number;
+  failStep?: number;
+}
+
+export type RunStatus = 'ok' | 'error';
+
+export interface RunLog {
+  id: number;
+  workflowId: number;
+  time: string;
+  status: RunStatus;
+  durationMs: number;
+  detail: string;
+}
+
+export function seedWorkflows(): Workflow[] {
+  return [
+    { id: 1, name: 'Reporte diario de ventas', trigger: 'Cada día 08:00', steps: ['Consultar ventas del día anterior', 'Generar archivo de resumen', 'Enviar por correo a gerencia'], active: true, minutesSaved: 25 },
+    { id: 2, name: 'Aviso de pedido nuevo', trigger: 'Al registrar un pedido', steps: ['Leer datos del pedido', 'Notificar al almacén', 'Registrar en la hoja de seguimiento'], active: true, minutesSaved: 10 },
+    { id: 3, name: 'Recordatorio de facturas por vencer', trigger: 'Cada lunes 09:00', steps: ['Buscar facturas que vencen en 7 días', 'Preparar un mensaje por cliente', 'Enviar recordatorios'], active: true, minutesSaved: 30 },
+    { id: 4, name: 'Sincronizar stock con la tienda en línea', trigger: 'Cada hora', steps: ['Leer stock del inventario', 'Comparar con la tienda en línea', 'Actualizar productos con diferencias'], active: true, minutesSaved: 15, failEvery: 3, failStep: 2 },
+    { id: 5, name: 'Alta de cliente desde formulario web', trigger: 'Al recibir un formulario', steps: ['Validar los datos', 'Crear el cliente en el CRM', 'Enviar correo de bienvenida'], active: false, minutesSaved: 8 },
+  ];
+}
+
+export function seedRuns(): RunLog[] {
+  const rows: [number, string, RunStatus, number, string][] = [
+    [4, '10:00', 'ok', 1840, '12 productos actualizados'],
+    [2, '09:41', 'ok', 920, 'Pedido PED-2041 notificado'],
+    [4, '09:00', 'error', 2310, 'Falló «Actualizar productos con diferencias»: la tienda no respondió (simulado)'],
+    [2, '08:57', 'ok', 870, 'Pedido PED-2040 notificado'],
+    [4, '08:00', 'ok', 1760, '3 productos actualizados'],
+    [1, '08:00', 'ok', 2480, 'Resumen enviado a 2 destinatarios'],
+    [2, '07:32', 'ok', 940, 'Pedido PED-2039 notificado'],
+    [4, '07:00', 'ok', 1690, 'Sin diferencias'],
+  ];
+  return rows.map(([workflowId, time, status, durationMs, detail], i) => ({ id: rows.length - i, workflowId, time, status, durationMs, detail }));
+}
+
+/** Ejecuciones de los 6 días anteriores (sintéticas); la barra de hoy sale del registro. */
+export const RUN_HISTORY = [14, 17, 12, 16, 15, 11];
+
 export function seededSeries(days: number, seed: number, base: number, amplitude: number): number[] {
   let s = seed;
   const rand = () => {
@@ -134,3 +248,4 @@ export function seededSeries(days: number, seed: number, base: number, amplitude
 
 export const money = (n: number) => new Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN', maximumFractionDigits: 0 }).format(n);
 export const num = (n: number) => new Intl.NumberFormat('es-PE').format(n);
+export const seconds = (ms: number) => `${new Intl.NumberFormat('es-PE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(ms / 1000)} s`;

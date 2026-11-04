@@ -4,7 +4,7 @@ import type { ProjectType } from './project-types';
 
 export type SolutionCategory = 'sitios-web' | 'ecommerce' | 'gestion' | 'erp' | 'crm' | 'dashboards' | 'automatizacion' | 'a-medida';
 export type SolutionFamily = 'web' | 'empresa' | 'flujo';
-export type DemoModule = 'panel' | 'crm' | 'inventario' | 'analitica' | 'proyectos';
+export type DemoModule = 'panel' | 'crm' | 'inventario' | 'analitica' | 'proyectos' | 'erp' | 'automatizacion';
 
 export interface SolutionModule {
   name: string;
@@ -309,7 +309,7 @@ export const SOLUTIONS: Solution[] = [
     complexity: 'Alta',
     plan: 'enterprise',
     projectType: 'erp',
-    demo: 'panel',
+    demo: 'erp',
   },
   {
     slug: 'crm-comercial',
@@ -412,6 +412,7 @@ export const SOLUTIONS: Solution[] = [
     complexity: 'Media',
     plan: 'enterprise',
     projectType: 'automatizacion',
+    demo: 'automatizacion',
   },
   {
     slug: 'integracion-de-sistemas',

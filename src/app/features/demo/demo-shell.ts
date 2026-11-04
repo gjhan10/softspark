@@ -10,10 +10,12 @@ import { DemoCrm } from './modules/demo-crm';
 import { DemoInventory } from './modules/demo-inventory';
 import { DemoPanel } from './modules/demo-panel';
 import { DemoProjects } from './modules/demo-projects';
+import { DemoErp } from './modules/demo-erp';
+import { DemoAutomation } from './modules/demo-automation';
 
 @Component({
   selector: 'app-demo-shell',
-  imports: [RouterLink, RouterLinkActive, Icon, DemoPanel, DemoCrm, DemoInventory, DemoAnalytics, DemoProjects],
+  imports: [RouterLink, RouterLinkActive, Icon, DemoPanel, DemoCrm, DemoInventory, DemoAnalytics, DemoProjects, DemoErp, DemoAutomation],
   providers: [DemoStore],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './demo-shell.html',
@@ -33,7 +35,7 @@ export class DemoShell {
       const m = this.current();
       seo.set({
         title: m ? `Demo: ${m.label}` : 'Demo',
-        description: 'Demostración interactiva de un panel administrativo con datos ficticios: dashboard, CRM, inventario, analítica y proyectos. Funciona en el navegador, sin backend.',
+        description: 'Demostración interactiva de un panel administrativo con datos ficticios: dashboard, CRM, inventario, analítica, proyectos, ERP de compras y facturación y automatización de procesos. Funciona en el navegador, sin backend.',
         path: m ? `demo/${m.id}` : 'demo',
         noindex: !m,
       });
