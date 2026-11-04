@@ -7,6 +7,8 @@ export const DEMO_MODULES: { id: DemoModule; label: string; icon: IconName; desc
   { id: 'inventario', label: 'Gestión de inventario', icon: 'box', desc: 'Productos, stock bajo y ajustes de stock.' },
   { id: 'analitica', label: 'Panel de análisis', icon: 'trending', desc: 'Tendencias por periodo y por canal.' },
   { id: 'proyectos', label: 'Gestión de proyectos', icon: 'kanban', desc: 'Tablero de tareas por estado y responsable.' },
+  { id: 'erp', label: 'ERP: compras y facturación', icon: 'building', desc: 'Órdenes de compra, facturas y cobros pendientes.' },
+  { id: 'automatizacion', label: 'Automatización de procesos', icon: 'workflow', desc: 'Flujos activos, ejecución simulada y registro.' },
 ];
 
 export function isDemoModule(value: unknown): value is DemoModule {
