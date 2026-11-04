@@ -40,6 +40,12 @@ const PATHS = {
   server: 'M4 4h16v6H4zM4 14h16v6H4zM7.5 7h.01M7.5 17h.01M11 7h5M11 17h5',
   link: 'M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1',
   file: 'M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6',
+  lock: 'M5.5 11h13v9.5h-13zM8 11V7.5a4 4 0 0 1 8 0V11M12 15v2',
+  bell: 'M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15zM10 20.5a2.2 2.2 0 0 0 4 0',
+  card: 'M3 6h18v12H3zM3 10h18M6.5 14.5h3',
+  brush: 'M14.5 4.5l5 5-7.5 7.5-5-5zM7 12l-2.5 2.5c-1 1-1 4.5-1.5 5.5 1-.5 4.5-.5 5.5-1.5L11 16',
+  phone: 'M7.5 3h9v18h-9zM11 17.5h2',
+  pencil: 'M4 20l1-4.5L15.5 5a2.1 2.1 0 0 1 3 3L8 18.5zM13.5 7l3 3',
 } as const;
 
 export type IconName = keyof typeof PATHS;

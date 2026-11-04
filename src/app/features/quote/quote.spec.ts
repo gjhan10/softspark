@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { buildMessage, buildSubject, mailtoHref, QuoteRequest } from './quote.model';
+import { buildMessage, buildSubject, mailtoHref, QuoteRequest, summaryRows } from './quote.model';
 import { QUOTE_ENDPOINT, QuoteService } from './quote.service';
 
 const req: QuoteRequest = {
@@ -11,6 +11,9 @@ const req: QuoteRequest = {
   description: 'Necesitamos ordenar las oportunidades de venta & el seguimiento.',
   budget: '',
   timeline: 'normal',
+  features: ['autenticacion', 'reportes', 'otros'],
+  otherFeatures: 'Agenda de visitas',
+  extras: ['responsive', 'mantenimiento'],
 };
 
 describe('mensaje de cotización', () => {
@@ -22,6 +25,24 @@ describe('mensaje de cotización', () => {
     expect(msg).toContain('Presupuesto aproximado: No indicado');
     expect(msg).toContain(req.description);
     expect(buildSubject(req)).toBe('Solicitud de cotización: CRM (clientes y ventas) · Comercial Ejemplo');
+  });
+
+  it('incluye funcionalidades, otros módulos y características', () => {
+    const msg = buildMessage(req);
+    expect(msg).toContain('Funcionalidades: Autenticación, Reportes, Otros módulos');
+    expect(msg).toContain('Otros módulos: Agenda de visitas');
+    expect(msg).toContain('Características: Responsive, Mantenimiento');
+    const empty = buildMessage({ ...req, features: [], otherFeatures: '', extras: [] });
+    expect(empty).toContain('Funcionalidades: Ninguna seleccionada');
+    expect(empty).not.toContain('Otros módulos:');
+  });
+
+  it('asigna cada fila del resumen a su paso para poder editarla', () => {
+    const rows = summaryRows(req);
+    expect(rows.find((r) => r.label === 'Tipo de proyecto')?.step).toBe(1);
+    expect(rows.find((r) => r.label === 'Funcionalidades')?.step).toBe(2);
+    expect(rows.find((r) => r.label === 'Plazo')?.step).toBe(3);
+    expect(rows.find((r) => r.label === 'Correo')?.step).toBe(4);
   });
 
   it('codifica el enlace mailto sin romper caracteres especiales', () => {
@@ -55,5 +76,8 @@ describe('QuoteService', () => {
     expect((await service.send(req)).ok).toBe(false);
     const body = JSON.parse(fetchSpy.mock.calls[0][1]!.body as string);
     expect(body.email).toBe('ana@example.com');
+    expect(body.features).toEqual(['autenticacion', 'reportes', 'otros']);
+    expect(body.otherFeatures).toBe('Agenda de visitas');
+    expect(body.extras).toEqual(['responsive', 'mantenimiento']);
   });
 });
