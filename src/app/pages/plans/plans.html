@@ -26,10 +26,14 @@
         [attr.aria-labelledby]="'plan-' + p.id"
         [attr.aria-describedby]="'plan-d-' + p.id"
         [class.on]="selected() === p.id"
+        [class.rec]="p.recommended"
         (click)="select(p.id)"
         (keydown)="onKey($event, i)"
         (keydown.space)="$event.preventDefault(); select(p.id)"
       >
+        @if (p.recommended) {
+          <span class="rec-badge"><app-icon name="check" [size]="12" /> Recomendado para empezar</span>
+        }
         <div class="plan-top">
           <h2 [id]="'plan-' + p.id">{{ p.name }}</h2>
           <span class="radio" aria-hidden="true"><app-icon name="check" [size]="14" /></span>
@@ -48,8 +52,9 @@
 
   <div class="selected-bar" aria-live="polite">
     <p>Plan seleccionado: <strong>{{ selectedPlan().name }}</strong> · {{ price(selectedPlan()) }}</p>
-    <a routerLink="/contacto" [queryParams]="{ plan: selected() }" class="btn btn-primary btn-lg">{{ selectedPlan().cta }} <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+    <a routerLink="/contacto" [queryParams]="{ plan: selected() }" class="btn btn-brand btn-lg">{{ selectedPlan().cta }} <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
   </div>
+  <p class="custom-link">¿Ningún plan encaja con tu idea? <a routerLink="/contacto" [queryParams]="{ tipo: 'a-medida', plan: 'enterprise' }" class="link">Solicita una solución personalizada <app-icon name="arrow-right" [size]="16" /></a></p>
 </section>
 
 <section class="section-tight section-alt" aria-labelledby="cmp-title">

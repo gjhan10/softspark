@@ -76,7 +76,11 @@ export const PROJECTS: Project[] = [
       'Pruebas unitarias y despliegue automático',
     ],
     tech: ['Angular 21', 'TypeScript', 'Signals', 'Prerender (SSG)', 'SCSS', 'Vitest', 'GitHub Pages'],
-    preview: 'sitio-corporativo',
+    images: {
+      desktop: 'projects/softspark-inicio-desktop.webp',
+      mobile: 'projects/softspark-inicio-mobile.webp',
+      alt: 'Inicio del sitio de SoftSpark en escritorio y en móvil',
+    },
     art: 'web',
     links: [{ label: 'Ver el inicio', href: '/' }],
   },

@@ -1,9 +1,19 @@
-<header class="page-head">
-  <div class="container">
-    <span class="eyebrow">¿Qué necesito?</span>
-    <h1>Encuentra el tipo de software adecuado para tu caso</h1>
-    <p class="lead">No necesitas conocer los términos técnicos. Revisa las diferencias con ejemplos o responde el asistente para obtener una recomendación orientativa.</p>
-    <a href="que-necesito#asistente" (click)="toWizard($event)" class="btn btn-primary btn-lg"><app-icon name="compass" [size]="18" /> Ir al asistente</a>
+<header class="page-head assist-head" id="asistente">
+  <div class="container head-grid">
+    <div class="head-copy">
+      <span class="eyebrow">Spark Assistant</span>
+      <h1>¿No sabes qué software necesitas? Cuéntanoslo con tus palabras.</h1>
+      <p class="lead">Describe tu negocio y lo que quieres mejorar. Te orientamos sobre el tipo de solución, los módulos, las integraciones y lo que conviene preparar para cotizar.</p>
+      <ul class="how">
+        <li><app-icon name="check" [size]="16" /> Sin términos técnicos</li>
+        @if (localMode) {
+          <li><app-icon name="check" [size]="16" /> Tu texto no sale de tu navegador</li>
+        }
+        <li><app-icon name="check" [size]="16" /> Orientación, no una cotización</li>
+      </ul>
+      <a href="que-necesito#cuestionario" (click)="toWizard($event)" class="link"><app-icon name="compass" [size]="16" /> ¿Prefieres responder siete preguntas?</a>
+    </div>
+    <app-spark-assistant class="assistant" />
   </div>
 </header>
 
@@ -69,11 +79,11 @@
   </div>
 </section>
 
-<section class="section" id="asistente" aria-labelledby="wz-t">
+<section class="section" id="cuestionario" aria-labelledby="wz-t">
   <div class="container wz">
     <div class="section-head">
-      <span class="eyebrow">Asistente</span>
-      <h2 id="wz-t">Encuentra la solución adecuada</h2>
+      <span class="eyebrow">Cuestionario guiado</span>
+      <h2 id="wz-t">Encuentra la solución adecuada en siete preguntas</h2>
       <p>Siete preguntas rápidas. Funciona en tu navegador y no envía tus respuestas a ningún sitio.</p>
     </div>
     <app-wizard />

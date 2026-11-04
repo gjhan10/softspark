@@ -12,6 +12,8 @@ export interface Plan {
   priceLabel: string;
   highlights: string[];
   cta: string;
+  /** Plan sugerido como punto de partida para la mayoría de negocios. */
+  recommended?: boolean;
 }
 
 export interface FeatureRow {
@@ -59,6 +61,7 @@ export const PLANS: Plan[] = [
       'Analítica cuando se configure un proveedor',
     ],
     cta: 'Cotizar Pro',
+    recommended: true,
   },
   {
     id: 'premium',

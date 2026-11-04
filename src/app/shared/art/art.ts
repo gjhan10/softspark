@@ -92,7 +92,7 @@ export type ArtName =
           <path d="M80 54l-10 32" class="s-violet" stroke-width="3" />
           <rect x="44" y="98" width="62" height="6" rx="3" class="f-code" />
           <rect x="44" y="110" width="40" height="6" rx="3" class="f-code-2" />
-          <g class="spin-slow" style="transform-origin: 186px 80px">
+          <g class="spin-slow">
             <circle cx="186" cy="80" r="22" class="s-accent" stroke-width="7" stroke-dasharray="9 7" />
           </g>
           <circle cx="186" cy="80" r="11" class="f-surface s-accent" stroke-width="2.5" />

@@ -52,8 +52,7 @@
 }
 
 .node {
-  opacity: 0;
-  animation: pop 600ms var(--ease-out) forwards;
+  animation: pop 600ms var(--ease-out) both;
   animation-delay: var(--d);
 }
 
@@ -74,9 +73,8 @@
   position: absolute;
   translate: var(--px, 0) var(--py, 0);
   transition: translate 600ms var(--ease-out);
-  opacity: 0;
   animation:
-    enter var(--t-reveal) var(--ease-out) forwards,
+    enter var(--t-reveal) var(--ease-out) both,
     float 7s var(--ease-in-out) infinite;
   animation-delay: var(--in, 0.2s), calc(var(--in, 0.2s) + 0.8s);
 }
@@ -538,12 +536,10 @@ figcaption {
 @keyframes float {
   0%,
   100% {
-    opacity: 1;
     transform: translateY(0);
   }
 
   50% {
-    opacity: 1;
     transform: translateY(-7px);
   }
 }

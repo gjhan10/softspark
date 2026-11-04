@@ -60,7 +60,11 @@ Todo el contenido comercial está en `src/app/data/` y se reutiliza en todas las
 | Proceso de trabajo | `data/process.data.ts` |
 | Tipos de software y ejemplos | `data/software-types.data.ts` |
 | Tipos de proyecto del formulario | `data/project-types.ts` |
-| Preguntas y lógica del asistente | `features/wizard/wizard.data.ts`, `features/wizard/recommend.ts` |
+| Cuestionario guiado (siete preguntas) | `features/wizard/wizard.data.ts`, `features/wizard/recommend.ts` |
+| Reglas de Spark Assistant | `features/assistant/rules.ts` |
+| Proyectos (publicados y casos conceptuales) | `data/projects.data.ts` |
+| Tecnologías del inicio | `data/tech.data.ts` |
+| Demos del Lab | `features/demo/demo-modules.ts` y `features/demo/modules/` |
 
 ### Precios
 
@@ -85,6 +89,8 @@ Todo está centralizado en `SITE` (`src/app/core/site.config.ts`):
 - `email`: correo comercial. Si es `null`, se ocultan los enlaces de correo y el formulario solo permite copiar el mensaje.
 - `whatsapp` y `social`: se muestran en el footer solo si tienen valor.
 - `quoteEndpoint`: receptor del formulario (ver más abajo).
+- `assistantEndpoint`: backend propio para Spark Assistant con IA (ver más abajo). Con `null` funciona por reglas y lo indica en pantalla.
+- `availableForProjects`: muestra «Disponibles para nuevos proyectos» en el inicio. Actívalo solo cuando sea cierto.
 
 Hoy `email` usa el correo público del fundador como contacto provisional. Cámbialo cuando exista un correo comercial propio.
 
@@ -103,6 +109,23 @@ Para conectar un receptor:
 - Actualiza el aviso de privacidad (`pages/privacy/privacy.ts`) antes de empezar a recibir datos.
 
 El contrato está en `features/quote/quote.model.ts` (`QuoteRequest`) y el envío en `features/quote/quote.service.ts`.
+
+## Spark Assistant
+
+El asistente de `/que-necesito` no usa inteligencia artificial: `features/assistant/rules.ts` busca palabras clave en el mensaje y combina sugerencias fijas (solución, módulos, integraciones y datos para cotizar). La interfaz lo indica con la etiqueta «Modo guiado por reglas · sin IA» y el texto no sale del navegador.
+
+La arquitectura está desacoplada (`AssistantProvider` en `features/assistant/`). Para conectar una IA:
+
+1. Crea un backend propio que reciba `POST { message }` y devuelva un `AssistantReply` (`features/assistant/assistant.model.ts`). La clave del proveedor de IA vive solo en ese servidor.
+2. Configura `assistantEndpoint` en `site.config.ts`. Si el servicio falla, el asistente responde con las reglas.
+3. Actualiza el aviso de privacidad, porque el texto del visitante pasará a enviarse a un servidor.
+
+## Diseño, movimiento y recursos
+
+- Los tokens (colores, tipografía, espaciado, radios, sombras y movimiento) están al inicio de `src/styles.scss`. El tema claro es el predeterminado; el oscuro redefine los mismos nombres.
+- Las ilustraciones son SVG propios en `shared/art/art.ts`. La directiva `appReveal` (`shared/reveal/`) hace aparecer el contenido al hacer scroll.
+- Todas las animaciones respetan `prefers-reduced-motion`, y el contenido es visible aunque JavaScript falle.
+- `node scripts/og-image.mjs` regenera `public/og-image.png`, y `node scripts/capture.mjs <url> <salida>` hace capturas reales para el portfolio. Ambos usan Chrome instalado (`CHROME_BIN`).
 
 ## Publicación con GitHub Actions
 
