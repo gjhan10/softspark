@@ -10,31 +10,33 @@
   overflow: hidden;
 }
 
+/* Fondo blanco con las ondas de la marca detrás de la composición. */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--mesh);
-
-  .grid-bg {
-    position: absolute;
-    inset: 0;
-  }
+  background: var(--bg);
 
   &::after {
     content: '';
     position: absolute;
-    inset: auto -10% -40% 30%;
-    height: 70%;
-    background: radial-gradient(closest-side, var(--sky-soft), transparent);
-    filter: blur(20px);
-    animation: drift 16s var(--ease-in-out) infinite alternate;
+    inset: 0;
+    background: var(--decor-waves) right -80px center / min(860px, 62%) auto no-repeat;
+    animation: drift 18s var(--ease-in-out) infinite alternate;
   }
 }
 
 @keyframes drift {
   to {
-    transform: translate(-8%, -6%) scale(1.1);
+    transform: translateY(-14px);
+  }
+}
+
+@media (max-width: 999px) {
+  .hero-bg::after {
+    background-position: right -160px bottom 6%;
+    background-size: 760px auto;
+    opacity: 0.6;
   }
 }
 
