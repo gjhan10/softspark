@@ -18,6 +18,11 @@ export const FAQS: Faq[] = [
   },
   {
     topic: 'planes',
+    q: '¿Cuánto cuesta desarrollar un sistema?',
+    a: 'Depende sobre todo de cuántos módulos y tipos de usuario tenga, de las integraciones con otros sistemas, de los datos que haya que migrar y de los plazos. Por eso preparamos la cotización después de definir el alcance, y en proyectos grandes la dividimos por fases para que puedas empezar con una primera versión.',
+  },
+  {
+    topic: 'planes',
     q: '¿El plan incluye hosting y dominio?',
     a: 'No necesariamente. El hosting, el dominio y los servicios de terceros pueden tener costes y condiciones separados. En la cotización se detalla qué está incluido y qué se contrata aparte.',
   },
@@ -29,12 +34,17 @@ export const FAQS: Faq[] = [
   {
     topic: 'planes',
     q: '¿La recomendación del asistente es una cotización?',
-    a: 'No. El asistente "Encuentra la solución adecuada" da una orientación según tus respuestas. La cotización se prepara después de conversar sobre el proyecto.',
+    a: 'No. Spark Assistant da una orientación según tus respuestas, a partir de reglas fijas y sin inteligencia artificial. La cotización se prepara después de conversar sobre el proyecto.',
   },
   {
     topic: 'proyecto',
     q: '¿Cómo empieza un proyecto?',
     a: 'Con una conversación para entender el objetivo, seguida de un levantamiento de requisitos y una propuesta con alcance, fases y cotización. El desarrollo empieza cuando la propuesta está aprobada.',
+  },
+  {
+    topic: 'proyecto',
+    q: '¿Qué tipo de proyectos desarrollan?',
+    a: 'Sitios web corporativos y comerciales, tiendas en línea, aplicaciones web, sistemas de gestión como ERP y CRM, dashboards, APIs, integraciones entre sistemas, automatización de procesos y software a medida. También mejoramos y ampliamos productos que ya existen.',
   },
   {
     topic: 'proyecto',
@@ -48,7 +58,17 @@ export const FAQS: Faq[] = [
   },
   {
     topic: 'proyecto',
-    q: '¿Ofrecen mantenimiento?',
+    q: '¿Puedo pedir funcionalidades personalizadas?',
+    a: 'Sí. Los planes son un punto de partida: cualquier funcionalidad específica se analiza en el levantamiento de requisitos y se incluye en la propuesta con su alcance y su coste.',
+  },
+  {
+    topic: 'proyecto',
+    q: '¿Pueden ampliar un sistema que ya tengo?',
+    a: 'Sí, después de revisar el código, la documentación y la infraestructura actual. Con esa revisión te decimos si conviene ampliarlo tal como está, mejorar primero algunas partes o, en casos puntuales, reemplazar un módulo.',
+  },
+  {
+    topic: 'proyecto',
+    q: '¿Ofrecen mantenimiento y soporte?',
     a: 'El mantenimiento y las mejoras posteriores se pueden acordar como un servicio aparte, con condiciones definidas en el contrato.',
   },
   {
@@ -60,6 +80,16 @@ export const FAQS: Faq[] = [
     topic: 'tecnico',
     q: '¿Un sitio estático puede tener formularios?',
     a: 'Puede mostrar el formulario y validarlo, pero no recibe ni almacena los datos por sí solo. Para eso se conecta a un proveedor de formularios o a una API propia.',
+  },
+  {
+    topic: 'tecnico',
+    q: '¿Pueden integrar sistemas que ya uso?',
+    a: 'Sí, cuando el sistema ofrece una API, exportaciones de datos o acceso a su base de datos. Primero evaluamos qué permite cada herramienta y qué datos deben sincronizarse, y en función de eso proponemos la integración.',
+  },
+  {
+    topic: 'tecnico',
+    q: '¿Quién es el propietario del código?',
+    a: 'Se acuerda por escrito en el contrato antes de empezar: qué se entrega (código fuente, repositorio, documentación y accesos) y en qué condiciones. Así no quedan dudas al finalizar el proyecto.',
   },
   {
     topic: 'tecnico',

@@ -15,7 +15,7 @@
 
     <div class="actions">
       <app-theme-toggle />
-      <a routerLink="/contacto" class="btn btn-contrast btn-sm cta">Solicitar cotización</a>
+      <a routerLink="/contacto" class="btn btn-contrast btn-sm cta">Solicitar cotización <app-icon name="arrow-right" [size]="15" class="icon-shift" /></a>
       <button
         #toggleBtn
         type="button"
@@ -25,7 +25,7 @@
         [attr.aria-label]="open() ? 'Cerrar menú' : 'Abrir menú'"
         (click)="toggle()"
       >
-        <app-icon [name]="open() ? 'x' : 'menu'" [size]="22" />
+        <span class="burger" [class.x]="open()" aria-hidden="true"><span></span><span></span></span>
       </button>
     </div>
   </div>
@@ -33,13 +33,13 @@
   <div #panel id="menu-movil" class="panel" [class.open]="open()" [attr.inert]="open() ? null : ''">
     <nav class="container" aria-label="Menú móvil">
       <ul>
-        @for (l of links; track l.path) {
-          <li><a [routerLink]="l.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ l.label }} <app-icon name="chevron-right" [size]="18" /></a></li>
+        @for (l of mobileLinks; track l.path; let i = $index) {
+          <li [style.--i]="i">
+            <a [routerLink]="l.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ l.label }} <app-icon name="chevron-right" [size]="18" /></a>
+          </li>
         }
-        <li><a routerLink="/que-necesito" routerLinkActive="active">¿Qué necesito? <app-icon name="chevron-right" [size]="18" /></a></li>
-        <li><a routerLink="/contacto" routerLinkActive="active">Contacto <app-icon name="chevron-right" [size]="18" /></a></li>
       </ul>
-      <a routerLink="/contacto" class="btn btn-primary btn-lg">Solicitar cotización</a>
+      <a routerLink="/contacto" class="btn btn-brand btn-lg">Solicitar cotización <app-icon name="arrow-right" [size]="18" /></a>
     </nav>
   </div>
 </header>

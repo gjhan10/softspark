@@ -51,10 +51,15 @@ export class FaqPage {
   protected readonly topics = FAQ_TOPICS;
 
   constructor() {
-    inject(Seo).set({
+    const seo = inject(Seo);
+    seo.set({
       title: 'Preguntas frecuentes',
-      description: 'Preguntas frecuentes sobre los planes, costes, hosting, mantenimiento, formularios en sitios estáticos y la diferencia entre ERP y CRM.',
+      description: 'Preguntas frecuentes sobre costes, plazos, propiedad del código, integraciones, mantenimiento y la diferencia entre ERP y CRM.',
       path: 'preguntas-frecuentes',
+    });
+    seo.pageData({
+      '@type': 'FAQPage',
+      mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     });
   }
 
