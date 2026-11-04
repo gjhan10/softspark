@@ -17,6 +17,7 @@ import { ThemeToggle } from '../theme-toggle/theme-toggle';
 export class Header {
   private readonly doc = inject(DOCUMENT);
   protected readonly links = NAV_LINKS;
+  protected readonly mobileLinks = [...NAV_LINKS, { label: 'Spark Assistant', path: '/que-necesito' }, { label: 'Contacto', path: '/contacto' }];
   protected readonly open = signal(false);
   protected readonly scrolled = signal(false);
   private readonly toggleBtn = viewChild<ElementRef<HTMLButtonElement>>('toggleBtn');

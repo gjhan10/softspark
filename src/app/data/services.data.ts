@@ -1,3 +1,4 @@
+import type { ArtName } from '../shared/art/art';
 import type { IconName } from '../shared/icon/icon';
 import type { PlanId } from './plans.data';
 import type { ProjectType } from './project-types';
@@ -7,6 +8,9 @@ export interface Service {
   name: string;
   icon: IconName;
   tagline: string;
+  /** Beneficio principal, en una frase. */
+  benefit: string;
+  art: ArtName;
   solves: string;
   forWhom: string;
   features: string[];
@@ -22,6 +26,8 @@ export const SERVICES: Service[] = [
     name: 'Web esencial',
     icon: 'globe',
     tagline: 'Tu negocio visible, claro y fácil de contactar.',
+    benefit: 'Que te encuentren y te contacten sin fricción.',
+    art: 'web',
     solves: 'No tener presencia en internet o tener una página desactualizada que no explica bien lo que ofreces.',
     forWhom: 'Profesionales independientes, emprendimientos y pequeños negocios.',
     features: ['Landing page o sitio de pocas secciones', 'Diseño responsive', 'Botones de contacto directo', 'SEO técnico inicial', 'Publicación en hosting estático'],
@@ -35,6 +41,8 @@ export const SERVICES: Service[] = [
     name: 'Web comercial',
     icon: 'store',
     tagline: 'Un sitio pensado para atraer y convertir visitantes.',
+    benefit: 'Convertir más visitas en consultas.',
+    art: 'store',
     solves: 'Recibir visitas que no se convierten en consultas, o no poder mostrar bien un catálogo de productos o servicios.',
     forWhom: 'Negocios en crecimiento, empresas de servicios y marcas con catálogo.',
     features: ['Sitio multipágina', 'Catálogo de productos o servicios', 'Formularios conectados a un servicio externo', 'Mejoras SEO por página', 'Analítica cuando se configure un proveedor'],
@@ -48,6 +56,8 @@ export const SERVICES: Service[] = [
     name: 'Aplicaciones web',
     icon: 'window',
     tagline: 'Herramientas que tus clientes o tu equipo usan en el navegador.',
+    benefit: 'Procesos ordenados en una herramienta propia.',
+    art: 'app',
     solves: 'Procesos que hoy dependen de hojas de cálculo, mensajes sueltos o tareas manuales repetitivas.',
     forWhom: 'Negocios que necesitan registros, cálculos, reservas, paneles o portales para clientes.',
     features: ['Interfaces interactivas', 'Usuarios y roles (con backend)', 'Formularios con validación', 'Paneles y reportes', 'Integración con APIs'],
@@ -61,6 +71,8 @@ export const SERVICES: Service[] = [
     name: 'Sistemas empresariales',
     icon: 'building',
     tagline: 'ERP, CRM y plataformas de gestión para ordenar la operación.',
+    benefit: 'Toda la operación en un solo lugar.',
+    art: 'erp',
     solves: 'Información dispersa entre áreas, falta de control de inventario, ventas o clientes, y reportes que se arman a mano.',
     forWhom: 'Empresas con varias áreas, equipos comerciales y organizaciones con procesos definidos.',
     features: ['Módulos de inventario, ventas o compras', 'Gestión de clientes y oportunidades', 'Roles y permisos', 'Dashboards de indicadores', 'Implementación por fases'],
@@ -74,6 +86,8 @@ export const SERVICES: Service[] = [
     name: 'Automatización',
     icon: 'workflow',
     tagline: 'Menos tareas repetitivas, menos errores manuales.',
+    benefit: 'Horas recuperadas de tareas repetitivas.',
+    art: 'automation',
     solves: 'Copiar datos entre sistemas, generar reportes a mano o depender de que alguien recuerde cada paso.',
     forWhom: 'Equipos con tareas operativas repetitivas y negocios que usan varias herramientas a la vez.',
     features: ['Integraciones entre sistemas', 'Procesos programados', 'Notificaciones automáticas', 'Generación de reportes', 'Registro de cada ejecución'],
@@ -87,6 +101,8 @@ export const SERVICES: Service[] = [
     name: 'Software a medida',
     icon: 'code',
     tagline: 'Cuando ninguna herramienta existente encaja con tu forma de trabajar.',
+    benefit: 'Software que se adapta a ti, no al revés.',
+    art: 'custom',
     solves: 'Procesos propios que los productos genéricos no cubren o cubren a costa de adaptar todo el negocio.',
     forWhom: 'Empresas con necesidades específicas, productos digitales nuevos y mejoras de sistemas existentes.',
     features: ['Levantamiento de requisitos', 'Arquitectura según el caso', 'Desarrollo por iteraciones', 'Pruebas y documentación', 'Mantenimiento y evolución'],

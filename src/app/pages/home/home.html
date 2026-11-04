@@ -1,15 +1,101 @@
-<section class="hero">
+<section class="hero" aria-labelledby="hero-t">
+  <div class="hero-bg" aria-hidden="true"><div class="grid-bg"></div></div>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Webs · Aplicaciones · Sistemas · Automatización</span>
-      <h1>Software que impulsa tu <span class="soft">próxima etapa.</span></h1>
-      <p class="lead">Desde páginas web que convierten hasta plataformas empresariales diseñadas para simplificar tus operaciones. Construimos soluciones digitales adaptadas a tus objetivos.</p>
-      <div class="hero-ctas">
-        <a routerLink="/soluciones" class="btn btn-primary btn-lg">Explorar soluciones <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
-        <a routerLink="/contacto" class="btn btn-secondary btn-lg">Solicitar cotización</a>
+      <span class="kicker rise" style="--i: 0"><span class="kicker-dot"></span>Software development · Digital solutions · Automation</span>
+      <h1 id="hero-t" class="rise" style="--i: 1">Construimos tecnología que <span class="text-gradient">transforma negocios.</span></h1>
+      <p class="lead rise" style="--i: 2">Diseñamos y desarrollamos productos digitales, aplicaciones y sistemas empresariales que simplifican operaciones, conectan procesos e impulsan el crecimiento.</p>
+      <div class="hero-ctas rise" style="--i: 3">
+        <a routerLink="/contacto" class="btn btn-brand btn-lg">Empezar un proyecto <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        <a routerLink="/soluciones" class="btn btn-secondary btn-lg">Explorar soluciones</a>
       </div>
-      <a routerLink="/que-necesito" class="link guide-link"><app-icon name="compass" [size]="18" /> ¿No sabes qué necesitas? Encuentra la solución adecuada</a>
+      @if (site.availableForProjects) {
+        <p class="avail rise" style="--i: 4"><span class="live" aria-hidden="true"></span> Disponibles para nuevos proyectos</p>
+      }
+      <a routerLink="/que-necesito" class="assist rise" style="--i: 4">
+        <span class="assist-ico"><app-icon name="compass" [size]="16" /></span>
+        <span><strong>¿No sabes qué necesitas?</strong> Cuéntaselo a Spark Assistant</span>
+        <app-icon name="arrow-right" [size]="16" class="icon-shift" />
+      </a>
     </div>
     <app-hero-visual class="hero-visual" />
+  </div>
+</section>
+
+<section class="ticker" aria-label="Lo que construimos">
+  <div class="ticker-track">
+    @for (pass of [0, 1]; track pass) {
+      <ul [attr.aria-hidden]="pass === 1 ? 'true' : null">
+        @for (t of building; track t) {
+          <li><span class="spark" aria-hidden="true"></span>{{ t }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+<section class="section why" aria-labelledby="why-t">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">Por qué SoftSpark</span>
+      <h2 id="why-t">Ingeniería seria, trato cercano y software que se puede mantener.</h2>
+      <p>Lo que puedes esperar de cómo trabajamos, sin promesas imposibles de comprobar.</p>
+    </div>
+    <div class="bento">
+      @for (d of reasons; track d.title; let i = $index) {
+        <article class="surface-card lift reason" [class]="'r' + i" [appReveal]="i">
+          <app-art [name]="d.art" class="art" />
+          <div class="copy">
+            <h3>{{ d.title }}</h3>
+            <p>{{ d.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section-tight tech" aria-labelledby="tech-t">
+  <div class="container tech-grid">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">Tecnologías</span>
+      <h2 id="tech-t">Un stack probado para cada capa del producto.</h2>
+      <p>Elegimos la tecnología según el problema, no al revés. Estas son las herramientas con las que trabajamos a diario.</p>
+      <p class="legend"><span class="lv"></span> Experiencia consolidada <span class="lv x"></span> En exploración</p>
+    </div>
+    <div class="groups">
+      @for (g of tech; track g.id; let gi = $index) {
+        <div class="group" [appReveal]="gi">
+          <h3>{{ g.label }}</h3>
+          <ul>
+            @for (t of g.items; track t.name) {
+              <li [class.explore]="t.level === 'exploracion'">
+                <span class="mark" aria-hidden="true">{{ t.mark }}</span>
+                <span class="tname">{{ t.name }}<small>{{ t.use }}</small></span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section final" aria-labelledby="final-t">
+  <div class="container">
+    <div class="final-card" appReveal>
+      <svg class="final-art" viewBox="0 0 600 300" aria-hidden="true">
+        <path d="M-20 240 C 120 120, 260 300, 400 160 S 560 40, 640 90" class="draw" pathLength="600" />
+        <path d="M-20 270 C 160 170, 300 320, 460 200 S 600 120, 640 140" class="draw" pathLength="600" style="--d: .3s" />
+      </svg>
+      <div class="final-copy">
+        <h2 id="final-t">¿Tienes una idea, un proceso que ordenar o un sistema que mejorar?</h2>
+        <p>Cuéntanos qué quieres lograr. Te ayudamos a definir el alcance y preparamos una propuesta a medida.</p>
+      </div>
+      <div class="final-ctas">
+        <a routerLink="/contacto" class="btn btn-lg btn-light">Empezar un proyecto <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
+        <a routerLink="/lab" class="btn btn-lg btn-outline-light">Ver demos en el Lab</a>
+      </div>
+    </div>
   </div>
 </section>

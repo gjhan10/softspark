@@ -42,6 +42,21 @@ export class Seo {
       this.doc.head.appendChild(link);
     }
     link.href = url;
+    this.doc.getElementById(PAGE_LD)?.remove();
+  }
+
+  /** Datos estructurados propios de la página (FAQPage, BreadcrumbList…). Llamar después de set(). */
+  pageData(data: Record<string, unknown> | Record<string, unknown>[]): void {
+    const items = Array.isArray(data) ? data : [data];
+    const payload = items.length === 1 ? { '@context': 'https://schema.org', ...items[0] } : { '@context': 'https://schema.org', '@graph': items };
+    this.appendLd(PAGE_LD, payload);
+  }
+
+  breadcrumbs(items: { name: string; path: string }[]): Record<string, unknown> {
+    return {
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ name: 'Inicio', path: '' }, ...items].map((item, i) => ({ '@type': 'ListItem', position: i + 1, name: item.name, item: pageUrl(item.path) })),
+    };
   }
 
   organization(): void {
@@ -53,12 +68,24 @@ export class Seo {
       name: SITE.name,
       url: `${SITE.siteUrl}/`,
       logo: `${SITE.siteUrl}/brand/softspark-mark-480.webp`,
+      description: 'Desarrollo de páginas web, aplicaciones, sistemas empresariales (ERP y CRM), APIs y automatización de procesos a medida.',
+      areaServed: SITE.jurisdiction,
+      founder: { '@type': 'Person', name: SITE.founder, url: SITE.blogUrl },
+      knowsAbout: ['Desarrollo de software a medida', 'Desarrollo web', 'Aplicaciones web', 'ERP', 'CRM', 'APIs REST', 'Automatización de procesos'],
     };
     if (SITE.email) data['email'] = SITE.email;
+    this.appendLd(id, data);
+  }
+
+  private appendLd(id: string, data: Record<string, unknown>): void {
+    this.doc.getElementById(id)?.remove();
     const script = this.doc.createElement('script');
     script.type = 'application/ld+json';
     script.id = id;
-    script.textContent = JSON.stringify(data);
+    // `<` escapado para que el contenido nunca pueda cerrar la etiqueta <script>.
+    script.textContent = JSON.stringify(data).replace(/</g, '\\u003c');
     this.doc.head.appendChild(script);
   }
 }
+
+const PAGE_LD = 'ld-page';

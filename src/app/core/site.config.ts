@@ -10,6 +10,8 @@ export const SITE = {
   locale: 'es_PE',
   jurisdiction: 'Perú',
   quoteEndpoint: null as string | null,
+  /** Muestra «Disponibles para nuevos proyectos» en el inicio. Activarlo solo cuando sea cierto. */
+  availableForProjects: false,
 };
 
 export const PRICING = {

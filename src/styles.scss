@@ -1,37 +1,67 @@
+/* ==========================================================================
+   SoftSpark 2.0 · Design tokens
+   Diseñados primero para el tema claro. El oscuro redefine los mismos nombres.
+   ========================================================================== */
 :root {
   color-scheme: light;
-  --bg: #f7f8fa;
-  --bg-2: #eff1f5;
+
+  /* Superficies */
+  --bg: #ffffff;
+  --bg-2: #f7f9fc;
   --surface: #ffffff;
-  --surface-2: #f4f5f8;
-  --surface-3: #e9ecf1;
-  --line: #e4e7ec;
-  --line-strong: #cfd4dc;
-  --text: #0b1220;
-  --text-2: #475467;
-  --text-3: #5d6879;
-  --accent: #1f56db;
-  --accent-hover: #1946bd;
-  --accent-active: #163da5;
-  --accent-soft: rgb(31 86 219 / 8%);
+  --surface-2: #f7f9fc;
+  --surface-3: #f1f5f9;
+  --line: #e7ecf3;
+  --line-strong: #d5dce7;
+
+  /* Texto (todos ≥ 4.5:1 sobre --bg y --bg-2) */
+  --text: #111827;
+  --text-2: #475569;
+  --text-3: #5f6b7e;
+
+  /* Marca */
+  --accent: #4263eb;
+  --accent-hover: #3452d6;
+  --accent-active: #2b45bd;
+  --accent-soft: rgb(66 99 235 / 8%);
   --accent-ink: #ffffff;
-  --cyan: #07686d;
-  --cyan-soft: rgb(7 104 109 / 9%);
-  --ok: #117a49;
-  --ok-soft: rgb(17 122 73 / 9%);
+  --violet: #8057e8;
+  --violet-soft: rgb(128 87 232 / 9%);
+  --sky: #20b8d5; /* decorativo: no usar para texto sobre blanco */
+  --sky-soft: rgb(32 184 213 / 10%);
+  --cyan: #0b7285; /* variante de --sky apta para texto */
+  --cyan-soft: rgb(11 114 133 / 9%);
+
+  /* Estados */
+  --ok: #12804f;
+  --ok-soft: rgb(18 128 79 / 9%);
   --warn: #8a5d00;
   --warn-soft: rgb(196 140 0 / 12%);
   --danger: #c0283d;
   --danger-soft: rgb(192 40 61 / 8%);
-  --focus: #1f56db;
-  --brand-gradient: linear-gradient(115deg, #1f56db 0%, #07686d 100%);
-  --scrim: rgb(11 18 32 / 35%);
-  --on-strong: #ffffff;
-  --shadow-1: 0 1px 2px rgb(16 24 40 / 5%), 0 1px 3px rgb(16 24 40 / 6%);
-  --shadow-2: 0 18px 40px -20px rgb(16 24 40 / 22%), 0 2px 6px rgb(16 24 40 / 4%);
-  --shadow-btn: 0 1px 2px rgb(16 24 40 / 14%), inset 0 1px 0 rgb(255 255 255 / 16%);
-  --shadow-btn-hover: 0 6px 16px -6px rgb(31 86 219 / 45%), inset 0 1px 0 rgb(255 255 255 / 16%);
+  --focus: #4263eb;
 
+  --brand-gradient: linear-gradient(120deg, #4263eb 0%, #8057e8 55%, #20b8d5 100%);
+  --brand-gradient-soft: linear-gradient(120deg, rgb(66 99 235 / 10%), rgb(128 87 232 / 8%) 55%, rgb(32 184 213 / 10%));
+  --text-gradient: linear-gradient(100deg, #4263eb 10%, #8057e8 60%, #1497b3 100%);
+  --mesh:
+    radial-gradient(60% 50% at 85% 10%, rgb(128 87 232 / 12%), transparent 70%),
+    radial-gradient(50% 45% at 10% 20%, rgb(66 99 235 / 10%), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, rgb(32 184 213 / 10%), transparent 70%);
+  --grid-line: rgb(17 24 39 / 5%);
+  --scrim: rgb(17 24 39 / 35%);
+  --on-strong: #ffffff;
+  --header-bg: rgb(255 255 255 / 78%);
+
+  /* Elevación */
+  --shadow-1: 0 1px 2px rgb(17 24 39 / 5%), 0 1px 3px rgb(17 24 39 / 5%);
+  --shadow-2: 0 18px 40px -20px rgb(17 24 39 / 20%), 0 2px 6px rgb(17 24 39 / 4%);
+  --shadow-3: 0 40px 80px -32px rgb(30 41 82 / 28%), 0 8px 24px -12px rgb(30 41 82 / 12%);
+  --shadow-glow: 0 20px 50px -18px rgb(66 99 235 / 40%);
+  --shadow-btn: 0 1px 2px rgb(17 24 39 / 14%), inset 0 1px 0 rgb(255 255 255 / 18%);
+  --shadow-btn-hover: 0 10px 24px -10px rgb(66 99 235 / 55%), inset 0 1px 0 rgb(255 255 255 / 18%);
+
+  /* Tipografía */
   --font-display: 'Geist', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-body: 'Geist', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
@@ -43,11 +73,12 @@
   --fs-base: 1rem;
   --fs-md: 1.0625rem;
   --fs-lg: 1.25rem;
-  --fs-xl: 1.45rem;
-  --fs-h2: clamp(1.65rem, 2.8vw, 2.2rem);
-  --fs-h1: clamp(2.05rem, 4vw, 3.1rem);
-  --fs-display: clamp(2.5rem, 5.4vw, 4.2rem);
+  --fs-xl: 1.5rem;
+  --fs-h2: clamp(1.85rem, 3.4vw, 2.75rem);
+  --fs-h1: clamp(2.2rem, 4.6vw, 3.6rem);
+  --fs-display: clamp(2.6rem, 6.2vw, 5.2rem);
 
+  /* Espaciado */
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -59,13 +90,16 @@
   --s-9: 96px;
   --s-10: 128px;
 
+  /* Radios */
   --r-xs: 4px;
   --r-sm: 8px;
   --r-md: 12px;
   --r-lg: 16px;
-  --r-xl: 20px;
+  --r-xl: 24px;
+  --r-2xl: 32px;
   --r-pill: 999px;
 
+  /* Layout */
   --container: 1200px;
   --measure: 64ch;
   --gutter: clamp(16px, 4vw, 32px);
@@ -73,44 +107,81 @@
   --tap: 44px;
   --btn-h: 48px;
   --btn-h-sm: 40px;
-  --btn-h-lg: 52px;
+  --btn-h-lg: 54px;
+
+  /* Movimiento */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --t-fast: 160ms;
-  --t-base: 220ms;
+  --t-base: 240ms;
+  --t-slow: 520ms;
+  --t-reveal: 760ms;
+  --stagger: 70ms;
+
+  /* Breakpoints de referencia (en media queries se escriben literales):
+     sm 560px · md 760px · lg 1000px · xl 1200px */
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --bg: #0b0d12;
-  --bg-2: #0f1218;
-  --surface: #12151c;
-  --surface-2: #171b24;
-  --surface-3: #1e232e;
-  --line: rgb(170 185 210 / 12%);
-  --line-strong: rgb(170 185 210 / 22%);
-  --text: #eef1f6;
-  --text-2: #a9b3c2;
-  --text-3: #8892a2;
-  --accent: #5b93ff;
-  --accent-hover: #78a6ff;
-  --accent-active: #4a83f0;
-  --accent-soft: rgb(91 147 255 / 13%);
-  --accent-ink: #050911;
-  --cyan: #3fd2d8;
-  --cyan-soft: rgb(63 210 216 / 11%);
-  --ok: #43cf95;
-  --ok-soft: rgb(67 207 149 / 12%);
+  --bg: #0b1020;
+  --bg-2: #0e1428;
+  --surface: #111a2e;
+  --surface-2: #162038;
+  --surface-3: #1d2944;
+  --line: rgb(160 178 214 / 13%);
+  --line-strong: rgb(160 178 214 / 24%);
+  --text: #f1f5f9;
+  --text-2: #b4bfd2;
+  --text-3: #93a0b8;
+  --accent: #7b93ff;
+  --accent-hover: #93a6ff;
+  --accent-active: #6a84f5;
+  --accent-soft: rgb(123 147 255 / 14%);
+  --accent-ink: #070b18;
+  --violet: #a78bfa;
+  --violet-soft: rgb(167 139 250 / 14%);
+  --sky: #38d3ee;
+  --sky-soft: rgb(56 211 238 / 12%);
+  --cyan: #5fd6ea;
+  --cyan-soft: rgb(95 214 234 / 12%);
+  --ok: #4ad295;
+  --ok-soft: rgb(74 210 149 / 12%);
   --warn: #f0c75e;
   --warn-soft: rgb(240 199 94 / 12%);
-  --danger: #ff7685;
-  --danger-soft: rgb(255 118 133 / 12%);
-  --focus: #8ab4ff;
-  --brand-gradient: linear-gradient(115deg, #5b93ff 0%, #3fd2d8 100%);
-  --scrim: rgb(5 8 14 / 55%);
+  --danger: #ff7c8a;
+  --danger-soft: rgb(255 124 138 / 12%);
+  --focus: #a5b4ff;
+  --brand-gradient: linear-gradient(120deg, #6d87ff 0%, #a78bfa 55%, #38d3ee 100%);
+  --brand-gradient-soft: linear-gradient(120deg, rgb(123 147 255 / 16%), rgb(167 139 250 / 12%) 55%, rgb(56 211 238 / 14%));
+  --text-gradient: linear-gradient(100deg, #93a6ff 10%, #c4b5fd 55%, #67e8f9 100%);
+  --mesh:
+    radial-gradient(60% 50% at 85% 10%, rgb(167 139 250 / 16%), transparent 70%),
+    radial-gradient(50% 45% at 10% 20%, rgb(123 147 255 / 14%), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, rgb(56 211 238 / 10%), transparent 70%);
+  --grid-line: rgb(203 213 245 / 6%);
+  --scrim: rgb(3 6 14 / 60%);
+  --header-bg: rgb(11 16 32 / 74%);
   --shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
   --shadow-2: 0 24px 60px -32px rgb(0 0 0 / 70%);
-  --shadow-btn: 0 1px 2px rgb(0 0 0 / 40%), inset 0 1px 0 rgb(255 255 255 / 14%);
-  --shadow-btn-hover: 0 6px 18px -6px rgb(91 147 255 / 45%), inset 0 1px 0 rgb(255 255 255 / 14%);
+  --shadow-3: 0 40px 90px -36px rgb(0 0 0 / 80%), 0 0 0 1px rgb(160 178 214 / 8%);
+  --shadow-glow: 0 20px 60px -20px rgb(123 147 255 / 45%);
+  --shadow-btn: 0 1px 2px rgb(0 0 0 / 40%), inset 0 1px 0 rgb(255 255 255 / 16%);
+  --shadow-btn-hover: 0 10px 26px -10px rgb(123 147 255 / 55%), inset 0 1px 0 rgb(255 255 255 / 16%);
+}
+
+/* Transición suave al cambiar de tema (solo durante el cambio, ver ThemeService). */
+:root.theme-anim,
+:root.theme-anim *,
+:root.theme-anim *::before,
+:root.theme-anim *::after {
+  transition:
+    background-color var(--t-slow) var(--ease),
+    border-color var(--t-slow) var(--ease),
+    color var(--t-slow) var(--ease),
+    fill var(--t-slow) var(--ease),
+    stroke var(--t-slow) var(--ease) !important;
 }
 
 *,
@@ -883,5 +954,219 @@ select.input {
       width: 100%;
       white-space: normal;
     }
+  }
+}
+
+/* ==========================================================================
+   SoftSpark 2.0 · Utilidades de marca y movimiento
+   ========================================================================== */
+
+.text-gradient {
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 6px 12px 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  font: 500 var(--fs-label)/1.2 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.kicker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.btn-brand {
+  --btn-bg: var(--accent);
+  --btn-fg: #ffffff;
+  --btn-shadow: var(--shadow-btn);
+  background-image: linear-gradient(120deg, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 0%) 40%, rgb(255 255 255 / 22%) 50%, rgb(255 255 255 / 0%) 60%), var(--brand-gradient);
+  background-size: 250% 100%, 100% 100%;
+  background-position: 100% 0, 0 0;
+  border: 0;
+
+  &:hover:not(:disabled, [aria-disabled='true']) {
+    --btn-shadow: var(--shadow-btn-hover);
+    background-position: 0 0, 0 0;
+    transition: background-position var(--t-slow) var(--ease-out), box-shadow var(--t-fast) var(--ease);
+  }
+}
+
+:root[data-theme='dark'] .btn-brand {
+  --btn-fg: #070b18;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+}
+
+/* Cabecera de las páginas interiores: malla de color y retícula sutil. */
+.page-head {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--bg);
+  border-bottom-color: var(--line);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &::before {
+    background: var(--mesh);
+  }
+
+  &::after {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+    letter-spacing: -0.045em;
+  }
+}
+
+.section-head h2 {
+  letter-spacing: -0.035em;
+}
+
+/* Aparición al hacer scroll. Solo se oculta si el navegador acepta movimiento
+   y JavaScript ya marcó la página; si algo falla, el contenido aparece igual. */
+.motion-ok .reveal:not(.in) {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: reveal-fallback 0s linear 2.5s forwards;
+}
+
+.motion-ok .reveal {
+  transition:
+    opacity var(--t-reveal) var(--ease-out),
+    transform var(--t-reveal) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--stagger));
+}
+
+@keyframes reveal-fallback {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Entrada escalonada del contenido principal (sin depender de JavaScript). */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.rise {
+  animation: rise var(--t-reveal) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* Tarjeta base del sistema. */
+.surface-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  transition:
+    transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.surface-card:hover,
+  .surface-card.lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-3);
+    border-color: var(--line-strong);
+  }
+}
+
+/* SVG que se dibujan: el trazo se anima con stroke-dashoffset. */
+.draw {
+  stroke-dasharray: var(--len, 600);
+  stroke-dashoffset: var(--len, 600);
+  animation: draw 1.6s var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+.motion-ok .reveal:not(.in) .draw {
+  animation-play-state: paused;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}
+
+/* Acordeón de preguntas frecuentes: apertura animada donde el navegador lo permite. */
+.faq-item {
+  interpolate-size: allow-keywords;
+
+  &::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size var(--t-slow) var(--ease-out),
+      content-visibility var(--t-slow) allow-discrete;
+  }
+
+  &[open]::details-content {
+    block-size: auto;
+  }
+
+  summary .icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--surface-2);
+  }
+
+  &[open] summary .icon {
+    background: var(--accent-soft);
   }
 }
