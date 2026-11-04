@@ -48,7 +48,6 @@
     radial-gradient(60% 50% at 85% 10%, rgb(128 87 232 / 12%), transparent 70%),
     radial-gradient(50% 45% at 10% 20%, rgb(66 99 235 / 10%), transparent 70%),
     radial-gradient(40% 40% at 60% 90%, rgb(32 184 213 / 10%), transparent 70%);
-  --grid-line: rgb(17 24 39 / 5%);
   --scrim: rgb(17 24 39 / 35%);
   --on-strong: #ffffff;
   --header-bg: rgb(255 255 255 / 78%);
@@ -160,7 +159,6 @@
     radial-gradient(60% 50% at 85% 10%, rgb(167 139 250 / 16%), transparent 70%),
     radial-gradient(50% 45% at 10% 20%, rgb(123 147 255 / 14%), transparent 70%),
     radial-gradient(40% 40% at 60% 90%, rgb(56 211 238 / 10%), transparent 70%);
-  --grid-line: rgb(203 213 245 / 6%);
   --scrim: rgb(3 6 14 / 60%);
   --header-bg: rgb(11 16 32 / 74%);
   --shadow-1: 0 1px 2px rgb(0 0 0 / 30%);
@@ -1011,15 +1009,12 @@ select.input {
   --btn-fg: #070b18;
 }
 
-.grid-bg {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+/* Decoración de fondo: líneas onduladas con el degradado de la marca (SVG propio). */
+:root {
+  --decor-waves: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20900%20420%27%20fill%3D%27none%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%270%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%234263eb%27%20stop-opacity%3D%270%27%2F%3E%3Cstop%20offset%3D%27.35%27%20stop-color%3D%27%234263eb%27%2F%3E%3Cstop%20offset%3D%27.7%27%20stop-color%3D%27%238057e8%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%2320b8d5%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20stroke%3D%27url(%23g)%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M60%20330%20C%20240%20250%2C%20360%20360%2C%20520%20270%20S%20780%20120%2C%20900%20150%27%20stroke-width%3D%271.6%27%20stroke-opacity%3D%27.55%27%2F%3E%3Cpath%20d%3D%27M40%20300%20C%20230%20220%2C%20370%20330%2C%20530%20240%20S%20790%2095%2C%20900%20118%27%20stroke-width%3D%271.2%27%20stroke-opacity%3D%27.4%27%2F%3E%3Cpath%20d%3D%27M20%20270%20C%20220%20190%2C%20380%20300%2C%20540%20210%20S%20800%2070%2C%20900%2086%27%20stroke-width%3D%271%27%20stroke-opacity%3D%27.3%27%2F%3E%3Cpath%20d%3D%27M0%20240%20C%20210%20160%2C%20390%20270%2C%20550%20180%20S%20810%2045%2C%20900%2054%27%20stroke-width%3D%27.9%27%20stroke-opacity%3D%27.22%27%2F%3E%3Cpath%20d%3D%27M0%20210%20C%20200%20130%2C%20400%20240%2C%20560%20150%20S%20820%2020%2C%20900%2022%27%20stroke-width%3D%27.8%27%20stroke-opacity%3D%27.15%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%238057e8%27%3E%3Ccircle%20cx%3D%27520%27%20cy%3D%27270%27%20r%3D%274%27%20fill-opacity%3D%27.55%27%2F%3E%3Ccircle%20cx%3D%27780%27%20cy%3D%27126%27%20r%3D%273%27%20fill%3D%27%2320b8d5%27%20fill-opacity%3D%27.6%27%2F%3E%3Ccircle%20cx%3D%27240%27%20cy%3D%27252%27%20r%3D%272.5%27%20fill%3D%27%234263eb%27%20fill-opacity%3D%27.5%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
 
-/* Cabecera de las páginas interiores: malla de color y retícula sutil. */
+/* Cabecera de las páginas interiores: fondo blanco con las ondas en la esquina. */
 .page-head {
   position: relative;
   isolation: isolate;
@@ -1027,30 +1022,27 @@ select.input {
   background: var(--bg);
   border-bottom-color: var(--line);
 
-  &::before,
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-  }
-
-  &::before {
-    background: var(--mesh);
-  }
-
-  &::after {
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    background: var(--decor-waves) right -80px top -10px / min(720px, 55%) auto no-repeat;
+    opacity: 0.75;
   }
 
   h1 {
     font-size: var(--fs-h1);
     letter-spacing: -0.045em;
+  }
+}
+
+@media (max-width: 759px) {
+  .page-head::before {
+    background-position: right -120px top 10px;
+    background-size: 640px auto;
+    opacity: 0.6;
   }
 }
 
