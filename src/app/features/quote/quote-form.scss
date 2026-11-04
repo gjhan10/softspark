@@ -1,24 +1,166 @@
 :host {
   display: block;
+  scroll-margin-top: calc(var(--header-h, 64px) + 16px);
 }
 
 .quote {
   display: grid;
-  gap: var(--s-5);
-  padding: clamp(20px, 4vw, 36px);
+  gap: var(--s-6);
+  padding: clamp(var(--s-4), 4vw, var(--s-8));
   box-shadow: var(--shadow-2);
-  scroll-margin-top: calc(var(--header-h) + 16px);
+  border-radius: var(--r-xl);
+  min-width: 0;
 }
 
 .head {
   display: grid;
   gap: var(--s-2);
   justify-items: start;
+}
 
-  h2 {
-    font-size: clamp(1.4rem, 2.4vw, 1.75rem);
-    outline: none;
+.kicker {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: var(--fs-lg);
+  outline: none;
+}
+
+h3.small {
+  margin-bottom: var(--s-1);
+}
+
+/* Progreso */
+.progress {
+  display: grid;
+  gap: var(--s-3);
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--s-2);
   }
+
+  li {
+    position: relative;
+    min-width: 0;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 3px;
+      border-radius: var(--r-pill);
+      background: var(--line);
+      margin-bottom: var(--s-2);
+      transition: background-color var(--t-base) var(--ease);
+    }
+
+    &.done::before,
+    &.now::before {
+      background: var(--accent);
+    }
+  }
+
+  button,
+  .item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    width: 100%;
+    min-height: 32px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text-3);
+    font: inherit;
+    font-size: var(--fs-xs);
+    text-align: left;
+  }
+
+  button {
+    cursor: pointer;
+    color: var(--text-2);
+    border-radius: var(--r-sm);
+
+    &:hover .lbl {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+
+  .now .item {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .dot {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .done .dot {
+    background: var(--accent-soft);
+    border-color: transparent;
+    color: var(--accent);
+  }
+
+  .now .dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .lbl {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.progress-now {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+
+/* Pasos */
+.flow,
+.pane {
+  display: grid;
+  gap: var(--s-5);
+  min-width: 0;
+}
+
+.step-head {
+  display: grid;
+  gap: var(--s-1);
 
   p {
     color: var(--text-3);
@@ -26,10 +168,171 @@
   }
 }
 
-h2.small {
-  font-size: var(--fs-lg);
-  margin-bottom: var(--s-1);
-  outline: none;
+@media (prefers-reduced-motion: no-preference) {
+  .pane {
+    animation: step-in var(--t-base) var(--ease) both;
+  }
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.group {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+
+  > .label {
+    padding: 0;
+    margin-bottom: var(--s-1);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+  }
+
+  .optional {
+    font-weight: 400;
+    color: var(--text-3);
+    font-size: var(--fs-xs);
+  }
+
+  .error {
+    display: flex;
+    gap: var(--s-2);
+    align-items: center;
+    font-size: var(--fs-sm);
+    color: var(--danger);
+  }
+}
+
+.group-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  &:not(:first-of-type) {
+    margin-top: var(--s-2);
+  }
+}
+
+.options {
+  display: grid;
+  gap: var(--s-2);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+}
+
+.opt {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+/* Control nativo oculto pero enfocable: conserva la semántica de radio/checkbox y el teclado. */
+.vh {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.face {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  height: 100%;
+  min-height: 56px;
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.35;
+  transition:
+    border-color var(--t-fast) var(--ease),
+    background-color var(--t-fast) var(--ease),
+    box-shadow var(--t-fast) var(--ease);
+}
+
+.ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-2);
+  transition:
+    background-color var(--t-fast),
+    color var(--t-fast);
+}
+
+.txt {
+  flex: 1;
+  min-width: 0;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  color: transparent;
+  transition:
+    background-color var(--t-fast),
+    border-color var(--t-fast),
+    color var(--t-fast);
+
+  &.box {
+    border-radius: var(--r-sm);
+  }
+}
+
+.opt:hover .face {
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.vh:focus-visible + .face {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.vh:checked + .face {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+  box-shadow: var(--shadow-1);
+
+  .ico {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .mark {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+.vh[aria-invalid='true'] + .face {
+  border-color: var(--danger);
 }
 
 .grid {
@@ -53,10 +356,7 @@ h2.small {
   }
 }
 
-.hint a {
-  color: var(--accent);
-}
-
+.hint a,
 .checkbox a {
   color: var(--accent);
 }
@@ -65,12 +365,12 @@ h2.small {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
-  justify-content: space-between;
   align-items: center;
   padding-top: var(--s-4);
   border-top: 1px solid var(--line);
 
-  .btn-lg:only-child {
+  .next,
+  .right {
     margin-left: auto;
   }
 
@@ -78,8 +378,46 @@ h2.small {
     display: flex;
     flex-wrap: wrap;
     gap: var(--s-2);
-    margin-left: auto;
   }
+}
+
+/* Resumen */
+.sections {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.sec {
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  min-width: 0;
+}
+
+.sec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+
+  h4 {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--fs-sm);
+  }
+}
+
+.num {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: var(--fs-xs);
 }
 
 .summary {
@@ -91,6 +429,11 @@ h2.small {
     padding: var(--s-3) 0;
     border-bottom: 1px solid var(--line);
     min-width: 0;
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
   }
 
   dt {
@@ -106,10 +449,35 @@ h2.small {
 }
 
 .message {
-  font: 400 var(--fs-sm)/1.55 var(--font-mono);
+  font: 400 var(--fs-sm)/1.55 var(--font-mono, monospace);
   min-height: 260px;
 }
 
+@media (max-width: 559px) {
+  .progress .lbl {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .progress button,
+  .progress .item {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 560px) {
+  .progress-now {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+}
 
 @media (min-width: 720px) {
   .grid,

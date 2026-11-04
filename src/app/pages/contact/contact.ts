@@ -15,7 +15,7 @@ import { Icon } from '../../shared/icon/icon';
       <div class="container">
         <span class="eyebrow">Contacto</span>
         <h1>Cuéntanos qué quieres construir</h1>
-        <p class="lead">Completa la solicitud con lo que sepas hoy. Si algo no lo tienes claro, lo definimos juntos en la primera conversación.</p>
+        <p class="lead">Configura tu proyecto con lo que sepas hoy. Si algo no lo tienes claro, lo definimos juntos en la primera conversación.</p>
       </div>
     </header>
 
@@ -27,7 +27,7 @@ import { Icon } from '../../shared/icon/icon';
           <h2>Cómo funciona este formulario</h2>
           @if (mode === 'local') {
             <ol class="steps">
-              <li><span>1</span> Completas y revisas tu solicitud.</li>
+              <li><span>1</span> Configuras tu proyecto en cinco pasos y revisas el resumen.</li>
               <li><span>2</span> Preparamos el mensaje con tus datos.</li>
               <li><span>3</span> Lo envías desde tu correo o lo copias. Solo entonces nos llega.</li>
             </ol>
