@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Seo } from '../../core/seo.service';
 import { SCENARIOS, SOFTWARE_TYPES } from '../../data/software-types.data';
+import { ASSISTANT_PROVIDER } from '../../features/assistant/assistant.provider';
+import { SparkAssistant } from '../../features/assistant/spark-assistant';
 import { Wizard } from '../../features/wizard/wizard';
 import { Icon } from '../../shared/icon/icon';
 
 @Component({
   selector: 'app-guide',
-  imports: [Icon, Wizard],
+  imports: [Icon, Wizard, SparkAssistant],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './guide.html',
   styleUrl: './guide.scss',
@@ -14,11 +16,12 @@ import { Icon } from '../../shared/icon/icon';
 export class Guide {
   protected readonly types = SOFTWARE_TYPES;
   protected readonly scenarios = SCENARIOS;
+  protected readonly localMode = inject(ASSISTANT_PROVIDER).mode === 'reglas';
 
   constructor() {
     inject(Seo).set({
-      title: '¿Qué necesito?',
-      description: 'Diferencias entre una página estática, una web corporativa, una aplicación web, un CRM, un ERP y un sistema a medida, con ejemplos y un asistente para elegir.',
+      title: 'Spark Assistant: ¿qué software necesito?',
+      description: 'Describe tu negocio y Spark Assistant te orienta sobre el tipo de software, los módulos y las integraciones. Incluye las diferencias entre web, aplicación, CRM, ERP y sistema a medida.',
       path: 'que-necesito',
     });
   }
@@ -28,10 +31,10 @@ export class Guide {
   }
 
   protected toWizard(event: Event): void {
-    const el = document.getElementById('asistente');
+    const el = document.getElementById('cuestionario');
     if (!el) return;
     event.preventDefault();
     el.scrollIntoView({ behavior: 'smooth' });
-    history.replaceState(null, '', `${location.pathname}#asistente`);
+    history.replaceState(null, '', `${location.pathname}#cuestionario`);
   }
 }

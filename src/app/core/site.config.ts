@@ -10,6 +10,11 @@ export const SITE = {
   locale: 'es_PE',
   jurisdiction: 'Perú',
   quoteEndpoint: null as string | null,
+  /**
+   * Endpoint de un backend propio que responda a Spark Assistant con IA ({ message } → AssistantReply).
+   * Mientras sea null, el asistente funciona con reglas fijas y lo indica en pantalla.
+   */
+  assistantEndpoint: null as string | null,
   /** Muestra «Disponibles para nuevos proyectos» en el inicio. Activarlo solo cuando sea cierto. */
   availableForProjects: false,
 };

@@ -14,8 +14,8 @@ import { Icon } from '../../shared/icon/icon';
     <header class="page-head">
       <div class="container">
         <span class="eyebrow">Contacto</span>
-        <h1>Cuéntanos qué quieres construir</h1>
-        <p class="lead">Configura tu proyecto con lo que sepas hoy. Si algo no lo tienes claro, lo definimos juntos en la primera conversación.</p>
+        <h1>Tu próximo proyecto empieza aquí.</h1>
+        <p class="lead">Cuéntanos qué necesitas. Transformaremos tus ideas en una solución digital. Configura el proyecto con lo que sepas hoy; lo demás lo definimos juntos.</p>
       </div>
     </header>
 
@@ -40,12 +40,15 @@ import { Icon } from '../../shared/icon/icon';
           <div class="card box">
             <h2>Contacto directo</h2>
             <a class="link" [href]="'mailto:' + site.email"><app-icon name="mail" [size]="18" /> {{ site.email }}</a>
+            @if (site.whatsapp) {
+              <a class="link" [href]="site.whatsapp" target="_blank" rel="noopener">WhatsApp <app-icon name="arrow-up-right" [size]="14" /></a>
+            }
           </div>
         }
         <div class="card box">
           <h2>¿Aún no sabes qué necesitas?</h2>
-          <p class="small">Responde siete preguntas y obtén una recomendación orientativa.</p>
-          <a routerLink="/que-necesito" fragment="asistente" class="btn btn-secondary btn-sm">Usar el asistente</a>
+          <p class="small">Describe tu negocio a Spark Assistant y obtén una orientación sobre la solución y sus módulos.</p>
+          <a routerLink="/que-necesito" fragment="asistente" class="btn btn-secondary btn-sm"><app-icon name="compass" [size]="16" /> Abrir Spark Assistant</a>
         </div>
       </aside>
     </section>
@@ -53,7 +56,7 @@ import { Icon } from '../../shared/icon/icon';
   styles: `
     .layout { display: grid; gap: var(--s-6); padding-block: var(--s-7) var(--s-9); align-items: start; }
     .side { display: grid; gap: var(--s-4); }
-    .box { display: grid; gap: var(--s-3); padding: var(--s-5); justify-items: start; }
+    .box { display: grid; gap: var(--s-3); padding: var(--s-5); justify-items: start; border-radius: var(--r-xl); }
     .box h2 { font-size: var(--fs-md); }
     .small { color: var(--text-2); font-size: var(--fs-sm); }
     .steps { list-style: none; display: grid; gap: var(--s-3); font-size: var(--fs-sm); color: var(--text-2); }
