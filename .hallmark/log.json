@@ -2,6 +2,39 @@
  {
   "mode": "redesign",
   "depth": "full",
+  "scope": "home",
+  "shape": "Stage",
+  "theme": "custom",
+  "axes": "mixed/display-heavy/chromatic-teal",
+  "hero": "Stage",
+  "nav": "edge-aligned",
+  "footer": "letter close",
+  "imagery": "the product",
+  "photos": [],
+  "entry": "src/tokens.css",
+  "fingerprint": "softspark-custom-producto-2026-11",
+  "sections": [
+   "hero-stage",
+   "bento",
+   "case-devices",
+   "stage-lab",
+   "reasons-cards",
+   "stack-pills",
+   "footer-letter"
+  ],
+  "signature": "the dashboard rising out of the dark stage, flattening as you scroll",
+  "waived": [
+   "44c",
+   "79",
+   "77",
+   "83"
+  ],
+  "prompt": "software development studio in Peru: custom web apps, ERP, CRM, APIs and automation; request a quote",
+  "date": "2026-11-24"
+ },
+ {
+  "mode": "redesign",
+  "depth": "full",
   "scope": "site",
   "shape": "Corridor",
   "theme": "custom",

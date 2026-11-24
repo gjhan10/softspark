@@ -1,146 +1,119 @@
-<section class="hero" aria-labelledby="hero-t">
-  <div class="container">
-    <div class="hero-text">
+<section class="stage-wrap" aria-labelledby="hero-t">
+  <div class="stage hero">
+    <div class="stage-text">
       <h1 id="hero-t" class="display">Construimos tecnología que transforma negocios.</h1>
-      <div class="hero-side">
-        <p class="lead">Webs, aplicaciones, ERP, CRM y automatización hechos para tu operación.</p>
-        <div class="hero-ctas">
-          <a routerLink="/contacto" class="btn btn-primary btn-lg">Solicitar cotización</a>
-          <a routerLink="/soluciones" class="btn btn-secondary btn-lg">Explorar soluciones</a>
-        </div>
-        @if (site.availableForProjects) {
-          <p class="avail">Disponibles para nuevos proyectos</p>
-        }
+      <p class="lead">Webs, aplicaciones, ERP, CRM y automatización hechos para tu operación. Pruébalos antes de contratar.</p>
+      <div class="hero-ctas">
+        <a routerLink="/contacto" class="btn btn-glow btn-lg">Solicitar cotización</a>
+        <a routerLink="/lab" class="btn btn-ghost-dark btn-lg">Probar las demos <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
       </div>
+      @if (site.availableForProjects) {
+        <p class="avail"><span class="dot" aria-hidden="true"></span> Disponibles para nuevos proyectos</p>
+      }
     </div>
 
-    <div class="hinge">
-      <div class="before">
-        <p class="side-name">Hoy</p>
-        <p class="before-line">{{ hinge.before }}</p>
-      </div>
-      <figure class="after">
-        <p class="side-name">Con SoftSpark</p>
-        <img src="projects/lab-panel.webp" alt="Dashboard empresarial de la demo del Lab: ventas del mes, oportunidades, stock bajo y pedidos recientes, con datos ficticios" width="1312" height="820" fetchpriority="high" decoding="async" />
-        <figcaption>Dashboard empresarial del Lab, con datos ficticios. <a routerLink="/demo/panel" class="link link-light">Probarlo</a></figcaption>
-      </figure>
+    <div class="showcase">
+      <img class="shot-side left" src="projects/lab-crm.webp" alt="" width="1312" height="820" decoding="async" />
+      <img class="shot-side right" src="projects/lab-automatizacion.webp" alt="" width="1312" height="820" decoding="async" />
+      <img class="shot-main" src="projects/lab-panel.webp" alt="Dashboard empresarial de la demo del Lab: ventas del mes, oportunidades, stock bajo y pedidos recientes, con datos ficticios" width="1312" height="820" fetchpriority="high" decoding="async" />
     </div>
   </div>
 </section>
 
-<section class="section what" aria-labelledby="what-t">
+<section class="section bento-sec" aria-labelledby="what-t">
   <div class="container">
     <div class="split-head" appReveal>
-      <h2 id="what-t">Lo que hacemos</h2>
-      <p class="lead">Seis líneas de trabajo, cada una con un antes y un después.</p>
+      <h2 id="what-t">Lo que construimos</h2>
+      <p class="lead">Seis líneas de trabajo. Cada captura es software real que puedes abrir en el Lab.</p>
     </div>
-    <table class="ba-table">
-      <caption class="sr-only">Servicios: cómo se trabaja hoy y qué cambia con SoftSpark</caption>
-      <thead>
-        <tr><th scope="col">Servicio</th><th scope="col">Hoy</th><th scope="col">Con SoftSpark</th></tr>
-      </thead>
-      <tbody>
-        @for (s of services; track s.id) {
-          <tr>
-            <th scope="row"><a [routerLink]="'/servicios'" [fragment]="s.id">{{ s.name }}</a></th>
-            <td class="was">{{ s.before }}</td>
-            <td class="now">{{ s.benefit }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+    <ul class="bento">
+      @for (s of bento; track s.id; let i = $index) {
+        <li [class]="'tile t' + i" [appReveal]="i">
+          <a [routerLink]="'/servicios'" [fragment]="s.id" class="tile-link">
+            <span class="tile-text">
+              <span class="tile-name">{{ s.name }}</span>
+              <span class="tile-benefit">{{ s.benefit }}</span>
+            </span>
+            <span class="tile-media" aria-hidden="true">
+              <img [src]="s.img" alt="" width="1312" height="820" loading="lazy" decoding="async" />
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
     <p class="assist">¿No sabes cuál necesitas? <a routerLink="/que-necesito" class="link">Cuéntaselo a Spark Assistant</a></p>
   </div>
 </section>
 
 <section class="section case" aria-labelledby="case-t">
-  <div class="container">
-    <div class="split-head" appReveal>
+  <div class="container case-grid">
+    <div class="case-text" appReveal>
       <h2 id="case-t">{{ caseStudy.name }}</h2>
-      <p class="lead">{{ caseStudy.summary }} <a [routerLink]="['/proyectos', caseStudy.slug]" class="link">Leer el caso</a></p>
+      <p class="lead">{{ caseStudy.summary }}</p>
+      <dl class="case-ba">
+        <div><dt>Antes</dt><dd>{{ caseStudy.problem }}</dd></div>
+        <div><dt>Después</dt><dd>{{ caseStudy.solution }}</dd></div>
+      </dl>
+      <a [routerLink]="['/proyectos', caseStudy.slug]" class="btn btn-secondary">Leer el caso <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
     </div>
-    <div class="case-grid">
-      <div class="case-before">
-        <p class="side-name">Antes</p>
-        <p>{{ caseStudy.problem }}</p>
-        <p class="side-name on">Después</p>
-        <p class="now">{{ caseStudy.solution }}</p>
-      </div>
-      <figure class="case-after">
-        <img [src]="caseStudy.images!.desktop" [alt]="caseStudy.images!.alt" width="1280" height="800" loading="lazy" decoding="async" />
-      </figure>
+    <div class="devices" appReveal="1">
+      <img class="desk" [src]="caseStudy.images!.desktop" [alt]="caseStudy.images!.alt" width="1280" height="800" loading="lazy" decoding="async" />
+      <img class="phone" src="projects/apuntes-curso-mobile.webp" alt="" width="390" height="844" loading="lazy" decoding="async" />
     </div>
   </div>
 </section>
 
-<section class="field lab" aria-labelledby="lab-t">
-  <div class="container">
+<section class="stage-wrap" aria-labelledby="lab-t">
+  <div class="stage lab">
     <div class="split-head">
       <h2 id="lab-t">Pruébalo en el Lab</h2>
-      <p class="lead">Siete demos con datos ficticios que funcionan en tu navegador. <a routerLink="/lab" class="link link-light">Abrir el Lab</a></p>
+      <p class="lead">Siete demos con datos ficticios que funcionan en tu navegador, sin registro.</p>
     </div>
-    <ul class="shots">
-      @for (m of featured; track m.id) {
-        <li>
-          <a [routerLink]="['/demo', m.id]" class="shot-card">
+    <ul class="demo-grid">
+      @for (m of demos; track m.id; let i = $index) {
+        <li [class.wide]="i < 2">
+          <a [routerLink]="['/demo', m.id]" class="demo-card">
             <img [src]="'projects/lab-' + m.id + '.webp'" [alt]="'Captura de la demo: ' + m.label" width="1312" height="820" loading="lazy" decoding="async" />
-            <span class="shot-name">{{ m.label }}</span>
+            <span class="demo-meta">
+              <app-icon [name]="m.icon" [size]="18" />
+              <span class="demo-name">{{ m.label }}</span>
+            </span>
+            <span class="demo-desc">{{ m.desc }}</span>
           </a>
         </li>
       }
     </ul>
-    <ol class="index">
-      @for (m of demos; track m.id) {
-        <li>
-          <a [routerLink]="['/demo', m.id]">
-            <app-icon [name]="m.icon" [size]="18" />
-            <span class="i-name">{{ m.label }}</span>
-          </a>
-        </li>
-      }
-    </ol>
-  </div>
-</section>
-
-<section class="section tech" aria-labelledby="tech-t">
-  <div class="container">
-    <div class="split-head" appReveal>
-      <h2 id="tech-t">Con qué construimos</h2>
-      <p class="lead">Las herramientas que usamos a diario. Lo que aún exploramos lo decimos.</p>
-    </div>
-    <table class="tech-table">
-      <caption class="sr-only">Tecnologías por capa</caption>
-      <thead>
-        <tr><th scope="col">Capa</th><th scope="col">Tecnologías</th></tr>
-      </thead>
-      <tbody>
-        @for (g of tech; track g.id) {
-          <tr>
-            <th scope="row">{{ g.label }}</th>
-            <td>
-              <ul>
-                @for (t of g.items; track t.name) {
-                  <li [class.explore]="t.level === 'exploracion'">{{ t.name }}@if (t.level === 'exploracion') {<span class="note">, en exploración</span>}</li>
-                }
-              </ul>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
   </div>
 </section>
 
 <section class="section why" aria-labelledby="why-t">
-  <div class="container why-grid">
-    <h2 id="why-t" appReveal>Por qué trabajar con nosotros</h2>
+  <div class="container">
+    <div class="split-head" appReveal>
+      <h2 id="why-t">Por qué trabajar con nosotros</h2>
+      <p class="lead">Hablas con quien diseña y programa tu sistema, de principio a fin.</p>
+    </div>
     <ol class="reasons">
-      @for (d of reasons; track d.title) {
-        <li appReveal>
+      @for (d of reasons; track d.title; let i = $index) {
+        <li [appReveal]="i">
+          <span class="r-ico" aria-hidden="true"><app-icon [name]="d.icon" [size]="20" /></span>
           <h3>{{ d.title }}</h3>
           <p>{{ d.text }}</p>
         </li>
       }
     </ol>
+  </div>
+</section>
+
+<section class="section-tight tech" aria-labelledby="tech-t">
+  <div class="container">
+    <h2 id="tech-t" class="tech-title">Con qué construimos</h2>
+    <ul class="stack">
+      @for (g of tech; track g.id) {
+        @for (t of g.items; track t.name) {
+          <li [class.explore]="t.level === 'exploracion'">{{ t.name }}@if (t.level === 'exploracion') {<span class="sr-only">, en exploración</span>}</li>
+        }
+      }
+    </ul>
+    <p class="stack-note">Las que aparecen atenuadas aún las exploramos, y lo decimos en cada propuesta.</p>
   </div>
 </section>
