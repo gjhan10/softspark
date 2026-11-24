@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 export type Theme = 'dark' | 'light';
 
-const THEME_COLOR: Record<Theme, string> = { light: '#fcfdfd', dark: '#0c1418' };
+const THEME_COLOR: Record<Theme, string> = { light: '#ffffff', dark: '#09090b' };
 
 /**
  * Tema claro por defecto. La preferencia se guarda en localStorage y un script

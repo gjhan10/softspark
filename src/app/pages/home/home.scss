@@ -1,11 +1,11 @@
 /* Hallmark · home · theme: custom · idea: the product on stage · see src/tokens.css for the full stamp */
 
 :host {
-  --stage-bg: oklch(17.5% 0.03 222);
-  --stage-ink: oklch(97% 0.008 200);
-  --stage-muted: oklch(76% 0.025 205);
+  --stage-bg: oklch(13% 0.006 265);
+  --stage-ink: oklch(98% 0.002 265);
+  --stage-muted: oklch(74% 0.008 265);
   --stage-line: oklch(100% 0 0 / 0.1);
-  --stage-glow: oklch(62% 0.11 192);
+  --stage-glow: oklch(58% 0.2 258);
   --tile-radius: 22px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 :host-context([data-theme='dark']) .stage {
-  --stage-bg: oklch(21% 0.032 220);
+  --stage-bg: oklch(17% 0.006 265);
   border: var(--rule-hair) solid var(--stage-line);
 }
 
@@ -85,13 +85,13 @@
 }
 
 .btn-glow {
-  --btn-bg: var(--color-accent-2);
-  --btn-fg: oklch(18% 0.03 222);
-  --btn-border: oklch(70% 0.09 195);
+  --btn-bg: oklch(100% 0 0);
+  --btn-fg: oklch(16.5% 0.006 265);
+  --btn-border: oklch(100% 0 0);
   --btn-shadow: 0 0 0 1px oklch(100% 0 0 / 0.08), 0 10px 32px -8px color-mix(in oklab, var(--stage-glow) 80%, transparent);
 
   &:hover:not(:disabled) {
-    --btn-bg: oklch(87% 0.07 195);
+    --btn-bg: oklch(93% 0.003 265);
   }
 
   &:focus-visible {
@@ -149,7 +149,7 @@
   border-radius: 14px 14px 0 0;
   border: 1px solid oklch(100% 0 0 / 0.14);
   border-bottom: 0;
-  box-shadow: 0 40px 120px -20px oklch(5% 0.03 220 / 0.8);
+  box-shadow: 0 40px 120px -20px oklch(4% 0.01 265 / 0.85);
   transform-origin: 50% 100%;
 }
 
@@ -279,14 +279,14 @@
     border: var(--rule-hair) solid var(--color-rule-2);
     border-right: 0;
     border-bottom: 0;
-    box-shadow: 0 20px 48px -20px oklch(19% 0.025 232 / 0.35);
+    box-shadow: 0 20px 48px -20px oklch(16.5% 0.006 265 / 0.35);
     transition: transform var(--dur-short) var(--ease-out);
   }
 }
 
-/* El primero, protagonista: turquesa de marca. */
+/* El primero, protagonista: negro con el resplandor azul de marca. */
 .t0 .tile-link {
-  background: var(--color-field);
+  background: radial-gradient(70% 60% at 80% 100%, color-mix(in oklab, var(--stage-glow) 45%, transparent), transparent 70%), var(--color-field);
   border-color: transparent;
   color: var(--color-field-ink);
 
@@ -296,7 +296,7 @@
 
   .tile-media img {
     border-color: oklch(100% 0 0 / 0.18);
-    box-shadow: 0 24px 60px -20px oklch(10% 0.04 220 / 0.7);
+    box-shadow: 0 24px 60px -20px oklch(4% 0.01 265 / 0.7);
   }
 
   &:focus-visible {
@@ -400,7 +400,7 @@
     width: 100%;
     border: var(--rule-hair) solid var(--color-rule-2);
     border-radius: 14px;
-    box-shadow: 0 40px 80px -32px oklch(19% 0.025 232 / 0.4);
+    box-shadow: 0 40px 80px -32px oklch(16.5% 0.006 265 / 0.4);
   }
 
   .phone {
@@ -408,9 +408,9 @@
     left: 0;
     bottom: 0;
     width: clamp(110px, 24%, 200px);
-    border: 6px solid oklch(18% 0.02 230);
+    border: 6px solid oklch(16.5% 0.006 265);
     border-radius: 26px;
-    box-shadow: 0 30px 60px -20px oklch(19% 0.025 232 / 0.5);
+    box-shadow: 0 30px 60px -20px oklch(16.5% 0.006 265 / 0.5);
   }
 }
 
