@@ -95,7 +95,7 @@ import { DemoStore } from '../demo-store';
     .board { display: grid; gap: var(--s-3); }
     @media (min-width: 900px) { .board { grid-template-columns: repeat(3, 1fr); } }
     .column { display: grid; align-content: start; gap: var(--s-3); padding: var(--s-3); border-radius: var(--r-md); background: var(--bg-2); border: 1px solid var(--line); min-height: 160px; }
-    .column h3 { display: flex; justify-content: space-between; font: 500 var(--fs-xs) var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-2); padding: 2px var(--s-1) var(--s-2); }
+    .column h3 { display: flex; justify-content: space-between; font: 500 var(--fs-xs) var(--font-mono); color: var(--text-2); padding: 2px var(--s-1) var(--s-2); }
     .count { color: var(--text-3); }
     .task { display: grid; gap: var(--s-2); padding: var(--s-3); border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--line); }
     .t-top { display: flex; justify-content: space-between; align-items: center; gap: var(--s-2); }

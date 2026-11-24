@@ -37,7 +37,7 @@ import { DemoStore } from '../demo-store';
             @for (i of store.overdue(); track i.code) {
               <li>
                 <span class="tag" data-tone="danger">Vencida</span>
-                <span class="name">{{ i.customer }}<br /><span class="muted">{{ i.code }} · {{ i.due }}</span></span>
+                <span class="name">{{ i.customer }}<br /><span class="muted">{{ i.code }}, {{ i.due }}</span></span>
                 <span class="num">{{ money(i.total) }}</span>
               </li>
             }

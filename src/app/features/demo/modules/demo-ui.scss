@@ -134,8 +134,8 @@ table {
 
   th {
     font: 500 var(--fs-2xs) var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    
+    
     color: var(--text-3);
     background: var(--bg-2);
   }
@@ -183,7 +183,7 @@ table {
       &::before {
         content: attr(data-label);
         font: 500 var(--fs-2xs) var(--font-mono);
-        text-transform: uppercase;
+        
         color: var(--text-3);
       }
 

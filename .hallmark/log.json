@@ -1,0 +1,34 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "Marquee Hero",
+  "theme": "cobalt",
+  "axes": "light/grotesk-sans/cool",
+  "hero": "Corridor",
+  "nav": "edge-aligned",
+  "footer": "letter close",
+  "imagery": "the product",
+  "photos": [],
+  "entry": "src/tokens.css",
+  "fingerprint": "softspark-cobalt-2026-11",
+  "sections": [
+   "hero",
+   "rows",
+   "case",
+   "band-lab",
+   "table",
+   "reasons",
+   "footer-letter"
+  ],
+  "signature": "the real Lab demos captured at work, under the hero",
+  "waived": [
+   "44c",
+   "79",
+   "77"
+  ],
+  "prompt": "software development studio in Peru: custom web apps, ERP, CRM, APIs and automation; request a quote",
+  "date": "2026-11-24"
+ }
+]

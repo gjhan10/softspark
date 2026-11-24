@@ -1,101 +1,132 @@
 <section class="hero" aria-labelledby="hero-t">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <span class="kicker rise" style="--i: 0"><span class="kicker-dot"></span>Software development · Digital solutions · Automation</span>
-      <h1 id="hero-t" class="rise" style="--i: 1">Construimos tecnología que <span class="text-gradient">transforma negocios.</span></h1>
-      <p class="lead rise" style="--i: 2">Diseñamos y desarrollamos productos digitales, aplicaciones y sistemas empresariales que simplifican operaciones, conectan procesos e impulsan el crecimiento.</p>
-      <div class="hero-ctas rise" style="--i: 3">
-        <a routerLink="/contacto" class="btn btn-brand btn-lg">Empezar un proyecto <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
-        <a routerLink="/soluciones" class="btn btn-secondary btn-lg">Explorar soluciones</a>
-      </div>
-      @if (site.availableForProjects) {
-        <p class="avail rise" style="--i: 4"><span class="live" aria-hidden="true"></span> Disponibles para nuevos proyectos</p>
-      }
-      <a routerLink="/que-necesito" class="assist rise" style="--i: 4">
-        <span class="assist-ico"><app-icon name="compass" [size]="16" /></span>
-        <span><strong>¿No sabes qué necesitas?</strong> Cuéntaselo a Spark Assistant</span>
-        <app-icon name="arrow-right" [size]="16" class="icon-shift" />
-      </a>
+  <div class="container hero-col">
+    <h1 id="hero-t" class="display">Construimos tecnología que transforma negocios.</h1>
+    <p class="lead">Webs, aplicaciones, ERP, CRM y automatización hechos para tu operación.</p>
+    <div class="hero-ctas">
+      <a routerLink="/contacto" class="btn btn-primary btn-lg">Solicitar cotización</a>
+      <a routerLink="/soluciones" class="btn btn-secondary btn-lg">Explorar soluciones</a>
     </div>
-    <app-hero-visual class="hero-visual" />
-  </div>
-</section>
-
-<section class="ticker" aria-label="Lo que construimos">
-  <div class="ticker-track">
-    @for (pass of [0, 1]; track pass) {
-      <ul [attr.aria-hidden]="pass === 1 ? 'true' : null">
-        @for (t of building; track t) {
-          <li><span class="spark" aria-hidden="true"></span>{{ t }}</li>
-        }
-      </ul>
+    @if (site.availableForProjects) {
+      <p class="avail">Disponibles para nuevos proyectos</p>
     }
   </div>
+  <div class="container">
+    <figure class="hero-shot">
+      <img src="projects/lab-panel.webp" alt="Dashboard empresarial de la demo del Lab: ventas del mes, oportunidades, stock bajo y pedidos recientes, con datos ficticios" width="1312" height="820" fetchpriority="high" decoding="async" />
+      <figcaption>Dashboard empresarial del Lab, con datos ficticios. <a routerLink="/demo/panel" class="link">Probarlo</a></figcaption>
+    </figure>
+  </div>
 </section>
 
-<section class="section why" aria-labelledby="why-t">
+<section class="section-tight what" aria-labelledby="what-t">
   <div class="container">
-    <div class="section-head" appReveal>
-      <span class="eyebrow">Por qué SoftSpark</span>
-      <h2 id="why-t">Ingeniería seria, trato cercano y software que se puede mantener.</h2>
-      <p>Lo que puedes esperar de cómo trabajamos, sin promesas imposibles de comprobar.</p>
+    <div class="split-head" appReveal>
+      <h2 id="what-t">Lo que hacemos</h2>
+      <p class="lead">Seis líneas de trabajo, de una página que te hace visible a un sistema que ordena toda la operación.</p>
     </div>
-    <div class="bento">
-      @for (d of reasons; track d.title; let i = $index) {
-        <article class="surface-card lift reason" [class]="'r' + i" [appReveal]="i">
-          <app-art [name]="d.art" class="art" />
-          <div class="copy">
-            <h3>{{ d.title }}</h3>
-            <p>{{ d.text }}</p>
-          </div>
-        </article>
+    <ol class="rows">
+      @for (s of services; track s.id) {
+        <li>
+          <a [routerLink]="'/servicios'" [fragment]="s.id" class="row-link">
+            <span class="row-title">{{ s.name }}</span>
+            <span class="row-line">{{ s.tagline }}</span>
+            <app-icon name="arrow-right" [size]="20" class="row-arrow" />
+          </a>
+        </li>
       }
+    </ol>
+    <p class="assist">¿No sabes cuál necesitas? <a routerLink="/que-necesito" class="link">Cuéntaselo a Spark Assistant</a></p>
+  </div>
+</section>
+
+<section class="section-l case" aria-labelledby="case-t">
+  <div class="container">
+    <div class="case-head" appReveal>
+      <h2 id="case-t">{{ caseStudy.name }}</h2>
+      <p class="lead">{{ caseStudy.summary }}</p>
+      <a [routerLink]="['/proyectos', caseStudy.slug]" class="link">Leer el caso completo</a>
     </div>
+    <figure class="case-shot" appReveal>
+      <img [src]="caseStudy.images!.desktop" [alt]="caseStudy.images!.alt" width="1280" height="800" loading="lazy" decoding="async" />
+      <figcaption>Lección del curso de Java, captura de la plataforma publicada.</figcaption>
+    </figure>
+    <dl class="case-facts" appReveal>
+      <div><dt>El problema</dt><dd>{{ caseStudy.problem }}</dd></div>
+      <div><dt>La solución</dt><dd>{{ caseStudy.solution }}</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section band lab" aria-labelledby="lab-t">
+  <div class="container lab-grid">
+    <div class="lab-head" appReveal>
+      <h2 id="lab-t">Pruébalo en el Lab</h2>
+      <p class="lead">Siete demos con datos ficticios que funcionan en tu navegador.</p>
+      <a routerLink="/lab" class="btn btn-secondary">Abrir el Lab</a>
+    </div>
+    <ul class="shots">
+      @for (m of featured; track m.id) {
+        <li>
+          <a [routerLink]="['/demo', m.id]" class="shot-card">
+            <img [src]="'projects/lab-' + m.id + '.webp'" [alt]="'Captura de la demo: ' + m.label" width="1312" height="820" loading="lazy" decoding="async" />
+            <span class="shot-name">{{ m.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+    <ol class="index">
+      @for (m of demos; track m.id) {
+        <li>
+          <a [routerLink]="['/demo', m.id]">
+            <app-icon [name]="m.icon" [size]="20" />
+            <span class="i-name">{{ m.label }}</span>
+            <span class="i-desc">{{ m.desc }}</span>
+          </a>
+        </li>
+      }
+    </ol>
   </div>
 </section>
 
 <section class="section-tight tech" aria-labelledby="tech-t">
-  <div class="container tech-grid">
-    <div class="section-head" appReveal>
-      <span class="eyebrow">Tecnologías</span>
-      <h2 id="tech-t">Un stack probado para cada capa del producto.</h2>
-      <p>Elegimos la tecnología según el problema, no al revés. Estas son las herramientas con las que trabajamos a diario.</p>
-      <p class="legend"><span class="lv"></span> Experiencia consolidada <span class="lv x"></span> En exploración</p>
+  <div class="container">
+    <div class="split-head" appReveal>
+      <h2 id="tech-t">Con qué construimos</h2>
+      <p class="lead">Las herramientas que usamos a diario. Lo que aún exploramos lo decimos.</p>
     </div>
-    <div class="groups">
-      @for (g of tech; track g.id; let gi = $index) {
-        <div class="group" [appReveal]="gi">
-          <h3>{{ g.label }}</h3>
-          <ul>
-            @for (t of g.items; track t.name) {
-              <li [class.explore]="t.level === 'exploracion'">
-                <span class="mark" aria-hidden="true">{{ t.mark }}</span>
-                <span class="tname">{{ t.name }}<small>{{ t.use }}</small></span>
-              </li>
-            }
-          </ul>
-        </div>
-      }
-    </div>
+    <table class="tech-table">
+      <caption class="sr-only">Tecnologías por capa</caption>
+      <thead>
+        <tr><th scope="col">Capa</th><th scope="col">Tecnologías</th></tr>
+      </thead>
+      <tbody>
+        @for (g of tech; track g.id) {
+          <tr>
+            <th scope="row">{{ g.label }}</th>
+            <td>
+              <ul>
+                @for (t of g.items; track t.name) {
+                  <li [class.explore]="t.level === 'exploracion'">{{ t.name }}@if (t.level === 'exploracion') {<span class="note">, en exploración</span>}</li>
+                }
+              </ul>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </section>
 
-<section class="section final" aria-labelledby="final-t">
-  <div class="container">
-    <div class="final-card" appReveal>
-      <svg class="final-art" viewBox="0 0 600 300" aria-hidden="true">
-        <path d="M-20 240 C 120 120, 260 300, 400 160 S 560 40, 640 90" class="draw" pathLength="600" />
-        <path d="M-20 270 C 160 170, 300 320, 460 200 S 600 120, 640 140" class="draw" pathLength="600" style="--d: .3s" />
-      </svg>
-      <div class="final-copy">
-        <h2 id="final-t">¿Tienes una idea, un proceso que ordenar o un sistema que mejorar?</h2>
-        <p>Cuéntanos qué quieres lograr. Te ayudamos a definir el alcance y preparamos una propuesta a medida.</p>
-      </div>
-      <div class="final-ctas">
-        <a routerLink="/contacto" class="btn btn-lg btn-light">Empezar un proyecto <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
-        <a routerLink="/lab" class="btn btn-lg btn-outline-light">Ver demos en el Lab</a>
-      </div>
-    </div>
+<section class="section why" aria-labelledby="why-t">
+  <div class="container why-grid">
+    <h2 id="why-t" appReveal>Por qué trabajar con nosotros</h2>
+    <ol class="reasons">
+      @for (d of reasons; track d.title) {
+        <li appReveal>
+          <h3>{{ d.title }}</h3>
+          <p>{{ d.text }}</p>
+        </li>
+      }
+    </ol>
   </div>
 </section>

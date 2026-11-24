@@ -52,16 +52,16 @@
 .body {
   display: grid;
   gap: var(--s-7);
-  padding-block: var(--s-8);
+  padding-block: var(--section-gap-s);
 }
 
 .main {
   display: grid;
-  gap: clamp(40px, 6vw, 64px);
+  gap: var(--section-gap-s);
   min-width: 0;
 
   h2 {
-    font-size: var(--fs-xl);
+    font-size: var(--text-section);
     margin-bottom: var(--s-4);
   }
 
@@ -145,7 +145,7 @@
   background: var(--surface);
 
   .n {
-    font: 500 var(--fs-xs)/1.6 var(--font-mono);
+    font: 500 var(--fs-xs)/1.6 var(--font-display);
     color: var(--cyan);
   }
 
@@ -290,7 +290,7 @@
   margin-bottom: var(--s-5);
 
   h2 {
-    font-size: var(--fs-xl);
+    font-size: var(--text-section);
   }
 }
 

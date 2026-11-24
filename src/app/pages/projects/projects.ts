@@ -16,7 +16,6 @@ type Filter = 'Todos' | ProjectCategory;
   template: `
     <header class="page-head">
       <div class="container">
-        <span class="eyebrow">Proyectos</span>
         <h1>De ideas a productos digitales.</h1>
         <p class="lead">Proyectos publicados y casos conceptuales. Cada uno indica qué es: no mostramos clientes ni resultados que no podamos respaldar.</p>
       </div>
@@ -37,8 +36,8 @@ type Filter = 'Todos' | ProjectCategory;
             <a class="surface-card card big" [routerLink]="['/proyectos', p.slug]" [appReveal]="i">
               <app-project-visual [project]="p" class="vis" />
               <div class="copy">
-                <div class="meta"><span class="badge pub">Publicado</span><span>{{ p.category }}</span></div>
                 <h3>{{ p.name }}</h3>
+                <div class="meta"><span class="badge pub">Publicado</span><span>{{ p.category }}</span></div>
                 <p>{{ p.summary }}</p>
                 <ul class="tech">@for (t of p.tech.slice(0, 4); track t) {<li>{{ t }}</li>}</ul>
                 <span class="more">Ver el caso <app-icon name="arrow-right" [size]="16" class="icon-shift" /></span>
@@ -56,8 +55,8 @@ type Filter = 'Todos' | ProjectCategory;
             <a class="surface-card card" [routerLink]="['/proyectos', p.slug]" [appReveal]="i % 2">
               <app-project-visual [project]="p" class="vis" />
               <div class="copy">
-                <div class="meta"><span class="badge">Concepto</span><span>{{ p.category }}</span></div>
                 <h3>{{ p.name }}</h3>
+                <div class="meta"><span class="badge">Concepto</span><span>{{ p.category }}</span></div>
                 <p>{{ p.summary }}</p>
                 <span class="more">Ver el caso <app-icon name="arrow-right" [size]="16" class="icon-shift" /></span>
               </div>
@@ -75,8 +74,8 @@ type Filter = 'Todos' | ProjectCategory;
   `,
   styles: `
     .filters { margin-bottom: var(--s-6); }
-    .count { margin-left: 4px; font: 500 var(--fs-label) var(--font-mono); color: var(--text-3); }
-    .group-t { display: flex; align-items: center; gap: var(--s-3); font-size: var(--fs-xl); margin: var(--s-6) 0 var(--s-3); }
+    .count { margin-left: 4px; font: 500 var(--fs-label) var(--font-display); color: var(--text-3); }
+    .group-t { display: flex; align-items: center; gap: var(--s-3); font-size: var(--text-section); margin: var(--s-6) 0 var(--s-3); }
     .group-p { color: var(--text-2); margin: calc(var(--s-2) * -1) 0 var(--s-5); max-width: 62ch; }
     .dot { width: 10px; height: 10px; border-radius: 50%; border: 2px dashed var(--text-3); }
     .dot.pub { border: 0; background: var(--ok); box-shadow: 0 0 0 4px var(--ok-soft); }
@@ -84,7 +83,7 @@ type Filter = 'Todos' | ProjectCategory;
     .card { display: grid; overflow: hidden; color: inherit; text-decoration: none; }
     .vis { background: var(--brand-gradient-soft); border-bottom: 1px solid var(--line); }
     .copy { display: grid; gap: var(--s-3); align-content: center; padding: var(--s-5) var(--s-6) var(--s-6); }
-    .meta { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; font: 500 var(--fs-label) var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); }
+    .meta { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; font: 500 var(--fs-label) var(--font-display); letter-spacing: .08em; color: var(--text-3); }
     .badge { padding: 3px 9px; border-radius: var(--r-pill); border: 1px dashed var(--line-strong); color: var(--text-2); }
     .badge.pub { border: 0; background: var(--ok-soft); color: var(--ok); }
     h3 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); letter-spacing: -0.03em; }

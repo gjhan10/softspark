@@ -13,7 +13,6 @@ import { Icon } from '../../shared/icon/icon';
   template: `
     <header class="page-head">
       <div class="container">
-        <span class="eyebrow">Contacto</span>
         <h1>Tu próximo proyecto empieza aquí.</h1>
         <p class="lead">Cuéntanos qué necesitas. Transformaremos tus ideas en una solución digital. Configura el proyecto con lo que sepas hoy; lo demás lo definimos juntos.</p>
       </div>
@@ -24,7 +23,7 @@ import { Icon } from '../../shared/icon/icon';
 
       <aside class="side">
         <div class="card box">
-          <h2>Cómo funciona este formulario</h2>
+          <h3>Cómo funciona este formulario</h3>
           @if (mode === 'local') {
             <ol class="steps">
               <li><span>1</span> Configuras tu proyecto en cinco pasos y revisas el resumen.</li>
@@ -38,7 +37,7 @@ import { Icon } from '../../shared/icon/icon';
         </div>
         @if (site.email) {
           <div class="card box">
-            <h2>Contacto directo</h2>
+            <h3>Contacto directo</h3>
             <a class="link" [href]="'mailto:' + site.email"><app-icon name="mail" [size]="18" /> {{ site.email }}</a>
             @if (site.whatsapp) {
               <a class="link" [href]="site.whatsapp" target="_blank" rel="noopener">WhatsApp <app-icon name="arrow-up-right" [size]="14" /></a>
@@ -46,7 +45,7 @@ import { Icon } from '../../shared/icon/icon';
           </div>
         }
         <div class="card box">
-          <h2>¿Aún no sabes qué necesitas?</h2>
+          <h3>¿Aún no sabes qué necesitas?</h3>
           <p class="small">Describe tu negocio a Spark Assistant y obtén una orientación sobre la solución y sus módulos.</p>
           <a routerLink="/que-necesito" fragment="asistente" class="btn btn-secondary btn-sm"><app-icon name="compass" [size]="16" /> Abrir Spark Assistant</a>
         </div>
@@ -57,11 +56,11 @@ import { Icon } from '../../shared/icon/icon';
     .layout { display: grid; gap: var(--s-6); padding-block: var(--s-7) var(--s-9); align-items: start; }
     .side { display: grid; gap: var(--s-4); }
     .box { display: grid; gap: var(--s-3); padding: var(--s-5); justify-items: start; border-radius: var(--r-xl); }
-    .box h2 { font-size: var(--fs-md); }
+    .box h3 { font-size: var(--text-lg); }
     .small { color: var(--text-2); font-size: var(--fs-sm); }
     .steps { list-style: none; display: grid; gap: var(--s-3); font-size: var(--fs-sm); color: var(--text-2); }
     .steps li { display: grid; grid-template-columns: 24px 1fr; gap: var(--s-3); align-items: start; }
-    .steps span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: var(--r-sm); background: var(--surface-3); font: 600 var(--fs-2xs) var(--font-mono); color: var(--cyan); }
+    .steps span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: var(--r-sm); background: var(--surface-3); font: 600 var(--fs-2xs) var(--font-display); color: var(--cyan); }
     .link { overflow-wrap: anywhere; }
     @media (min-width: 1000px) { .layout { grid-template-columns: 1fr 340px; } .side { position: sticky; top: calc(var(--header-h) + 24px); } }
   `,

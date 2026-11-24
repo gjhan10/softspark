@@ -194,7 +194,7 @@ export type ArtName =
     .s-sky { stroke: #67e8f9; }
     .s-ok { stroke: var(--ok); }
     .s-white { stroke: #fff; }
-    .t-mono { font: 700 13px var(--font-mono); fill: var(--accent); }
+    .t-mono { font: 700 13px var(--font-display); fill: var(--accent); }
     .t-ok { fill: var(--ok); }
     .pulse { animation: art-pulse 2.8s var(--ease-in-out) infinite; transform-box: fill-box; transform-origin: center; }
     .pulse-ring { animation: art-ring 2.4s var(--ease-out) infinite; transform-box: fill-box; transform-origin: center; }

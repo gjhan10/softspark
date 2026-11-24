@@ -60,7 +60,7 @@ export class BarChart {
       </svg>
       @if (active() >= 0) {
         <div class="tip" [style.left.%]="(x(active()) / W) * 100">
-          <strong>{{ values()[active()] }}</strong> · {{ labels()[active()] }}
+          {{ labels()[active()] }}: <strong>{{ values()[active()] }}</strong>
         </div>
       }
       <div class="axis">

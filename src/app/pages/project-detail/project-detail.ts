@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { pageUrl, Seo } from '../../core/seo.service';
 import { SITE } from '../../core/site.config';
 import { findProject, PROJECTS } from '../../data/projects.data';
-import { Art } from '../../shared/art/art';
 import { CtaBand } from '../../shared/cta-band/cta-band';
 import { Icon } from '../../shared/icon/icon';
 import { ProjectVisual } from '../../shared/project-visual/project-visual';
@@ -11,7 +10,7 @@ import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [RouterLink, Icon, CtaBand, ProjectVisual, Art, Reveal],
+  imports: [RouterLink, Icon, CtaBand, ProjectVisual, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (project(); as p) {
@@ -19,12 +18,12 @@ import { Reveal } from '../../shared/reveal/reveal';
         <div class="container head-grid">
           <div class="head-copy">
             <nav class="crumbs" aria-label="Ruta de navegación"><a routerLink="/proyectos"><app-icon name="arrow-left" [size]="16" /> Proyectos</a></nav>
+            <h1>{{ p.name }}</h1>
+            <p class="lead">{{ p.summary }}</p>
             <div class="meta">
               <span class="badge" [class.pub]="p.kind === 'publicado'">{{ p.kind === 'publicado' ? 'Publicado' : 'Caso conceptual' }}</span>
               <span>{{ p.category }}</span>
             </div>
-            <h1>{{ p.name }}</h1>
-            <p class="lead">{{ p.summary }}</p>
             <p class="context"><app-icon name="info" [size]="16" /> {{ p.context }}</p>
             <div class="links">
               @for (l of p.links; track l.href; let first = $first) {
@@ -43,13 +42,11 @@ import { Reveal } from '../../shared/reveal/reveal';
       <section class="container section-tight body">
         <div class="ps">
           <article class="surface-card block" appReveal>
-            <app-art name="adapt" class="mini" />
-            <h2>El problema</h2>
+            <h3>El problema</h3>
             <p>{{ p.problem }}</p>
           </article>
           <article class="surface-card block sol" appReveal="1">
-            <app-art [name]="p.art" class="mini" />
-            <h2>La solución</h2>
+            <h3>La solución</h3>
             <p>{{ p.solution }}</p>
           </article>
         </div>
@@ -98,7 +95,7 @@ import { Reveal } from '../../shared/reveal/reveal';
     .head-copy { display: grid; gap: var(--s-4); justify-items: start; }
     .crumbs a { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--text-2); text-decoration: none; font-size: var(--fs-sm); }
     .crumbs a:hover { color: var(--accent); }
-    .meta { display: flex; gap: var(--s-3); align-items: center; font: 500 var(--fs-label) var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); }
+    .meta { display: flex; gap: var(--s-3); align-items: center; font: 500 var(--fs-label) var(--font-display); letter-spacing: .08em; color: var(--text-3); }
     .badge { padding: 3px 9px; border-radius: var(--r-pill); border: 1px dashed var(--line-strong); color: var(--text-2); }
     .badge.pub { border: 0; background: var(--ok-soft); color: var(--ok); }
     .context { display: flex; gap: var(--s-2); align-items: flex-start; font-size: var(--fs-sm); color: var(--text-2); }
@@ -108,7 +105,8 @@ import { Reveal } from '../../shared/reveal/reveal';
     .body { display: grid; gap: var(--s-7); }
     .ps { display: grid; gap: var(--s-4); }
     .block { display: grid; gap: var(--s-3); align-content: start; padding: var(--s-6); }
-    .block h2, .two h2 { font-size: var(--fs-xl); }
+    .block h3 { font-size: var(--text-title); }
+    .two h2 { font-size: var(--text-section); }
     .block p { color: var(--text-2); }
     .mini { height: 110px; width: 160px; margin-bottom: var(--s-2); }
     .sol { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); box-shadow: 0 0 0 4px var(--accent-soft); }
@@ -118,7 +116,7 @@ import { Reveal } from '../../shared/reveal/reveal';
     .tech { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; }
     .tech li { padding: 6px 12px; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--surface); font-size: var(--fs-sm); }
     .next { display: grid; grid-template-columns: 1fr auto; gap: 2px var(--s-4); align-items: center; padding: var(--s-5) var(--s-6); color: inherit; text-decoration: none; }
-    .next small { color: var(--text-3); font: 500 var(--fs-label) var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
+    .next small { color: var(--text-3); font: 500 var(--fs-label) var(--font-display); letter-spacing: .08em; }
     .next strong { grid-row: 2; font-size: var(--fs-lg); }
     .next app-icon { grid-row: 1 / span 2; grid-column: 2; color: var(--accent); }
     .icon-shift { transition: transform var(--t-fast) var(--ease); }

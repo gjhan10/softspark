@@ -14,21 +14,20 @@ const STEP_ICONS: IconName[] = ['users', 'search', 'file', 'layers', 'code', 'sh
   template: `
     <header class="page-head">
       <div class="container">
-        <span class="eyebrow">Proceso de trabajo</span>
         <h1>De la primera conversación a un producto que evoluciona</h1>
         <p class="lead">Siete etapas, cada una con un entregable concreto que revisas antes de pasar a la siguiente.</p>
       </div>
     </header>
 
     <section class="container section">
-      <ol class="timeline on-main" #timeline>
+      <h2 class="sr-only">Etapas del proceso</h2>
+      <ol class="timeline" #timeline>
         <li class="rail" aria-hidden="true"><span class="fill"></span></li>
         @for (s of steps; track s.title; let i = $index) {
           <li class="step" appReveal>
             <span class="node" aria-hidden="true"><app-icon [name]="icon(i)" [size]="20" /></span>
             <div class="body">
-              <span class="n">Etapa {{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
-              <h2>{{ s.title }}</h2>
+              <h3>{{ s.title }}</h3>
               <p>{{ s.desc }}</p>
               <p class="out"><span class="out-label">Qué recibes</span> {{ s.output }}</p>
             </div>
@@ -63,7 +62,7 @@ const STEP_ICONS: IconName[] = ['users', 'search', 'file', 'layers', 'code', 'sh
     <app-cta-band />
   `,
   styles: `
-    .timeline { --p: 1; position: relative; list-style: none; display: grid; gap: var(--s-5); max-width: 860px; }
+    .timeline { --p: 1; position: relative; list-style: none; display: grid; gap: var(--s-5); max-width: none; }
     .rail { position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; border-radius: 2px; background: var(--line); }
     .fill { position: absolute; inset: 0; border-radius: 2px; background: var(--brand-gradient); transform-origin: top; transform: scaleY(var(--p)); }
     .step { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: var(--s-5); }
@@ -74,11 +73,12 @@ const STEP_ICONS: IconName[] = ['users', 'search', 'file', 'layers', 'code', 'sh
     }
     .step.in .node, :host-context(html:not(.motion-ok)) .node { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); box-shadow: 0 0 0 6px var(--accent-soft), var(--shadow-2); }
     .body { display: grid; gap: var(--s-2); padding: var(--s-5); border: 1px solid var(--line); border-radius: var(--r-xl); background: var(--surface); box-shadow: var(--shadow-1); }
-    .n { font: 500 var(--fs-label) var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
-    h2 { font-size: var(--fs-xl); letter-spacing: -0.025em; }
+    .n { font: 500 var(--fs-label) var(--font-display); letter-spacing: .08em; color: var(--text-3); }
+    .body h3 { font-size: var(--text-title); }
+    .two h2 { font-size: var(--text-section); }
     .body p { color: var(--text-2); }
     .body .out { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: baseline; margin-top: var(--s-2); padding-top: var(--s-3); border-top: 1px dashed var(--line-strong); color: var(--text); font-size: var(--fs-sm); font-weight: 500; }
-    .out-label { padding: 2px 8px; border-radius: var(--r-pill); background: var(--ok-soft); color: var(--ok); font: 600 var(--fs-label) var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+    .out-label { padding: 2px 8px; border-radius: var(--r-pill); background: var(--ok-soft); color: var(--ok); font: 600 var(--fs-label) var(--font-display); letter-spacing: .06em; }
     .two { display: grid; gap: var(--s-6); }
     .two h2 { margin-bottom: var(--s-4); }
     .two .check-list app-icon { color: var(--accent); }

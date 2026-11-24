@@ -9,7 +9,7 @@
 
   @if (stage() === 'form' || stage() === 'review') {
     <nav class="progress" aria-label="Progreso de la solicitud">
-      <p class="progress-now" aria-hidden="true">Paso {{ current() }} de 5 · {{ steps[current() - 1].label }}</p>
+      <p class="progress-now" aria-hidden="true">Paso {{ current() }} de 5: {{ steps[current() - 1].label }}</p>
       <ol>
         @for (s of steps; track s.n) {
           <li [class.done]="s.n < current()" [class.now]="s.n === current()" [attr.aria-current]="s.n === current() ? 'step' : null">
@@ -175,7 +175,7 @@
               <div class="field full">
                 <label for="q-description">Descripción del proyecto <span aria-hidden="true">*</span></label>
                 <textarea id="q-description" class="input" formControlName="description" rows="6" aria-describedby="q-desc-hint q-desc-err" [attr.aria-invalid]="invalid('description')" placeholder="Qué quieres lograr, quiénes lo usarán y qué tienes hoy (sitio, sistema, hojas de cálculo…)."></textarea>
-                <span class="hint" id="q-desc-hint">{{ form.controls.description.value.length }} / 2000 caracteres · mínimo 20</span>
+                <span class="hint" id="q-desc-hint">{{ form.controls.description.value.length }} / 2000 caracteres, mínimo 20</span>
                 @if (invalid('description')) { <span class="error" id="q-desc-err"><app-icon name="alert" [size]="14" /> {{ errorFor('description') }}</span> }
               </div>
 

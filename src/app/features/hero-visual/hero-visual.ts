@@ -83,7 +83,7 @@ import { Icon, IconName } from '../../shared/icon/icon';
       <div class="card api layer" data-depth="22" aria-hidden="true">
         <span class="badge">API REST</span>
         <code><b>POST</b> /v1/pedidos</code>
-        <span class="status"><i></i> 201 Created · 84 ms</span>
+        <span class="status"><i></i> 201 Created, 84 ms</span>
       </div>
 
       <div class="card flow layer" data-depth="30" aria-hidden="true">

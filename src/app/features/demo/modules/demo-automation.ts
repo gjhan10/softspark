@@ -24,7 +24,7 @@ const STEP_MS = 450;
     </div>
 
     <div class="kpis">
-      <div class="kpi"><small>Ejecuciones hoy</small><strong>{{ store.runs().length }}</strong><em>{{ count('ok') }} correctas · {{ count('error') }} con error</em></div>
+      <div class="kpi"><small>Ejecuciones hoy</small><strong>{{ store.runs().length }}</strong><em>{{ count('ok') }} correctas, {{ count('error') }} con error</em></div>
       <div class="kpi"><small>Tasa de éxito</small><strong>{{ successRate() }} %</strong><em>ejecuciones de hoy</em></div>
       <div class="kpi"><small>Tiempo ahorrado hoy</small><strong>{{ savedLabel() }}</strong><em>estimación ficticia</em></div>
       <div class="kpi"><small>Flujos activos</small><strong>{{ activeCount() }}</strong><em>de {{ store.workflows().length }} flujos</em></div>

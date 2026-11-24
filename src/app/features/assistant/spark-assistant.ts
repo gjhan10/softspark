@@ -25,7 +25,7 @@ interface Turn {
           <strong>Spark Assistant</strong>
           <span class="mode" [class.ai]="mode === 'ia'">
             <span class="dot" aria-hidden="true"></span>
-            {{ mode === 'ia' ? 'Con inteligencia artificial' : 'Modo guiado por reglas · sin IA' }}
+            {{ mode === 'ia' ? 'Con inteligencia artificial' : 'Modo guiado por reglas, sin IA' }}
           </span>
         </div>
       </div>
@@ -79,7 +79,7 @@ interface Turn {
       @if (!turns().length) {
         <div class="examples" role="group" aria-label="Ejemplos">
           @for (e of examples; track e) {
-            <button type="button" class="chip" (click)="ask(e)">{{ e }}</button>
+            <button type="button" class="chip" [attr.title]="e" (click)="ask(e)">{{ e }}</button>
           }
         </div>
       }
@@ -101,7 +101,7 @@ interface Turn {
     .top strong { display: block; font-size: var(--fs-md); }
     .avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--brand-gradient); box-shadow: var(--shadow-glow); }
     .avatar svg { width: 20px; height: 20px; fill: #fff; }
-    .mode { display: inline-flex; gap: 6px; align-items: center; font: 500 var(--fs-label) var(--font-mono); color: var(--text-2); }
+    .mode { display: inline-flex; gap: 6px; align-items: center; font: 500 var(--fs-label) var(--font-display); color: var(--text-2); }
     .mode .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
     .mode.ai .dot { background: var(--ok); }
     .log { display: grid; gap: var(--s-3); align-content: start; max-height: min(62vh, 620px); min-height: 220px; overflow-y: auto; padding: var(--s-5); scroll-behavior: smooth; }
@@ -111,7 +111,7 @@ interface Turn {
     .me { justify-self: end; background: var(--accent); color: var(--accent-ink); border-top-right-radius: 6px; }
     .reply { display: grid; gap: var(--s-3); width: 100%; }
     .fine { font-size: var(--fs-2xs); color: var(--text-3); }
-    .label { display: block; margin: var(--s-2) 0 var(--s-1); font: 500 var(--fs-label) var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); }
+    .label { display: block; margin: var(--s-2) 0 var(--s-1); font: 500 var(--fs-label) var(--font-display); letter-spacing: .08em; color: var(--text-3); }
     .sol { padding: var(--s-3) var(--s-4); border-radius: var(--r-lg); background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line)); }
     .sol .label { margin-top: 0; }
     .sol-name { display: inline-flex; gap: 4px; align-items: center; font-weight: 650; font-size: var(--fs-md); color: var(--accent); text-decoration: none; }
@@ -125,8 +125,9 @@ interface Turn {
     .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--text-3); animation: dot 1s var(--ease-in-out) infinite; }
     .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
     .examples { display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 0 var(--s-5) var(--s-4); }
-    .examples .chip { text-align: left; white-space: normal; height: auto; padding-block: 8px; }
-    .composer { display: flex; gap: var(--s-2); align-items: flex-end; margin: 0 var(--s-4); padding: var(--s-2); border: 1px solid var(--line-strong); border-radius: var(--r-xl); background: var(--surface); transition: border-color var(--t-fast), box-shadow var(--t-fast); }
+    .examples { display: grid; width: auto; background: none; padding-inline: var(--space-lg); }
+    .examples .chip { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; border-color: var(--color-rule); background: var(--color-key-face); }
+    .composer { display: flex; gap: var(--s-2); align-items: flex-end; margin: 0 var(--s-4); padding: var(--s-2); border: 1px solid var(--color-muted); border-radius: var(--radius-input); background: var(--surface); transition: border-color var(--t-fast), box-shadow var(--t-fast); }
     .composer:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
     textarea { flex: 1; min-height: 44px; max-height: 160px; padding: 10px 12px; border: 0; background: none; resize: vertical; outline: none; font-size: var(--fs-sm); }
     .send { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border: 0; border-radius: 14px; background: var(--brand-gradient); color: #fff; cursor: pointer; transition: opacity var(--t-fast), transform var(--t-fast); }

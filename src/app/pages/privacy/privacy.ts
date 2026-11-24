@@ -11,7 +11,6 @@ import { Icon } from '../../shared/icon/icon';
   template: `
     <header class="page-head">
       <div class="container">
-        <span class="eyebrow">Legal</span>
         <h1>Aviso de privacidad</h1>
         <p class="lead">Qué datos se usan en este sitio, para qué y cómo ejercer tus derechos.</p>
       </div>

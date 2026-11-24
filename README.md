@@ -7,7 +7,7 @@ Es un sitio **estático** (Angular con prerender) publicado en GitHub Pages. No 
 ## Stack
 
 - Angular 21 (componentes standalone, signals, control flow, prerender estático)
-- TypeScript 5.9 y SCSS con tokens CSS (tema oscuro y claro)
+- TypeScript 5.9, tokens CSS del tema Cobalt (Hallmark) y SCSS, con tema claro y oscuro
 - Vitest para pruebas unitarias
 - GitHub Actions + GitHub Pages para el despliegue
 
@@ -122,10 +122,14 @@ La arquitectura está desacoplada (`AssistantProvider` en `features/assistant/`)
 
 ## Diseño, movimiento y recursos
 
-- Los tokens (colores, tipografía, espaciado, radios, sombras y movimiento) están al inicio de `src/styles.scss`. El tema claro es el predeterminado; el oscuro redefine los mismos nombres.
-- Las ilustraciones son SVG propios en `shared/art/art.ts`. La directiva `appReveal` (`shared/reveal/`) hace aparecer el contenido al hacer scroll.
+El diseño se hizo con [Hallmark](https://github.com/nutlope/hallmark) (redesign completo, tema **Cobalt**, género modern-minimal):
+
+- `src/tokens.css` lleva el sello de Hallmark (decisiones y excepciones registradas) y los tokens del tema: colores OKLCH, Familjen Grotesk, IBM Plex Sans y JetBrains Mono, escala de espaciado y movimiento. `src/base.css` tiene las reglas base. Ambos se cargan antes de `src/styles.scss` (ver `angular.json`).
+- `src/styles.scss` conecta esos tokens con los nombres que usan los componentes (`--accent`, `--text`, `--s-*`…) y define el modo oscuro, derivado del claro con la misma tonalidad.
+- Reglas de la casa: fondo liso sin retículas, sin degradados, sin etiquetas en mayúsculas sobre los títulos y sin ilustraciones dibujadas; se muestran capturas reales del producto (`public/projects/`).
+- Para revisar el diseño, sirve el build bajo `/softspark/` y ejecuta `node ~/.claude/skills/hallmark/scripts/sloplint.mjs src/tokens.css src/base.css --genre modern-minimal --render --url http://localhost:PUERTO/softspark/RUTA/`.
 - Todas las animaciones respetan `prefers-reduced-motion`, y el contenido es visible aunque JavaScript falle.
-- `node scripts/og-image.mjs` regenera `public/og-image.png`, y `node scripts/capture.mjs <url> <salida>` hace capturas reales para el portfolio. Ambos usan Chrome instalado (`CHROME_BIN`).
+- `node scripts/og-image.mjs` regenera `public/og-image.png`, y `node scripts/capture.mjs URL SALIDA` hace capturas reales. Ambos usan Chrome instalado (`CHROME_BIN`).
 
 ## Publicación con GitHub Actions
 

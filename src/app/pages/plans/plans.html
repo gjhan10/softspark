@@ -1,6 +1,5 @@
 <header class="page-head">
   <div class="container">
-    <span class="eyebrow">Planes</span>
     <h1>Elige un punto de partida para tu proyecto</h1>
     <p class="lead">Cuatro niveles de servicio como propuestas comerciales iniciales. Selecciona uno para ver lo que incluye y solicitar una cotización con ese plan.</p>
   </div>
@@ -31,11 +30,11 @@
         (keydown)="onKey($event, i)"
         (keydown.space)="$event.preventDefault(); select(p.id)"
       >
-        @if (p.recommended) {
-          <span class="rec-badge"><app-icon name="check" [size]="12" /> Recomendado para empezar</span>
-        }
         <div class="plan-top">
-          <h2 [id]="'plan-' + p.id">{{ p.name }}</h2>
+          <h3 [id]="'plan-' + p.id">{{ p.name }}</h3>
+          @if (p.recommended) {
+            <span class="rec-badge">Recomendado para empezar</span>
+          }
           <span class="radio" aria-hidden="true"><app-icon name="check" [size]="14" /></span>
         </div>
         <p class="aud" [id]="'plan-d-' + p.id">{{ p.audience }}</p>
@@ -51,7 +50,7 @@
   </div>
 
   <div class="selected-bar" aria-live="polite">
-    <p>Plan seleccionado: <strong>{{ selectedPlan().name }}</strong> · {{ price(selectedPlan()) }}</p>
+    <p>Plan seleccionado: <strong>{{ selectedPlan().name }}</strong>, {{ price(selectedPlan()) }}</p>
     <a routerLink="/contacto" [queryParams]="{ plan: selected() }" class="btn btn-brand btn-lg">{{ selectedPlan().cta }} <app-icon name="arrow-right" [size]="18" class="icon-shift" /></a>
   </div>
   <p class="custom-link">¿Ningún plan encaja con tu idea? <a routerLink="/contacto" [queryParams]="{ tipo: 'a-medida', plan: 'enterprise' }" class="link">Solicita una solución personalizada <app-icon name="arrow-right" [size]="16" /></a></p>

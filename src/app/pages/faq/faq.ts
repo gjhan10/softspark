@@ -11,14 +11,13 @@ import { Icon } from '../../shared/icon/icon';
   template: `
     <header class="page-head">
       <div class="container">
-        <span class="eyebrow">Preguntas frecuentes</span>
-        <h1>Respuestas claras antes de empezar</h1>
+        <h1>Preguntas frecuentes</h1>
         <p class="lead">Sobre planes, costes, forma de trabajo y aspectos técnicos.</p>
       </div>
     </header>
 
     <section class="container section-tight">
-      <div class="on-main">
+      <div class="faq-body">
       <nav class="chips topics" aria-label="Temas">
         @for (t of topics; track t.id) {
           <a class="chip" [href]="'preguntas-frecuentes#' + t.id" (click)="go($event, t.id)">{{ t.label }}</a>
@@ -43,8 +42,8 @@ import { Icon } from '../../shared/icon/icon';
   styles: `
     .topics { margin-bottom: var(--s-6); }
     .chip { text-decoration: none; }
-    .topic { max-width: 860px; margin-bottom: var(--s-7); scroll-margin-top: calc(var(--header-h) + 20px); }
-    .topic h2 { font-size: var(--fs-xl); margin-bottom: var(--s-2); padding-bottom: var(--s-3); border-bottom: 1px solid var(--line-strong); }
+    .topic { max-width: none; margin-bottom: var(--s-7); scroll-margin-top: calc(var(--header-h) + 20px); }
+    .topic h2 { font-size: var(--text-section); margin-bottom: var(--s-2); padding-bottom: var(--s-3); border-bottom: 1px solid var(--line-strong); }
   `,
 })
 export class FaqPage {

@@ -21,7 +21,7 @@ export class Seo {
   private readonly doc = inject(DOCUMENT);
 
   set({ title, description, path, noindex = false }: PageMeta): void {
-    const full = path === '' ? `${SITE.name} · ${SITE.tagline}` : `${title} · ${SITE.name}`;
+    const full = path === '' ? `${SITE.name} | ${SITE.tagline}` : `${title} | ${SITE.name}`;
     const url = pageUrl(path);
     const image = `${SITE.siteUrl}/og-image.png`;
     this.title.setTitle(full);

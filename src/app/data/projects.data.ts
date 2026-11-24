@@ -23,8 +23,6 @@ export interface Project {
   tech: string[];
   /** Capturas reales (rutas dentro de public/). */
   images?: { desktop?: string; mobile?: string; alt: string };
-  /** Mockup cuando no hay capturas reales: slug de una solución del catálogo. */
-  preview?: string;
   art: ArtName;
   links: { label: string; href: string; external?: boolean }[];
 }
@@ -95,7 +93,7 @@ export const PROJECTS: Project[] = [
     solution: 'Un ERP modular con flujo de aprobación de órdenes de compra, control de facturas por estado y alertas de stock, implementado por fases empezando por el módulo más urgente.',
     features: ['Órdenes de compra con estados y aprobación', 'Facturas pendientes, vencidas y pagadas', 'Alertas de stock mínimo', 'Roles por área', 'Reportes exportables'],
     tech: ['Angular', 'Spring Boot', 'SQL Server', 'APIs REST', 'Docker'],
-    preview: 'erp-modular',
+    images: { desktop: 'projects/lab-erp.webp', alt: 'Captura de la demo de ERP del Lab, con datos ficticios' },
     art: 'erp',
     links: [
       { label: 'Probar la demo de ERP', href: '/demo/erp' },
@@ -113,7 +111,7 @@ export const PROJECTS: Project[] = [
     solution: 'Un CRM con embudo por etapas, búsqueda y filtros, historial por cliente y paneles para el responsable comercial.',
     features: ['Embudo de oportunidades por etapa', 'Búsqueda y filtros', 'Historial por cliente', 'Valor del pipeline en tiempo real'],
     tech: ['Angular', 'Spring Boot', 'APIs REST', 'Base de datos relacional'],
-    preview: 'crm-comercial',
+    images: { desktop: 'projects/lab-crm.webp', alt: 'Captura de la demo de CRM del Lab, con datos ficticios' },
     art: 'support',
     links: [
       { label: 'Probar la demo de CRM', href: '/demo/crm' },
@@ -131,7 +129,7 @@ export const PROJECTS: Project[] = [
     solution: 'Un dashboard que lee los datos de los sistemas existentes y muestra indicadores consistentes por periodo y canal.',
     features: ['Indicadores por periodo', 'Comparación por canal', 'Gráficos interactivos', 'Definición única de cada indicador'],
     tech: ['Angular', 'APIs REST', 'Spring Boot', 'SQL'],
-    preview: 'panel-de-indicadores',
+    images: { desktop: 'projects/lab-analitica.webp', alt: 'Captura del panel de análisis del Lab, con datos ficticios' },
     art: 'dashboard',
     links: [
       { label: 'Probar el panel de análisis', href: '/demo/analitica' },
@@ -149,7 +147,7 @@ export const PROJECTS: Project[] = [
     solution: 'Flujos programados o activados por eventos que hacen esas tareas, con registro de cada ejecución y alertas cuando algo falla.',
     features: ['Disparadores por horario o evento', 'Pasos encadenados', 'Registro de ejecuciones', 'Alertas de error'],
     tech: ['Spring Boot', 'APIs REST', 'Tareas programadas', 'Integraciones'],
-    preview: 'automatizacion-de-procesos',
+    images: { desktop: 'projects/lab-automatizacion.webp', alt: 'Captura de la demo de automatización del Lab, con datos ficticios' },
     art: 'automation',
     links: [
       { label: 'Probar la demo de automatización', href: '/demo/automatizacion' },
@@ -167,7 +165,6 @@ export const PROJECTS: Project[] = [
     solution: 'Una tienda con catálogo administrable, carrito y pasarela de pago de un proveedor externo, conectada al inventario.',
     features: ['Catálogo con filtros', 'Carrito y checkout', 'Pagos mediante un proveedor externo', 'Panel de pedidos'],
     tech: ['Angular', 'Spring Boot', 'Pasarela de pagos externa', 'SQL'],
-    preview: 'tienda-en-linea',
     art: 'store',
     links: [{ label: 'Ver la solución', href: '/soluciones/tienda-en-linea' }],
   },

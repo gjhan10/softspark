@@ -115,7 +115,7 @@
     border-radius: var(--r-pill);
     background: var(--surface);
     border: 1px solid var(--line);
-    font: 500 10px/1.4 var(--font-mono);
+    font: 500 10px/1.4 var(--font-display);
     color: var(--text-3);
     white-space: nowrap;
     overflow: hidden;
@@ -188,7 +188,7 @@ aside {
   }
 
   em {
-    font: 500 9.5px var(--font-mono);
+    font: 500 9.5px var(--font-display);
     font-style: normal;
     color: var(--ok);
 
@@ -221,7 +221,7 @@ aside {
   padding: 1px 7px;
   border-radius: var(--r-pill);
   background: var(--surface-3);
-  font: 500 9px var(--font-mono);
+  font: 500 9px var(--font-display);
   color: var(--text-3);
 }
 
@@ -296,9 +296,9 @@ aside {
   border-radius: var(--r-pill);
   background: var(--accent-soft);
   color: var(--accent);
-  font: 600 9.5px/1.5 var(--font-mono);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font: 600 9.5px/1.5 var(--font-display);
+  
+  
 
   &.v {
     background: var(--violet-soft);
@@ -328,7 +328,7 @@ aside {
   align-items: center;
   gap: 6px;
   color: var(--text-2);
-  font: 500 10px var(--font-mono);
+  font: 500 10px var(--font-display);
 
   i {
     width: 7px;
@@ -404,7 +404,7 @@ aside {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-2);
-  font: 600 10px var(--font-mono);
+  font: 600 10px var(--font-display);
 }
 
 .wire {
@@ -478,7 +478,7 @@ aside {
     inset: 0;
     display: grid;
     place-items: center;
-    font: 600 11px var(--font-mono);
+    font: 600 11px var(--font-display);
   }
 
   .track,
@@ -516,7 +516,7 @@ figcaption {
   position: absolute;
   right: 0;
   bottom: -30px;
-  font: 400 var(--fs-label) var(--font-mono);
+  font: 400 var(--fs-label) var(--font-display);
   color: var(--text-3);
 }
 

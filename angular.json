@@ -31,6 +31,8 @@
               }
             ],
             "styles": [
+              "src/tokens.css",
+              "src/base.css",
               "src/styles.scss"
             ],
             "server": "src/main.server.ts",

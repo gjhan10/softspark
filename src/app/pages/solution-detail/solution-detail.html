@@ -6,8 +6,8 @@
         <a class="back" routerLink="/soluciones" [queryParams]="catalog.params()">
           <app-icon name="arrow-left" [size]="16" /> {{ catalog.active() ? 'Volver a los resultados' : 'Volver al catálogo' }}
         </a>
-        <span class="eyebrow">{{ family() }} · {{ category() }}</span>
         <h1>{{ s.name }}</h1>
+        <p class="kind">{{ category() }}, {{ family() }}</p>
         <p class="lead">{{ s.summary }}</p>
         <app-impl-badges [solution]="s" />
         <div class="head-ctas">

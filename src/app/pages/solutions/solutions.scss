@@ -125,7 +125,7 @@
     display: flex;
     align-items: baseline;
     gap: var(--s-3);
-    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+    font-size: var(--text-section);
   }
 
   p {
@@ -136,7 +136,7 @@
 }
 
 .fam-count {
-  font: 500 var(--fs-xs) var(--font-mono);
+  font: 500 var(--fs-xs) var(--font-display);
   color: var(--text-3);
 }
 
@@ -156,7 +156,7 @@
   margin-bottom: var(--s-5);
 
   h2 {
-    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-size: var(--text-section);
   }
 }
 
@@ -167,8 +167,15 @@
 
 .path {
   display: grid;
-  gap: var(--s-3);
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--s-3) var(--s-4);
   align-content: start;
+  align-items: center;
+
+  > p,
+  > .go {
+    grid-column: 1 / -1;
+  }
   padding: var(--s-5);
   text-decoration: none;
   transition:
