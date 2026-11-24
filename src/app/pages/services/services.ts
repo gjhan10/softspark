@@ -4,13 +4,12 @@ import { Seo } from '../../core/seo.service';
 import { findPlan } from '../../data/plans.data';
 import { SERVICES } from '../../data/services.data';
 import { SOLUTIONS } from '../../data/solutions.data';
-import { CtaBand } from '../../shared/cta-band/cta-band';
 import { Icon } from '../../shared/icon/icon';
 import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-services',
-  imports: [RouterLink, Icon, CtaBand, Reveal],
+  imports: [RouterLink, Icon, Reveal],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="page-head">
@@ -34,12 +33,14 @@ import { Reveal } from '../../shared/reveal/reveal';
         @for (s of services; track s.id; let i = $index) {
           <article class="svc" [id]="s.id" [attr.aria-labelledby]="s.id + '-t'" appReveal>
             <div class="svc-head">
-              <span class="ico big"><app-icon [name]="s.icon" [size]="24" /></span>
               <div>
                 <h2 [id]="s.id + '-t'">{{ s.name }}</h2>
                 <p class="tagline">{{ s.tagline }}</p>
-                <p class="benefit"><app-icon name="check" [size]="16" /> {{ s.benefit }}</p>
               </div>
+            </div>
+            <div class="ba">
+              <p class="was"><span class="side">Hoy</span>{{ s.before }}</p>
+              <p class="now"><span class="side">Con SoftSpark</span>{{ s.benefit }}</p>
             </div>
             <dl class="facts">
               <div><dt>Qué resuelve</dt><dd>{{ s.solves }}</dd></div>
@@ -71,15 +72,21 @@ import { Reveal } from '../../shared/reveal/reveal';
       </div>
     </div>
 
-    <app-cta-band title="¿No sabes cuál de estos servicios necesitas?" text="Cuéntale tu caso a Spark Assistant y obtén una orientación, o escríbenos directamente." />
+    <div class="container assist">
+      <p>¿No sabes cuál necesitas? <a routerLink="/que-necesito" class="link">Cuéntaselo a Spark Assistant</a></p>
+    </div>
   `,
   styles: `
-    .benefit { display: flex; gap: var(--space-xs); align-items: flex-start; margin-top: var(--space-xs); font-weight: 500; color: var(--color-ink); }
-    .benefit app-icon { color: var(--ok); margin-top: var(--space-2xs); }
-    .ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--radius-input); background: var(--color-accent-wash); color: var(--color-accent); }
-    .ico.big { width: 52px; height: 52px; }
+    .ba { display: grid; border-radius: var(--radius-input); overflow: hidden; border: var(--rule-hair) solid var(--color-rule); }
+    .ba p { display: grid; gap: var(--space-2xs); margin: 0; padding: var(--space-md) var(--space-lg); }
+    .ba .side { font-size: var(--text-sm); color: var(--color-muted); }
+    .was { background: var(--color-paper-2); color: var(--color-ink-2); }
+    .now { background: var(--color-field); color: var(--color-field-ink); font-weight: 500; }
+    .now .side { color: var(--color-field-muted); font-weight: 400; }
+    @media (min-width: 700px) { .ba { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+    .assist { padding-bottom: var(--s-8); color: var(--color-ink-2); }
 
-    .layout { display: grid; gap: var(--s-6); padding-block: var(--s-6) var(--s-8); }
+    .layout { display: grid; gap: var(--s-6); padding-block: var(--s-6); }
     .toc { display: none; }
     .toc-title { font: 500 var(--fs-2xs) var(--font-display); color: var(--text-3); }
     .toc ul { list-style: none; display: grid; gap: 2px; margin-top: var(--s-3); border-left: 1px solid var(--line); }
@@ -88,7 +95,7 @@ import { Reveal } from '../../shared/reveal/reveal';
     .list { display: grid; gap: var(--s-5); min-width: 0; }
     .svc { display: grid; gap: var(--s-5); padding: clamp(20px, 4vw, 36px); border: 1px solid var(--line); border-radius: var(--r-xl); background: var(--surface); scroll-margin-top: calc(var(--header-h) + 20px); }
     .svc:target, .svc:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 4px var(--accent-soft); }
-    .svc-head { display: grid; grid-template-columns: auto 1fr; gap: var(--s-4); align-items: start; }
+    .svc-head { display: grid; gap: var(--s-4); }
     .num { font: 500 var(--fs-xs) var(--font-display); color: var(--text-3); }
     .svc h2 { font-size: var(--text-section); margin: 2px 0 var(--s-2); }
     .tagline { color: var(--text-2); font-size: var(--fs-md); }

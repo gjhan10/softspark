@@ -23,6 +23,8 @@ export class Home {
   protected readonly demos = DEMO_MODULES;
   /** Tres demos grandes en la portada; el resto queda en la lista. */
   protected readonly featured = DEMO_MODULES.filter((m) => ['crm', 'erp', 'automatizacion'].includes(m.id));
+  /** La bisagra del hero: el «hoy» sale del texto real del servicio de aplicaciones web. */
+  protected readonly hinge = { before: SERVICES.find((s) => s.id === 'aplicaciones-web')!.solves };
   protected readonly caseStudy = findProject('apuntes-java-backend')!;
 
   /** Diferenciadores: describen la forma real de trabajo, no métricas que no se pueden verificar. */

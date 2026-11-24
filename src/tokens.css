@@ -1,9 +1,10 @@
-/* Hallmark · shape: Marquee Hero (/), kept rows and grids elsewhere · genre: modern-minimal · theme: Cobalt (deal 3/3, seed software-development-studio-peru-afde·4f28ce5b·2026-11-21·r0) · redesign: full
- * hero: Corridor (/), Banner (/servicios), Banner (/soluciones), Banner (/proyectos), Banner (/lab), Banner (/planes), Banner (/proceso), Banner (/preguntas-frecuentes), Banner (/contacto), Banner (/que-necesito), Banner (/privacidad) · nav: edge-aligned · footer: letter close · imagery: the product, captured from the Lab · signature: the real demos captured at work · job: hire · draw: 4e772e
- * axes: light/grotesk-sans/cool · posture: restrained · contrast: pass · fold: pass · modes: light+dark · v2.0.0 */
-/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · weakest: S, a studio page could read generic; led with captures of the studio's own working demos and its published course platform instead of drawings */
-/* Hallmark · theme override · no ASCII field and no dot grid behind the hero · the owner asked for a plain white ground and no grids */
-
+/* Hallmark · theme: custom · idea: "cada sección muestra un proceso del negocio antes y después del sistema" · vibe: "antes a mano, después encendido; claro y directo" · genre: modern-minimal · redesign: full
+ * paper: white tinted to the lion mark's teal · accent: the lion mark's teal, committed on the after panels (two field bands a page at most) · display: Clash Display · body: Hanken Grotesk · outlier: JetBrains Mono for code and machine values
+ * hero: Corridor (/), a headline over the before and after hinge, the Lab dashboard in the after panel; Banner (/servicios), Banner (/soluciones), Banner (/proyectos), Banner (/lab), Banner (/planes), Banner (/proceso), Banner (/preguntas-frecuentes), Banner (/contacto), Banner (/que-necesito), Banner (/privacidad) · nav: edge-aligned · footer: letter close
+ * imagery: the product, captured from the Lab · signature: the before and after hinge under the hero · job: hire
+ * axes: light/display-heavy/chromatic-teal · posture: committed · contrast: pass · fold: pass · modes: light+dark · v2.0.0 */
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: R, two teal field bands on the home page; kept to the hinge and the Lab and nowhere else */
+/* Hallmark · theme override · no ASCII field and no grid behind any section · the owner asked for a plain white ground and no grids */
 /* Hallmark · waive 44c · Banner head on the interior pages (servicios, proyectos, planes, proceso, contacto) · each interior page opens straight into its catalogue, table or form on the first screen */
 /* Hallmark · waive 79 · Banner head ending above its content band on interior pages · the space under the page head is the gap before the catalogue, not a dead hero */
 /* Hallmark · waive 77 · the closing cta band is one head, one line and two actions · it repeats the quote action once per page, after the content */
@@ -19,22 +20,20 @@
   --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
-  --color-paper: oklch(98.6% 0.005 250); --color-paper-2: oklch(96.2% 0.008 252); --color-paper-3: oklch(93% 0.011 252);
-  --color-ink: oklch(21% 0.028 262); --color-ink-2: oklch(36% 0.022 260); --color-muted: oklch(50% 0.018 258);
-  --color-rule: oklch(90% 0.009 252); --color-rule-2: oklch(83% 0.012 252);
-  --color-graphite: oklch(21% 0.024 262); --color-graphite-2: oklch(26.5% 0.026 262); --color-graphite-ink: oklch(93% 0.010 250); --color-graphite-muted: oklch(69% 0.022 256);
-  --color-accent: oklch(52% 0.19 258); --color-accent-2: oklch(76% 0.13 254); --color-accent-wash: oklch(95% 0.028 256); --color-accent-ink: oklch(98.6% 0.005 250); --color-focus: oklch(52% 0.19 258);
-  --color-accent-deep: oklch(43% 0.2 262); --color-accent-edge: oklch(39% 0.16 260);
-  --color-glyph-1: oklch(89% 0.025 254); --color-glyph-2: oklch(81% 0.045 255); --color-glyph-3: oklch(70% 0.085 256); --color-glyph-4: oklch(60% 0.13 257);
-  --color-graphite-glyph-1: oklch(33% 0.03 262); --color-graphite-glyph-2: oklch(41% 0.05 260); --color-graphite-glyph-3: oklch(53% 0.1 258);
-  --color-key-face: oklch(99.4% 0.003 250); --color-key-edge: oklch(80% 0.016 254);
-  --font-display: "Familjen Grotesk", system-ui, sans-serif; --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --color-paper: oklch(99.3% 0.003 200); --color-paper-2: oklch(96.9% 0.008 200); --color-paper-3: oklch(93.6% 0.012 200);
+  --color-ink: oklch(19% 0.025 232); --color-ink-2: oklch(33% 0.024 230); --color-muted: oklch(47% 0.02 226);
+  --color-rule: oklch(90.5% 0.01 210); --color-rule-2: oklch(82% 0.014 210);
+  --color-graphite: oklch(20% 0.024 228); --color-graphite-2: oklch(25.5% 0.026 228); --color-graphite-ink: oklch(94% 0.01 200); --color-graphite-muted: oklch(70% 0.02 210);
+  --color-accent: oklch(46% 0.09 200); --color-accent-2: oklch(82% 0.08 195); --color-accent-wash: oklch(95.5% 0.03 195); --color-accent-ink: oklch(99.3% 0.003 200); --color-focus: oklch(46% 0.09 200);
+  --color-accent-deep: oklch(39% 0.08 203); --color-accent-edge: oklch(33% 0.07 205);
+  --color-field: oklch(37% 0.07 205); --color-field-2: oklch(31% 0.065 207); --color-field-ink: oklch(98.5% 0.006 195); --color-field-muted: oklch(86% 0.03 195);
+  --color-key-face: oklch(99.6% 0.002 200); --color-key-edge: oklch(80% 0.016 210);
+  --font-heading: "Clash Display", "Hanken Grotesk", system-ui, sans-serif; --font-display: "Hanken Grotesk", system-ui, sans-serif; --font-body: "Hanken Grotesk", system-ui, sans-serif;
   --font-outlier: "JetBrains Mono", ui-monospace, monospace;
-  --radius-card: 8px; --radius-input: 6px; --radius-pill: 999px;
-  --cell-w: 8px; --cell-h: 16px; --cut: 8px; --cut-l: 16px;
-  --rule-hair: 1px; --shadow-card: 0 1px 2px oklch(21% 0.028 262 / 0.06);
-  --shadow-key: 0 3px 0 0 var(--color-key-edge), 0 6px 8px -4px oklch(21% 0.028 262 / 0.28), inset 0 1px 0 oklch(100% 0 0 / 0.9);
-  --shadow-key-accent: 0 3px 0 0 var(--color-accent-edge), 0 6px 8px -4px oklch(30% 0.12 260 / 0.45), inset 0 1px 0 oklch(100% 0 0 / 0.22);
-  --shadow-key-press: inset 0 1px 2px oklch(21% 0.028 262 / 0.14);
-  --tracking-display: -0.028em; --display-weight: 600;
+  --radius-card: 14px; --radius-input: 10px; --radius-pill: 999px;
+  --rule-hair: 1px; --shadow-card: 0 1px 2px oklch(19% 0.025 232 / 0.06);
+  --shadow-key: 0 3px 0 0 var(--color-key-edge), 0 6px 8px -4px oklch(19% 0.025 232 / 0.24), inset 0 1px 0 oklch(100% 0 0 / 0.9);
+  --shadow-key-accent: 0 3px 0 0 var(--color-accent-edge), 0 6px 10px -4px oklch(30% 0.07 205 / 0.45), inset 0 1px 0 oklch(100% 0 0 / 0.2);
+  --shadow-key-press: inset 0 1px 2px oklch(19% 0.025 232 / 0.16);
+  --tracking-display: -0.02em; --display-weight: 600;
 }

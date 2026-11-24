@@ -82,7 +82,7 @@ import { Icon } from '../../shared/icon/icon';
   styles: `
     .footer { border-top: 3px solid var(--color-ink); background: var(--color-paper); padding-top: var(--section-gap-s); }
     .letter { display: grid; gap: var(--space-lg); justify-items: start; max-width: 860px; padding-bottom: var(--space-3xl); }
-    .sign-off { font: 500 var(--text-display-s) / 1.08 var(--font-display); letter-spacing: var(--tracking-display); color: var(--color-ink); text-wrap: balance; }
+    .sign-off { font: 500 var(--text-display-s) / 1.08 var(--font-heading); letter-spacing: var(--tracking-display); color: var(--color-ink); text-wrap: balance; }
     .signature { display: flex; align-items: center; gap: var(--space-sm); color: var(--color-ink-2); font-size: var(--text-sm); }
     .where { color: var(--color-ink-2); }
     .signature img { border-radius: var(--radius-input); }

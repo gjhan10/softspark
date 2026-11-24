@@ -122,10 +122,10 @@ La arquitectura está desacoplada (`AssistantProvider` en `features/assistant/`)
 
 ## Diseño, movimiento y recursos
 
-El diseño se hizo con [Hallmark](https://github.com/nutlope/hallmark) (redesign completo, tema **Cobalt**, género modern-minimal):
+El diseño se hizo con [Hallmark](https://github.com/nutlope/hallmark) (redesign completo con dirección propia, género modern-minimal). La idea que recorre la web: cada sección muestra un proceso del negocio **antes y después** del sistema, con el «después» en el turquesa del logo.
 
-- `src/tokens.css` lleva el sello de Hallmark (decisiones y excepciones registradas) y los tokens del tema: colores OKLCH, Familjen Grotesk, IBM Plex Sans y JetBrains Mono, escala de espaciado y movimiento. `src/base.css` tiene las reglas base. Ambos se cargan antes de `src/styles.scss` (ver `angular.json`).
-- `src/styles.scss` conecta esos tokens con los nombres que usan los componentes (`--accent`, `--text`, `--s-*`…) y define el modo oscuro, derivado del claro con la misma tonalidad.
+- `src/tokens.css` lleva el sello de Hallmark (decisiones y excepciones registradas) y los tokens del tema: colores OKLCH, Clash Display para títulos (Fontshare), Hanken Grotesk para texto e interfaz y JetBrains Mono para código y valores, escala de espaciado y movimiento. `src/base.css` tiene las reglas base. Ambos se cargan antes de `src/styles.scss` (ver `angular.json`).
+- `src/styles.scss` conecta esos tokens con los nombres que usan los componentes (`--accent`, `--text`, `--s-*`…) y define el modo oscuro, derivado del claro con la misma tonalidad. El turquesa de fondo (`--color-field`) se usa como mucho en dos bandas por página.
 - Reglas de la casa: fondo liso sin retículas, sin degradados, sin etiquetas en mayúsculas sobre los títulos y sin ilustraciones dibujadas; se muestran capturas reales del producto (`public/projects/`).
 - Para revisar el diseño, sirve el build bajo `/softspark/` y ejecuta `node ~/.claude/skills/hallmark/scripts/sloplint.mjs src/tokens.css src/base.css --genre modern-minimal --render --url http://localhost:PUERTO/softspark/RUTA/`.
 - Todas las animaciones respetan `prefers-reduced-motion`, y el contenido es visible aunque JavaScript falle.

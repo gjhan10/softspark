@@ -144,3 +144,19 @@ h3 {
     font-size: var(--fs-base);
   }
 }
+
+@media (max-width: 379px) {
+  .body {
+    padding-inline: var(--s-4);
+  }
+
+  h3 {
+    font-size: var(--fs-md);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  h3 {
+    font-size: var(--fs-md);
+  }
+}

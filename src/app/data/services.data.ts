@@ -8,6 +8,8 @@ export interface Service {
   name: string;
   icon: IconName;
   tagline: string;
+  /** Cómo se trabaja hoy sin este servicio, en pocas palabras (resumen de `solves`). */
+  before: string;
   /** Beneficio principal, en una frase. */
   benefit: string;
   art: ArtName;
@@ -26,6 +28,7 @@ export const SERVICES: Service[] = [
     name: 'Web esencial',
     icon: 'globe',
     tagline: 'Tu negocio visible, claro y fácil de contactar.',
+    before: 'Sin página, o con una que no explica lo que ofreces.',
     benefit: 'Que te encuentren y te contacten sin fricción.',
     art: 'web',
     solves: 'No tener presencia en internet o tener una página desactualizada que no explica bien lo que ofreces.',
@@ -41,6 +44,7 @@ export const SERVICES: Service[] = [
     name: 'Web comercial',
     icon: 'store',
     tagline: 'Un sitio pensado para atraer y convertir visitantes.',
+    before: 'Visitas que no se convierten en consultas.',
     benefit: 'Convertir más visitas en consultas.',
     art: 'store',
     solves: 'Recibir visitas que no se convierten en consultas, o no poder mostrar bien un catálogo de productos o servicios.',
@@ -56,6 +60,7 @@ export const SERVICES: Service[] = [
     name: 'Aplicaciones web',
     icon: 'window',
     tagline: 'Herramientas que tus clientes o tu equipo usan en el navegador.',
+    before: 'Hojas de cálculo, mensajes sueltos y tareas a mano.',
     benefit: 'Procesos ordenados en una herramienta propia.',
     art: 'app',
     solves: 'Procesos que hoy dependen de hojas de cálculo, mensajes sueltos o tareas manuales repetitivas.',
@@ -71,6 +76,7 @@ export const SERVICES: Service[] = [
     name: 'Sistemas empresariales',
     icon: 'building',
     tagline: 'ERP, CRM y plataformas de gestión para ordenar la operación.',
+    before: 'Información dispersa y reportes armados a mano.',
     benefit: 'Toda la operación en un solo lugar.',
     art: 'erp',
     solves: 'Información dispersa entre áreas, falta de control de inventario, ventas o clientes, y reportes que se arman a mano.',
@@ -86,6 +92,7 @@ export const SERVICES: Service[] = [
     name: 'Automatización',
     icon: 'workflow',
     tagline: 'Menos tareas repetitivas, menos errores manuales.',
+    before: 'Copiar datos entre sistemas y depender de la memoria.',
     benefit: 'Horas recuperadas de tareas repetitivas.',
     art: 'automation',
     solves: 'Copiar datos entre sistemas, generar reportes a mano o depender de que alguien recuerde cada paso.',
@@ -101,6 +108,7 @@ export const SERVICES: Service[] = [
     name: 'Software a medida',
     icon: 'code',
     tagline: 'Cuando ninguna herramienta existente encaja con tu forma de trabajar.',
+    before: 'Herramientas genéricas que te obligan a cambiar tu forma de trabajar.',
     benefit: 'Software que se adapta a ti, no al revés.',
     art: 'custom',
     solves: 'Procesos propios que los productos genéricos no cubren o cubren a costa de adaptar todo el negocio.',

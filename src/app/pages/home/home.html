@@ -1,68 +1,83 @@
 <section class="hero" aria-labelledby="hero-t">
-  <div class="container hero-col">
-    <h1 id="hero-t" class="display">Construimos tecnología que transforma negocios.</h1>
-    <p class="lead">Webs, aplicaciones, ERP, CRM y automatización hechos para tu operación.</p>
-    <div class="hero-ctas">
-      <a routerLink="/contacto" class="btn btn-primary btn-lg">Solicitar cotización</a>
-      <a routerLink="/soluciones" class="btn btn-secondary btn-lg">Explorar soluciones</a>
-    </div>
-    @if (site.availableForProjects) {
-      <p class="avail">Disponibles para nuevos proyectos</p>
-    }
-  </div>
   <div class="container">
-    <figure class="hero-shot">
-      <img src="projects/lab-panel.webp" alt="Dashboard empresarial de la demo del Lab: ventas del mes, oportunidades, stock bajo y pedidos recientes, con datos ficticios" width="1312" height="820" fetchpriority="high" decoding="async" />
-      <figcaption>Dashboard empresarial del Lab, con datos ficticios. <a routerLink="/demo/panel" class="link">Probarlo</a></figcaption>
-    </figure>
+    <div class="hero-text">
+      <h1 id="hero-t" class="display">Construimos tecnología que transforma negocios.</h1>
+      <div class="hero-side">
+        <p class="lead">Webs, aplicaciones, ERP, CRM y automatización hechos para tu operación.</p>
+        <div class="hero-ctas">
+          <a routerLink="/contacto" class="btn btn-primary btn-lg">Solicitar cotización</a>
+          <a routerLink="/soluciones" class="btn btn-secondary btn-lg">Explorar soluciones</a>
+        </div>
+        @if (site.availableForProjects) {
+          <p class="avail">Disponibles para nuevos proyectos</p>
+        }
+      </div>
+    </div>
+
+    <div class="hinge">
+      <div class="before">
+        <p class="side-name">Hoy</p>
+        <p class="before-line">{{ hinge.before }}</p>
+      </div>
+      <figure class="after">
+        <p class="side-name">Con SoftSpark</p>
+        <img src="projects/lab-panel.webp" alt="Dashboard empresarial de la demo del Lab: ventas del mes, oportunidades, stock bajo y pedidos recientes, con datos ficticios" width="1312" height="820" fetchpriority="high" decoding="async" />
+        <figcaption>Dashboard empresarial del Lab, con datos ficticios. <a routerLink="/demo/panel" class="link link-light">Probarlo</a></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<section class="section-tight what" aria-labelledby="what-t">
+<section class="section what" aria-labelledby="what-t">
   <div class="container">
     <div class="split-head" appReveal>
       <h2 id="what-t">Lo que hacemos</h2>
-      <p class="lead">Seis líneas de trabajo, de una página que te hace visible a un sistema que ordena toda la operación.</p>
+      <p class="lead">Seis líneas de trabajo, cada una con un antes y un después.</p>
     </div>
-    <ol class="rows">
-      @for (s of services; track s.id) {
-        <li>
-          <a [routerLink]="'/servicios'" [fragment]="s.id" class="row-link">
-            <span class="row-title">{{ s.name }}</span>
-            <span class="row-line">{{ s.tagline }}</span>
-            <app-icon name="arrow-right" [size]="20" class="row-arrow" />
-          </a>
-        </li>
-      }
-    </ol>
+    <table class="ba-table">
+      <caption class="sr-only">Servicios: cómo se trabaja hoy y qué cambia con SoftSpark</caption>
+      <thead>
+        <tr><th scope="col">Servicio</th><th scope="col">Hoy</th><th scope="col">Con SoftSpark</th></tr>
+      </thead>
+      <tbody>
+        @for (s of services; track s.id) {
+          <tr>
+            <th scope="row"><a [routerLink]="'/servicios'" [fragment]="s.id">{{ s.name }}</a></th>
+            <td class="was">{{ s.before }}</td>
+            <td class="now">{{ s.benefit }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
     <p class="assist">¿No sabes cuál necesitas? <a routerLink="/que-necesito" class="link">Cuéntaselo a Spark Assistant</a></p>
   </div>
 </section>
 
-<section class="section-l case" aria-labelledby="case-t">
+<section class="section case" aria-labelledby="case-t">
   <div class="container">
-    <div class="case-head" appReveal>
+    <div class="split-head" appReveal>
       <h2 id="case-t">{{ caseStudy.name }}</h2>
-      <p class="lead">{{ caseStudy.summary }}</p>
-      <a [routerLink]="['/proyectos', caseStudy.slug]" class="link">Leer el caso completo</a>
+      <p class="lead">{{ caseStudy.summary }} <a [routerLink]="['/proyectos', caseStudy.slug]" class="link">Leer el caso</a></p>
     </div>
-    <figure class="case-shot" appReveal>
-      <img [src]="caseStudy.images!.desktop" [alt]="caseStudy.images!.alt" width="1280" height="800" loading="lazy" decoding="async" />
-      <figcaption>Lección del curso de Java, captura de la plataforma publicada.</figcaption>
-    </figure>
-    <dl class="case-facts" appReveal>
-      <div><dt>El problema</dt><dd>{{ caseStudy.problem }}</dd></div>
-      <div><dt>La solución</dt><dd>{{ caseStudy.solution }}</dd></div>
-    </dl>
+    <div class="case-grid">
+      <div class="case-before">
+        <p class="side-name">Antes</p>
+        <p>{{ caseStudy.problem }}</p>
+        <p class="side-name on">Después</p>
+        <p class="now">{{ caseStudy.solution }}</p>
+      </div>
+      <figure class="case-after">
+        <img [src]="caseStudy.images!.desktop" [alt]="caseStudy.images!.alt" width="1280" height="800" loading="lazy" decoding="async" />
+      </figure>
+    </div>
   </div>
 </section>
 
-<section class="section band lab" aria-labelledby="lab-t">
-  <div class="container lab-grid">
-    <div class="lab-head" appReveal>
+<section class="field lab" aria-labelledby="lab-t">
+  <div class="container">
+    <div class="split-head">
       <h2 id="lab-t">Pruébalo en el Lab</h2>
-      <p class="lead">Siete demos con datos ficticios que funcionan en tu navegador.</p>
-      <a routerLink="/lab" class="btn btn-secondary">Abrir el Lab</a>
+      <p class="lead">Siete demos con datos ficticios que funcionan en tu navegador. <a routerLink="/lab" class="link link-light">Abrir el Lab</a></p>
     </div>
     <ul class="shots">
       @for (m of featured; track m.id) {
@@ -78,9 +93,8 @@
       @for (m of demos; track m.id) {
         <li>
           <a [routerLink]="['/demo', m.id]">
-            <app-icon [name]="m.icon" [size]="20" />
+            <app-icon [name]="m.icon" [size]="18" />
             <span class="i-name">{{ m.label }}</span>
-            <span class="i-desc">{{ m.desc }}</span>
           </a>
         </li>
       }
@@ -88,7 +102,7 @@
   </div>
 </section>
 
-<section class="section-tight tech" aria-labelledby="tech-t">
+<section class="section tech" aria-labelledby="tech-t">
   <div class="container">
     <div class="split-head" appReveal>
       <h2 id="tech-t">Con qué construimos</h2>
